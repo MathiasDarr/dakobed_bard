@@ -1,3 +1,11 @@
+*.pyc
+*.DS_Store
+.DS_Store
+*.sqlite3
+__pycache__
+balkhashdb
+
+
 
 npm-debug.log*
 .idea/
