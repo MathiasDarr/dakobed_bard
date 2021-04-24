@@ -12,7 +12,11 @@ blueprint = Blueprint("collections_api", __name__)
 
 @blueprint.route("/api/2/collections", methods=["GET"])
 def index():
-    a = 2
+    """
+    List of collections
+    """
+
+
     return "second route dfa dafa  "
 
 

@@ -1,0 +1,10 @@
+@mixin breakText {
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+@mixin buttonNotFirstChild {
+    border-radius: 3px;
+    @include rtl(border-bottom-left-radius, 0, null);
+}

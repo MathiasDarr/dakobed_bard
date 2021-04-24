@@ -1,8 +1,7 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import queryString from 'query-string';
-import { compose } from 'redux';
-import { connect } from 'react-redux';
+
 
 //import './HomeScreen.scss';
 
@@ -44,13 +43,3 @@ export class HomeScreen extends Component {
     );
   }
 }
-
-const mapStateToProps = (state) => ({
-
-});
-
-const mapDispatchToProps = { 
-
-};
-
-export default compose()(HomeScreen);

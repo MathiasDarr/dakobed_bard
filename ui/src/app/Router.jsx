@@ -5,7 +5,10 @@ import { Spinner } from '@blueprintjs/core';
 
 import NotFoundScreen from 'screens/NotFoundScreen/NotFoundScreen';
 import HomeScreen from 'screens/HomeScreen/HomeScreen';
+import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
+import EntityScreen from 'screens/EntityScreen/EntityScreen';
 
+import './Router.scss';
 
 
 class Router extends Component {
@@ -13,25 +16,31 @@ class Router extends Component {
   render() {
     console.log("hda")
     const { metadata, session } = this.props;
-    const isLoaded = metadata && metadata.app && session;
+    // const isLoaded = metadata && metadata.app && session;
 
     const Loading = (
       <div className="RouterLoading">
+        adf 
         <div className="spinner"><Spinner className="bp3-large" /></div>
       </div>
     );
-    if (!isLoaded) {
-      return Loading;
-    }
+    // if (!isLoaded) {
+    //   return Loading;
+    // }
 
     return (
       <>
-        <Suspense fallback={Loading}>
+        <div>
+          <Suspense fallback={Loading}>
           <Switch>
-            <Route path="/" exact component={HomeScreen} />
+
+            <Route path="/datasets" exact component={CollectionScreen} />
+            <Route path="/entities" exact component={EntityScreen} />
             <Route component={NotFoundScreen} />
-          </Switch>
-        </Suspense>
+
+            </Switch>
+          </Suspense>
+        </div>
       </>
     );
   }
@@ -44,3 +53,14 @@ const mapStateToProps = state => ({
 export default Router
 
 // export default connect(mapStateToProps, { fetchMetadata })(Router);
+
+
+{/* <Suspense fallback={Loading}>
+<Switch>
+
+  <Route path="/datasets" exact component={CollectionScreen} />
+  <Route path="/entities" exact component={EntityScreen} />
+  <Route component={NotFoundScreen} />
+
+</Switch>
+</Suspense> */}

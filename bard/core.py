@@ -2,9 +2,11 @@ import logging
 from flask import Flask, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-from servicelayer.logs import configure_logging
+from elasticsearch import Elasticsearch, TransportError
+from werkzeug.local import LocalProxy
 from bard import settings
 from flask_cors import CORS
+
 
 NONE = "'none'"
 log = logging.getLogger(__name__)
@@ -13,7 +15,7 @@ migrate = Migrate()
 
 
 def create_app(config={}):
-    configure_logging(level=logging.DEBUG)
+
     app = Flask("bard")
     app.config.from_object(settings)
     app.config.update(config)
@@ -35,10 +37,9 @@ def create_app(config={}):
     CORS(
         app,
         resources=r"/api/*",
-        origins=settings.CORS_ORIGINS,
+        origins="*",
         supports_credentials=True,
     )
-
 
     from bard.views import mount_app_blueprints
 
@@ -50,3 +51,12 @@ def create_app(config={}):
 def configure_alembic(config):
     config.set_main_option("sqlalchemy.url", settings.DATABASE_URI)
     return config
+
+def get_es():
+    url = settings.ELASTICSEARCH_URL
+    timeout = settings.ELASTICSEARCH_TIMEOUT
+    es = Elasticsearch(url, timeout = timeout)
+    es.info()
+    return es
+
+es = LocalProxy(get_es)
