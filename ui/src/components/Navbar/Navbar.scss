@@ -1,0 +1,11 @@
+@import "app/mixins.scss";
+@import "app/variables.scss";
+
+$navbar-horizontal-padding: $bard-grid-size*.8;
+
+.Navbar {
+  .bp3-navbar {
+    display:flex;
+    padding: 0 $bard-content-padding;
+  }
+}

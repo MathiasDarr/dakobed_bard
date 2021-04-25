@@ -6,6 +6,17 @@ from datetime import timedelta
 
 APP_DIR = os.path.abspath(os.path.dirname(__file__))
 
+# GENERAL INSTANCE INFORMATION
+
+APP_TITLE = os.getenv("DAKOBED_APP_TITLE", "Dakobed Bard")
+APP_LOGO = os.getenv("DAKOBED_LOGO","/static/logo.png")
+
+
+
+
+
+
+
 DEBUG = bool(os.getenv("DAKOBED_DEBUG", True))
 # Profile requests
 PROFILE = bool(os.getenv("DAKOBED_PROFILE", False))
@@ -22,4 +33,6 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 ALEMBIC_DIR = os.path.join(APP_DIR, "migrate")
 
 ELASTICSEARCH_URL = os.getenv("DAKOBED_ELASTIC_URI","http://localhost:9200")
-ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT",30))
+ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT", 30))
+
+

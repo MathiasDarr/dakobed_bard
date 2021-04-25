@@ -3,6 +3,9 @@ import { BrowserRouter, Route } from 'react-router-dom';
 
 import Router from './Router';
 
+
+import store from './store'
+
 function App() {
   // extends blueprint icon renderer to render icons from the ftm iconRegistry
 

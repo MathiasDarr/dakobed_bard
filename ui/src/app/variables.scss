@@ -1,2 +1,10 @@
 @import "~@blueprintjs/core/lib/scss/variables";
 @import "~@blueprintjs/icons/lib/scss/variables";
+
+$bard-grid-size: $pt-grid-size;
+$bard-font-size: $pt-font-size;
+$bard-content-padding: $bard-grid-size*2;
+
+$bard-screen-sm-max-width: 620px;
+$bard-screen-md-max-width: 980px;
+$bard-screen-lg-max-width: 1200px;

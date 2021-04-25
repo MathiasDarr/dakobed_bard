@@ -3,6 +3,7 @@ import { Route, Redirect, Switch } from 'react-router-dom';
 
 import { Spinner } from '@blueprintjs/core';
 
+import Navbar from 'components/Navbar/Navbar';
 import NotFoundScreen from 'screens/NotFoundScreen/NotFoundScreen';
 import HomeScreen from 'screens/HomeScreen/HomeScreen';
 import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
@@ -30,17 +31,16 @@ class Router extends Component {
 
     return (
       <>
-        <div>
-          <Suspense fallback={Loading}>
+        <Navbar />
+        <Suspense fallback={Loading}>
           <Switch>
 
             <Route path="/datasets" exact component={CollectionScreen} />
             <Route path="/entities" exact component={EntityScreen} />
             <Route component={NotFoundScreen} />
 
-            </Switch>
-          </Suspense>
-        </div>
+          </Switch>
+        </Suspense>
       </>
     );
   }
