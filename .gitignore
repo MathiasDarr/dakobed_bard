@@ -6,6 +6,8 @@ __pycache__
 balkhashdb
 
 
+venv
+
 
 npm-debug.log*
 .idea/
