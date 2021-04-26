@@ -4,9 +4,9 @@ import { Provider } from "react-redux";
 import Router from './Router';
 
 
-// import store from './store'
-import store from 'redux/store'
-import TodoApp from '../TodoApp'
+import store from './store'
+//import store from 'redux/store'
+import Collections from '../CollectionApp'
 
 function App() {
   // extends blueprint icon renderer to render icons from the ftm iconRegistry
@@ -14,11 +14,12 @@ function App() {
   return (
     <Provider store={store}>
       
-      
-      <TodoApp />
       <BrowserRouter>
         <Route path="/" component={Router} />
       </BrowserRouter>
+
+      <Collections />
+
     </Provider>
   
   );
