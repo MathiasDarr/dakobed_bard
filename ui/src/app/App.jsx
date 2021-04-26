@@ -17,9 +17,6 @@ function App() {
       <BrowserRouter>
         <Route path="/" component={Router} />
       </BrowserRouter>
-
-      <Collections />
-
     </Provider>
   
   );
