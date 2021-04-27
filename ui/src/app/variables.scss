@@ -8,6 +8,7 @@ $bard-content-padding: $bard-grid-size*2;
 $bard-screen-sm-max-width: 620px;
 $bard-screen-md-max-width: 980px;
 $bard-screen-lg-max-width: 1200px;
+$bard-navbar-mobile-max-width: $bard-screen-sm-max-width + $bard-grid-size * 12;
 
 $bard-breadcrumbs-background: $light-gray4;
 $bard-page-background: white;
