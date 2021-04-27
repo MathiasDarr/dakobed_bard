@@ -8,3 +8,46 @@ $bard-content-padding: $bard-grid-size*2;
 $bard-screen-sm-max-width: 620px;
 $bard-screen-md-max-width: 980px;
 $bard-screen-lg-max-width: 1200px;
+
+$bard-breadcrumbs-background: $light-gray4;
+$bard-page-background: white;
+$bard-link-color: $pt-link-color;
+$bard-visited-link-color: darken($bard-link-color, 15%);
+$bard-sidebard-background: $pt-link-color;
+$bard-sidebard-foreground: white;
+$bard-facet-background: $light-gray4;
+$bard-query-tag-height: 36px;
+$bard-table-border-color: $light-gray2;
+$bard-content-background: white;
+$bard-border-color: $light-gray2;
+
+$bard-greyed-text: $gray3;
+$bard-theme-intent: $bard-link-color;
+$bard-profile-dark: $gold2;
+$bard-profile-light: $gold5;
+$bard-profile-dark-visited: $gold1;
+
+$bard-investigation-sidebard-width: $bard-grid-size * 30;
+$bard-investigation-theme: $blue1;
+$bard-dataset-theme: rgba($dark-gray5, .8);
+
+$table-header-color: $blue3;
+
+$bard-dropdown-width: 159px;
+$bard-preview-pane-width: 1024px;
+$bard-single-pane-width:1024px;
+$bard-sidebar-width: $bard-grid-size * 40;
+$bard-sidebar-sm-width: $bard-grid-size * 20;
+$bard-sidepane-md-width: $bard-grid-size * 27;
+
+$bard-text-highlight-color: yellow;
+
+$warning-border-color: #faebcc;
+$warning-background-color: #fcf8e3;
+$warning-text-color: #8a6d3b;
+
+$button-color-hover: #137cbd;
+$views-menu-background-color: rgba(92,112,128,0.5);
+$bard-error-highlight-color: rgb(212, 19, 13);
+
+

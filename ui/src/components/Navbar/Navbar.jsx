@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { Alignment, Button, Navbar as Bp3Navbar } from '@blueprintjs/core'
 import c from 'classnames'
 
+import './Navbar.scss'
+
 
 export class Navbar extends Component {
   constructor(props) {
