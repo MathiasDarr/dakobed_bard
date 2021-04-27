@@ -1,9 +1,9 @@
-import { ADD_TODO, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
+import { ADD_COLLECTION, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
 
 let nextTodoId = 0;
 
-export const addTodo = content => ({
-  type: ADD_TODO,
+export const addCollection = content => ({
+  type: ADD_COLLECTION,
   payload: {
     id: ++nextTodoId,
     content

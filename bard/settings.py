@@ -36,3 +36,10 @@ ELASTICSEARCH_URL = os.getenv("DAKOBED_ELASTIC_URI","http://localhost:9200")
 ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT", 30))
 
 
+### Cache Settings
+
+
+REDIS_URL = "redis://redis:6379/0"
+
+
+

@@ -2,10 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import Todo from "./Collection";
 // import { getTodos } from "../redux/selectors";
-import { getTodosByVisibilityFilter } from "../../redux/selectors";
+import { getTodosByVisibilityFilter } from "../../actions/selectors";
 import { VISIBILITY_FILTERS } from "../../constants";
 
-const TodoList = ({ todos }) => (
+const CollectionList = ({ todos }) => (
   <ul className="todo-list">
     {todos && todos.length
       ? todos.map((todo, index) => {
@@ -39,4 +39,4 @@ const mapStateToProps = state => {
   //   };
 };
 // export default TodoList;
-export default connect(mapStateToProps)(TodoList);
+export default connect(mapStateToProps)(CollectionList);
