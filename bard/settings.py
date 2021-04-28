@@ -45,6 +45,14 @@ REDIS_URL = "redis://redis:6379/0"
 
 OAUTH = bool(os.getenv("BARD_OAUTH", False))
 
+# HANDLER IS ONE OF THE KEYCLOAK, GOOGLE, COGNITO, AZURE
+OAUTH_MIGRATE_SUB = bool(os.getenv("BARD_OAUTH_MIGRATE_SUB", False))
+OAUTH_KEY = os.getenv("BARD_OAUTH_KEY")
+OAUTH_SECRET = os.getenv("BARD_OAUTH_SECRET")
+OAUTH_SCOPE = os.getenv("BARD_OAUTH_SCOPE","openid email profile")
+OAUTH_METADATA_URL = os.getenv("BARD_OAUTH_METADATA_URL")
+OAUTH_TOKEN_METHOD = os.getenv("BARD_OAUTH_TOKEN_METHOD","POST")
+OAUTH_ADMIN_GROUP = os.getenv("BARD_OAUTH_ADMIN_GROUP","superuser")
 
 
 

@@ -32,3 +32,15 @@ export const showSuccessToast = props => showToast(props, {
   intent: Intent.Success,
   icon: 'tick '
 })
+
+export const showWarningToast = props => showToast(props, {
+  intent: Intent.WARNING,
+  icon: 'warning-sign'
+})
+
+export const showErrorToast = props => showToast(props, {
+  intent: Intent.DANGER,
+  icon: 'error'
+})
+
+
