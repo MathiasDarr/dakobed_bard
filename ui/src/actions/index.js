@@ -1,1 +1,1 @@
-import { fetchMetadata } from "./metadataActions"
+export { fetchMetadata, fetchStatistics } from "./metadataActions"

@@ -41,5 +41,15 @@ ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT", 30))
 
 REDIS_URL = "redis://redis:6379/0"
 
+# OAUTH configuration
+
+OAUTH = bool(os.getenv("BARD_OAUTH", False))
+
+
+
+
+
+
+
 
 

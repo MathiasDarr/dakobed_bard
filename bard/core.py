@@ -4,8 +4,10 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from elasticsearch import Elasticsearch, TransportError
 from werkzeug.local import LocalProxy
-from bard import settings
 from flask_cors import CORS
+
+from bard import settings
+from bard.oauth import configure_oath
 
 
 NONE = "'none'"
@@ -32,6 +34,7 @@ def create_app(config={}):
         }
     )
     migrate.init_app(app, db, directory=settings.ALEMBIC_DIR)
+    configure_oath(app)
     db.init_app(app)
 
     CORS(

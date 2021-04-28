@@ -28,8 +28,8 @@ def statistics():
     Get a summary of the data accessible to a user
 
     """
-    pass
-
+    data = {'trip_reports': [], "schemata": []}
+    return jsonify(data)
 
 
 

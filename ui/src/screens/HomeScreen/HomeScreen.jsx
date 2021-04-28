@@ -4,7 +4,11 @@ import queryString from 'query-string';
 import Screen from 'components/Screen/Screen';
 import WelcomeDialog from 'components/common/WelcomeDialog'
 
+
+import { fetchStatistics } from 'actions/index';
+
 import './HomeScreen.scss';
+import { selectStatistics, selectMetadata } from 'selectors';
 
 const messages = {
   title:'Dakobed Bard Website'
@@ -21,6 +25,7 @@ export class HomeScreen extends Component {
 
   componentDidMount() {
     // for now, always load
+    //this.props.fetchStatistics()
 
   }
 
@@ -66,6 +71,13 @@ export class HomeScreen extends Component {
     );
   }
 }
+
+
+const mapStateToProps = (state) => ({
+  statistics: selectStatistics(state),
+  metadata: selectMetadata(state)
+})
+
 
 
 export default HomeScreen;

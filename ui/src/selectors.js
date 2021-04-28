@@ -1,4 +1,8 @@
-import { VISIBILITY_FILTERS } from "../constants";
+import _ from 'lodash';
+import { VISIBILITY_FILTERS } from "./constants";
+
+import { loadState } from 'reducers/util';
+
 
 export const getTodosState = store => store.todos;
 
@@ -27,3 +31,39 @@ export const getTodosByVisibilityFilter = (store, visibilityFilter) => {
       return allTodos;
   }
 };
+
+
+function selectTimestamp(state){
+  return state.mutation;
+}
+
+
+function selectObject(state, objects, id){
+  if (!id || !_.has(objects, id)){
+    return loadState();
+  }
+  const obj = objects[id];
+  const isLoadable = !obj.isError && !obj.isPending;
+  if(isLoadable){
+    const outdated = obj.loadedAt && obj.loadedAt < selectTimestamp(state);
+    obj.shouldLoad = obj.shouldLoad || outdated;
+  }
+  obj.shouldLoadDeep = obj.shouldLoad || (isLoadable && obj.shalow !== false);
+  return obj;
+}
+
+
+export function selectMetadata(state){
+  const metadata = selectObject(state, state, 'metadata');
+  if (!metadata.isPending){
+    metadata.shouldLoad = metadata.shouldLoad || metadata.isError;
+  }
+  return metadata;
+}
+
+
+export function selectStatistics(state){
+  return selectObject(state, state, 'statistics')
+}
+
+

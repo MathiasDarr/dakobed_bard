@@ -1,6 +1,8 @@
 import React, { Component, Suspense } from 'react';
 import { Route, Redirect, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import {fetchMetadata } from 'actions';
 import { Spinner } from '@blueprintjs/core';
 
 import Navbar from 'components/Navbar/Navbar';
@@ -10,9 +12,15 @@ import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
 import EntityScreen from 'screens/EntityScreen/EntityScreen';
 
 import './Router.scss';
+import { selectMetadata } from 'selectors';
 
 
 class Router extends Component {
+
+
+  componentDidMount(){
+    this.props.fetchMetadata()
+  }
 
   render() {
     console.log("hda")
@@ -47,12 +55,12 @@ class Router extends Component {
 }
 
 const mapStateToProps = state => ({
-
+  metadata: selectMetadata(state),
 });
 
-export default Router
+//export default Router
 
-// export default connect(mapStateToProps, { fetchMetadata })(Router);
+export default connect(mapStateToProps, { fetchMetadata })(Router);
 
 
 {/* <Suspense fallback={Loading}>
