@@ -68,14 +68,10 @@ export class Navbar extends Component {
 
               <Bp3Navbar.Divider className={c({'mobile-hidden': mobileSearchOpen })} />
 
-
-
-
-
             </Bp3Navbar.Group>
           </Bp3Navbar>
         </div>
-        Navbar
+        
       </>
     )
   }

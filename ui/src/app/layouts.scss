@@ -10,9 +10,7 @@
   @media screen and (max-width: $bard-screen-sm-max-width){
     flex-flow: column;
   }
-
 }
-
 
 .pane-layout-main {
   display: flex;
@@ -28,4 +26,19 @@
 .pane-layout-side {
   flex: none;
   width: $bard-sidebar-width;
+  height: 100%;
+  overflow: visible;
+
+  @media screen and (max-width: $bard-screen-sm-max-width) and (min-width: $bard-screen-sm-max-width){
+    width: 40%;
+  }
+
+  @media screen and (max-width: $bard-screen-sm-max-width){
+    margin-bottom: 1em;
+    @include rtlSupportInvertedProp(border, right, none, null);
+    border-bottom: 1px solid $bard-border-color;
+    @include rtlSupportInvertedProp(padding, right, 0, null);
+    width: auto !important;
+  }
+
 }

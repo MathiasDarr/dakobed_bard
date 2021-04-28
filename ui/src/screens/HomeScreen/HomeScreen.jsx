@@ -1,9 +1,18 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import queryString from 'query-string';
+import Screen from 'components/Screen/Screen';
+
+import './HomeScreen.scss';
+
+const messages = {
+  title:{
+    id: 'home.title',
+    message: 'Dakobed Bard Website'
+  }
+}
 
 
-//import './HomeScreen.scss';
 
 export class HomeScreen extends Component {
   constructor(props) {
@@ -33,10 +42,14 @@ export class HomeScreen extends Component {
 
     console.log("asdsfa")
     return (
-        <div>
-          HOME SCREEN
-        </div>
-
+      <Screen
+        title= {messages.title.message} 
+      >
+        <div className = "HomeScreen"></div>
+      </Screen>
     );
   }
 }
+
+
+export default HomeScreen;

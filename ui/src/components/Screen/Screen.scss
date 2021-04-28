@@ -1,0 +1,16 @@
+@import "app/variables.scss";
+
+.Screen {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+  background: $bard-page-background;
+
+  main {
+    flex-grow: 1;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: stretch;
+    height: 100%
+  }
+}

@@ -34,7 +34,7 @@ class Router extends Component {
         <Navbar />
         <Suspense fallback={Loading}>
           <Switch>
-
+            <Route path="/" exact component={HomeScreen} />
             <Route path="/datasets" exact component={CollectionScreen} />
             <Route path="/entities" exact component={EntityScreen} />
             <Route component={NotFoundScreen} />

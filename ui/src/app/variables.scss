@@ -4,6 +4,12 @@
 $bard-grid-size: $pt-grid-size;
 $bard-font-size: $pt-font-size;
 $bard-content-padding: $bard-grid-size*2;
+$bard-border-radius: $pt-border-radius;
+$bard-icon-padding: ($bard-grid-size/2);
+$bard-content-padding: $bard-grid-size*2.5;
+$bard-mobile-content-padding: $bard-grid-size * 2;
+$bard-content-width-limit: 750px;
+
 
 $bard-screen-sm-max-width: 620px;
 $bard-screen-md-max-width: 980px;

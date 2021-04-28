@@ -22,3 +22,124 @@ body {
   flex-flow: column nowrap;
   min-height: 100vh;
 }
+
+#root {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+h1 {
+  font-size: $bard-font-size * 1.7;
+}
+
+h2 {
+  font-size: $bard-font-size * 1.5;
+  margin-top: $bard-grid-size * 2;
+}
+
+pre {
+  border: none;
+  background-color: inherit;
+  box-shadow: none;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+a {
+  color: $bard-link-color;
+}
+
+.small-screen {
+  max-width: 400px;
+  margin: 0 auto;
+  padding: ($bard-grid-size * 2)
+
+  h1 {
+    line-weight: inherit;
+  }
+}
+.small-screen-outer {
+  display: table;
+  position: absolute;
+  height: 80%;
+  width: 100%;
+}
+
+
+.small-screen-inner{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.PartialError{
+  .bp3-non-ideal-state{
+    min-height: 30vh;
+  }
+}
+
+.text-muted {
+  color: $bard-greyed-text;
+}
+
+
+.text-page-title {
+  font-size: 22px;
+  margin: 0 0 $bard-grid-size;
+}
+
+
+.error-text {
+  font-style: italic;
+  color: $red1;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.info-tabs-padding {
+  width: 100%;
+}
+
+.left-icon {
+  @include rtlSupportInvertedProp(margin, right, $bard-icon-padding !important, 0);
+}
+
+
+
+
+// &__count {
+//   @include rtl(float, right, left);
+//   display: block;
+//   margin-top: 2px;
+// }
+
+// &__summary {
+//   font-size: $bard-font-size;
+//   margin-bottom: $bard-grid-size;
+// }
+
+@media screen and (max-width: $bard-screen-sm-max-width){
+  .visible-sm-block{
+    display: block !important;
+  }
+  .visible-sm-flex {
+    display: flex !important;
+  }
+  .visible-sm-none {
+    display: none !important
+  }
+}
+
+
+
+@media screen and (max-width: $bard-screen-md-max-width){
+  .visible-md-flex {
+    display: flex !important
+  }
+  .visible-md-none {
+    display: none !important;
+  }
+}
+
