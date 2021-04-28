@@ -21,7 +21,12 @@ export class Screen extends React.Component {
 
     return (
       <div className={c('Screen', "HomePage")}>
-        {title}
+        <>
+          <main> 
+            {this.props.children} 
+          </main>
+        </>
+
       </div>
     )
   }

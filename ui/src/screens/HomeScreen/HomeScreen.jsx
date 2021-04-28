@@ -2,14 +2,12 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import queryString from 'query-string';
 import Screen from 'components/Screen/Screen';
+import WelcomeDialog from 'components/common/WelcomeDialog'
 
 import './HomeScreen.scss';
 
 const messages = {
-  title:{
-    id: 'home.title',
-    message: 'Dakobed Bard Website'
-  }
+  title:'Dakobed Bard Website'
 }
 
 
@@ -43,9 +41,27 @@ export class HomeScreen extends Component {
     console.log("asdsfa")
     return (
       <Screen
-        title= {messages.title.message} 
+        title= {messages.title} 
       >
-        <div className = "HomeScreen"></div>
+        <div className = "HomeScreen">
+          <section className="Homescreen__section title-section">
+            <h1 className="Homescreen_app-title">
+              {messages.title}
+            </h1>
+            <div className="HomeScreen__thirds">
+              <div>
+                <b>
+                  Hrsdfg
+                </b>
+                <div className ="HomeScreen__contact">
+                  Helaf adf 
+                </div>
+              daf 
+
+              </div>
+            </div>
+          </section>
+        </div>
       </Screen>
     );
   }
