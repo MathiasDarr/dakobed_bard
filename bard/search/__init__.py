@@ -8,3 +8,4 @@ log = logging.getLogger(__name__)
 class CollectionsQuery(Query):
 
 
+    pass

@@ -70,10 +70,9 @@ export class Navbar extends Component {
 
 
 
+
+
             </Bp3Navbar.Group>
-
-
-
           </Bp3Navbar>
         </div>
         Navbar

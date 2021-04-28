@@ -8,6 +8,9 @@ import store from './store'
 //import store from 'redux/store'
 import Collections from '../CollectionApp'
 
+import './App.scss'
+
+
 function App() {
   // extends blueprint icon renderer to render icons from the ftm iconRegistry
 

@@ -21,9 +21,23 @@ def _metadata_locale():
         }
     }
 
+
+@blueprint.route("/api/2/statistics")
+def statistics():
+    """
+    Get a summary of the data accessible to a user
+
+    """
+    pass
+
+
+
+
 @blueprint.route("/api/2/metadata")
 def metadata():
     request.rate_limit = None
     data = _metadata_locale()
     return jsonify(data)
+
+
 

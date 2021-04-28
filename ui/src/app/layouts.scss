@@ -1,0 +1,31 @@
+@import "app/mixins.scss";
+
+.pane-layout {
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-content: stretch;
+  align-items: stretch;
+
+  @media screen and (max-width: $bard-screen-sm-max-width){
+    flex-flow: column;
+  }
+
+}
+
+
+.pane-layout-main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow: hidden;
+
+  @media screen and (max-width: $bard-screen-sm-max-width){
+    order: 2;
+  }
+}
+
+.pane-layout-side {
+  flex: none;
+  width: $bard-sidebar-width;
+}

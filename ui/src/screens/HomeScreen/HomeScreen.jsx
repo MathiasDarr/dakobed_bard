@@ -5,9 +5,6 @@ import queryString from 'query-string';
 
 //import './HomeScreen.scss';
 
-
-
-
 export class HomeScreen extends Component {
   constructor(props) {
     super(props);
