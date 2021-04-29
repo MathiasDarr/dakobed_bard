@@ -4,9 +4,13 @@ from sqlalchemy.exc import InternalError
 from sqlalchemy.dialects.postgresql import ENUM
 
 from bard.core import db
+from bard.logic.roles import create_system_roles
+
+from bard.core import db
 
 def upgrade_system():
     flask_migrate.upgrade()
+    create_system_roles()
 
 def cleanup_deleted():
     from bard.models import Collection

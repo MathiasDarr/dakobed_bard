@@ -11,12 +11,6 @@ APP_DIR = os.path.abspath(os.path.dirname(__file__))
 APP_TITLE = os.getenv("DAKOBED_APP_TITLE", "Dakobed Bard")
 APP_LOGO = os.getenv("DAKOBED_LOGO","/static/logo.png")
 
-
-
-
-
-
-
 DEBUG = bool(os.getenv("DAKOBED_DEBUG", True))
 # Profile requests
 PROFILE = bool(os.getenv("DAKOBED_PROFILE", False))
@@ -41,11 +35,17 @@ ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT", 30))
 
 REDIS_URL = "redis://redis:6379/0"
 
+
+SYSTEM_USER = os.getenv("BARD_SYSTEM_USER", "system:bard")
+
+
+
 # OAUTH configuration
 
 OAUTH = bool(os.getenv("BARD_OAUTH", False))
 
 # HANDLER IS ONE OF THE KEYCLOAK, GOOGLE, COGNITO, AZURE
+OAUTH_HANDLER = "oidc"
 OAUTH_MIGRATE_SUB = bool(os.getenv("BARD_OAUTH_MIGRATE_SUB", False))
 OAUTH_KEY = os.getenv("BARD_OAUTH_KEY")
 OAUTH_SECRET = os.getenv("BARD_OAUTH_SECRET")

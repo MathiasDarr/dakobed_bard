@@ -8,11 +8,19 @@ import {connect} from 'react-redux'
 
 import { withRouter } from 'react-router';
 
-
+import AuthButtons from 'components/AuthButtons/AuthButtons';
 import { SearchBox } from 'components/common/SearchBox'
 
 import './Navbar.scss'
 
+
+const messages = {
+  datasets: 'Datasets',
+  trip_reports: 'Trip Reports',
+  music: 'Music',
+  writing: 'Writing',
+  feedback: 'Send Feedback'
+}
 
 export class Navbar extends Component {
   constructor(props) {
@@ -52,19 +60,26 @@ export class Navbar extends Component {
               <>
                 <Link to="/datasets">
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    Datasets
+                    {messages.datasets}
                   </Button>
                 </Link>
               
                 <Link to="/" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    Trip Reports
+                    {messages.trip_reports}
                   </Button>
                 </Link>
+
+                <Button icon="comment" className="Navbar__collections-button bp3-minimal">
+                  {messages.feedback}
+                </Button>
+
               </>
 
               <Bp3Navbar.Divider className={c({'mobile-hidden': mobileSearchOpen })} />
-
+              <div className={c({'mobile-hidden':mobileSearchOpen})} >
+                <AuthButtons className={c({hide:mobileSearchOpen})} />
+              </div>
             </Bp3Navbar.Group>
           </Bp3Navbar>
         </div>

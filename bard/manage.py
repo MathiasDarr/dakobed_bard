@@ -28,6 +28,7 @@ def collections():
 @cli.command()
 def upgrade():
     """Create or upgrade the search index and database."""
+    log.info("DFADF ")
     upgrade_system()
 
 
