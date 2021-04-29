@@ -34,9 +34,6 @@ export class Navbar extends Component {
           <Bp3Navbar id="Navbar" className="bp3-dark" >
             
             <Bp3Navbar.Group align={Alignment.LEFT}  className={c('Navbar__left-group')}>
-              <Link to="/" className="Navbar__home-link">
-                <img src={process.env.PUBLIC_URL + '/static/gp.JPG'} alt={title} />
-              </Link>
             </Bp3Navbar.Group>
             
             <Bp3Navbar.Group align={Alignment.CENTER} className={c('Navbar__middle-group')}>
