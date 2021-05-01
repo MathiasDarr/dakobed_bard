@@ -1,15 +1,47 @@
 from flask import Response, request, render_template
-from werkzeug.exceptions import BadRequest, NotFound
-from bard.util import JSONEncoder
+from werkzeug.urls import url_parse
+from werkzeug.exceptions import BadRequest, NotFound, Forbidden
 import string
 import logging
+
+from bard.util import JSONEncoder
+from bard.authz import Authz
+from bard.models import Collection
+
 
 log = logging.getLogger(__name__)
 CALLBACK_VALID = string.ascii_letters + string.digits + "_"
 
 
+def require(*predicates):
+    """Check if a user is allowed a set of predicates."""
+    for predicate in predicates:
+        if not predicate:
+            raise Forbidden("Sorry, you're not permitted to do this")
+
+
 def validate(data, schema):
     """Validate the data inside a request against a schema"""
+
+
+def obj_or_404(obj):
+    """Raise a 404 error if the given object is None"""
+    if obj is None:
+        raise NotFound()
+    return obj
+
+
+def get_db_collection(collection_id, action=Authz.READ):
+    collection = obj_or_404(Collection.by_id(collection_id))
+    require(request.authz.can(collection.id, action))
+    return collection
+
+
+def get_url_path(url):
+    try:
+        return url_parse(url).replace(netloc="", scheme="")
+    except Exception:
+        return "/"
 
 
 def jsonify(obj, status=200, headers=None, encoder=JSONEncoder):

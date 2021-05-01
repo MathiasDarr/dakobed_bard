@@ -7,5 +7,8 @@ log = logging.getLogger(__name__)
 
 class CollectionsQuery(Query):
 
+    PREFIX_FIELD = "label"
 
-    pass
+
+    def get_index(self):
+        return

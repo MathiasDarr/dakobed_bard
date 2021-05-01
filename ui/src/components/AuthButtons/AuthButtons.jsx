@@ -35,7 +35,9 @@ export class AuthButtons extends Component {
                   {messages.settings}
                 </div>
               </Link>
-              <MenuItem icon="log-out" href="/logout" text="Sign Out" /> 
+              <MenuItem icon="log-out" href="/logout" text="Sign Outy
+              
+              " /> 
             </Menu>
           )}
           position={Position.BOTTOM_LEFT}

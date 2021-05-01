@@ -28,3 +28,17 @@ def configure_oath(app):
     else:
         log.info("OAUTH IS DISABLED")
 
+
+def handle_oauth(provider, oauth_token):
+    from bard.models import Role
+
+    token = provider.parse_id_token(oauth_token)
+    if token is None:
+        return None
+    name = token.get("name", token.get("given_name"))
+
+
+
+
+
+
