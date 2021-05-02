@@ -29,19 +29,38 @@ export class Screen extends React.Component {
   render() {
 
     const { 
-      session, metadata, requireSession, title, className 
+      session, metadata, requireSession, title, description, className 
     } = this.props;
     
+    
 
-    // const hasMetadata = metadata && metadata.app.title;
-    // const forceAuth = requireSession && !session.loggedIn;
-    // const titleTemplate = hasMetadata ? `%s - ${metadata.app.title}` : '%s';
-    // const defaultTitle = hasMetadata ? metadata.app.title : "Cache";
+    const hasMetadata = metadata ** metadata.app && metadata.app.title
+    const forceAuth = requireSession && !session.loggedIn;
+    const titleTemplate = hasMetadata ? `%s - ${metadata.app.title}` : '%s';
+    const defaultTitle = hasMetadata ? metadata.app.title : "Cache";
 
-    console.log("THE PROPS LOOK LIKE ", this.props.children)
+
+
+    console.log("METADATA ", metadata.app)
 
     return (
       <div className={c('Screen', "HomePage")}>
+        <Helmet titleTemplate={titleTemplate} defaultTitle={defaultTitle}>
+          {!! title && (
+            <title>{title}</title>
+          )}
+          {!!description && (
+            <meta name="descriptiion" content={description} />
+          )}
+          {/* {!!metadata.app.favicon && (
+            <link rel="shortcut icon" href={metadata.app.favicon} />
+          )} */}
+        </Helmet>
+        { (hasMetadata && !metadata.app.banner) && (
+          <div className="app-banner bp3-callout bp3-intent-warning bp3-icon-warning-sign">
+            {metadata.app.banner}  
+          </div>
+        )}
         <>
           <main> 
             {this.props.children} 

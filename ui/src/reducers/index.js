@@ -5,4 +5,12 @@ import metadata from './metadata';
 import session from './session';
 
 
-export default combineReducers({ todos, visibilityFilter });
+const rootReducer = combineReducers({ 
+  metadata,
+  session,
+  todos,
+  visibilityFilter
+});
+
+export default rootReducer;
+
