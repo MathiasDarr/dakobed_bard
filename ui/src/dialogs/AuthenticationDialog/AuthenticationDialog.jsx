@@ -10,10 +10,11 @@ import { showResponseToast } from 'app/toast';
 import { PasswordAuthLogin, PasswordAuthSignup } from 'components/auth/PasswordAuth';
 import {
   loginWithPassword as loginWithPasswordAction,
-  loginWithTOken as loginWithTokenAction
+  loginWithToken as loginWithTokenAction
 } from 'actions/sessionActions';
 
 import './AuthenticationDialog.scss'
+import { selectMetadata } from 'selectors';
 
 
 const messages = {
@@ -81,46 +82,69 @@ export class AuthenticationDialog extends Component {
     this.setState({ firstSection: '', secondSection: 'hide'})
   }
 
-
-
-
   render(){
     const {
-      metadta, isOpen, toggleDialog
+      metadata, isOpen, toggleDialog
     } = this.props;
-    const { auth } = metadta;
+    //console.log("THE PROPS LOOK LIKE ", this.props)
+    // const { auth } = metadata;
     const { submitted, firstSection, secondSection } = this.state;
-    const passwordLogin = auth.password_login_uri;
+    
+    //console.log("THE STATE LOOK LIKE ", this.state)
+    
+    //const passwordLogin = auth.password_login_uri;
 
     if(!isOpen){
       return null;
     }
 
     return (
-      <Dialog 
-        icon ="authentication"
-        className="AuthenticaionScreen"
-        isOpen={isOpen}
-        onClose = {toggleDialog}
-        title={firstSection === '' ? messages.title : messages.registration_title }
-      >
-        <div className="inner">
-          <section className={firstSection}>
-            {passwordLogin && <PasswordAuthLogin buttonClassName="signin-button" onSubmit={this.onLogin} /> }
-            {passwordLogin && (
-              <div className="link-box">
-                <a key="oauth" href ="/" onClick={this.onRegisterClick}>
-                  Don't have an account? Register!
-                </a>
-              </div>
-            )}
-          </section>
-        </div>
-      </Dialog>
+      <div>
+        {/* <Dialog 
+          icon ="authentication"
+          className="AuthenticaionScreen"
+          isOpen={isOpen}
+          onClose = {toggleDialog}
+          title={firstSection === '' ? messages.title.defaultMessage : messages.registration_title.defaultMessage }
+        >
+          <div className="inner">
+            Hal
+          </div>
+
+        </Dialog> */}
+      </div>
+      // <Dialog 
+      //   icon ="authentication"
+      //   className="AuthenticaionScreen"
+      //   isOpen={isOpen}
+      //   onClose = {toggleDialog}
+      //   title={firstSection === '' ? messages.title : messages.registration_title }
+      // >
+      //   <div className="inner">
+      //     <section className={firstSection}>
+      //       {passwordLogin && <PasswordAuthLogin buttonClassName="signin-button" onSubmit={this.onLogin} /> }
+      //       {passwordLogin && (
+      //         <div className="link-box">
+      //           <a key="oauth" href ="/" onClick={this.onRegisterClick}>
+      //             Don't have an account? Register!
+      //           </a>
+      //         </div>
+      //       )}
+      //     </section>
+      //   </div>
+      // </Dialog>
     )
   }
 
 }
 
 
-export default AuthenticationDialog;
+const mapStateToProps = state => ({ metadata: selectMetadata(state)} );
+const mapDispatchToProps = {
+  loginWithToken: loginWithTokenAction, loginWithPassword: loginWithTokenAction,
+};
+
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(AuthenticationDialog)
+

@@ -4,6 +4,9 @@ import queryString from 'query-string';
 import Screen from 'components/Screen/Screen';
 import WelcomeDialog from 'components/common/WelcomeDialog'
 
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+
 
 import { fetchStatistics } from 'actions/index';
 
@@ -20,7 +23,6 @@ export class HomeScreen extends Component {
   constructor(props) {
     super(props);
     this.onSubmit = this.onSubmit.bind(this);
-    console.log("WHAT ")
   }
 
   componentDidMount() {
@@ -42,8 +44,6 @@ export class HomeScreen extends Component {
   render() {
 
     // const appHomePage = metadata.pages.find(page => page.home);
-
-    console.log("asdsfa")
     return (
       <Screen
         title= {messages.title} 
@@ -78,6 +78,11 @@ const mapStateToProps = (state) => ({
   metadata: selectMetadata(state)
 })
 
+const mapDispatchToProps = {
+  fetchStatistics
+}
 
 
-export default HomeScreen;
+export default compose(
+  connect(mapStateToProps, mapDispatchToProps)
+)(HomeScreen);

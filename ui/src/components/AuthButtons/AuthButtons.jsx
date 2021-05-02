@@ -14,6 +14,7 @@ import { Skeleton } from 'components/common'
 import './AuthButtons.scss';
 
 import metadata from 'reducers/metadata';
+import { selectCurrentRole, selectCurrentRoleId, selectMetadata } from 'selectors';
 
 const messages = {
   notifications: "Notifications",
@@ -41,6 +42,7 @@ export class AuthButtons extends Component {
   }
 
   fetchIfNeeded(){
+    console.log("THE PROPS AT AUTHBUTTONS ", this.props)
     // const { role, roleId } = this.props;
     // if (role.shouldLoadDeep){
     //   this.props.fetchRole({ id: roleId });
@@ -57,12 +59,15 @@ export class AuthButtons extends Component {
   render(){
     const { role, metadata } = this.props
 
+    console.log("THE PROPS LOOK LIKE ", this.props)
+    
     if (true){
       return this.renderSkeleton();
     }
     // if (!role.id && role.isPending){
     //   return this.renderSkeleton();
     // }
+
 
     return(
       <div>
@@ -134,5 +139,11 @@ Dialog={AuthenticationDialog}
 dialogProps={{ auth: metatdata.auth }}
 /> */}
 
+const mapStateToProps = (state) => ({
+  role: selectCurrentRole(state),
+  roleId: selectCurrentRoleId(state),
+  metadata: selectMetadata(state)
+})
 
-export default AuthButtons;
+
+export default connect(mapStateToProps, { fetchRole })(AuthButtons);

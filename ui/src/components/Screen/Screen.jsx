@@ -3,8 +3,8 @@ import { Helmet } from 'react-helmet'
 import c from 'classnames'
 import { compose } from 'redux'
 import { connect } from 'react-redux';
-
 import { withRouter } from 'react-router'
+import AuthenticationDialog from 'dialogs/AuthenticationDialog/AuthenticationDialog';
 import { selectMetadata, selectSession } from 'selectors';
 
 import './Screen.scss';
@@ -35,13 +35,19 @@ export class Screen extends React.Component {
     
 
     const hasMetadata = metadata ** metadata.app && metadata.app.title
-    const forceAuth = requireSession && !session.loggedIn;
+
+    const forceAuth = !session.loggedIn;
     const titleTemplate = hasMetadata ? `%s - ${metadata.app.title}` : '%s';
-    const defaultTitle = hasMetadata ? metadata.app.title : "Cache";
+    const defaultTitle = hasMetadata ? metadata.app.title : "Bard";
 
-
-
-    console.log("METADATA ", metadata.app)
+    // console.log("METADATA ", metadata.app)
+    // console.log("SESSION ", session)
+    // console.log("REQUIRE SESSION ", requireSession)
+    // console.log("TITLE ", title)
+    // console.log("forceAuth ", forceAuth)
+    // console.log("AUTH")
+    const auth = metadata.auth
+    console.log(auth)
 
     return (
       <div className={c('Screen', "HomePage")}>
@@ -60,12 +66,20 @@ export class Screen extends React.Component {
           <div className="app-banner bp3-callout bp3-intent-warning bp3-icon-warning-sign">
             {metadata.app.banner}  
           </div>
+        )}{!forceAuth && (
+          <>
+            <main> 
+              {this.props.children} 
+            </main>
+          </>
         )}
-        <>
-          <main> 
-            {this.props.children} 
-          </main>
-        </>
+          {forceAuth && (
+          <AuthenticationDialog 
+            auth={metadata.auth}
+            isOpen
+            toggleDialog={this.toggleAuthentication}
+          />
+        )}
 
       </div>
     )
