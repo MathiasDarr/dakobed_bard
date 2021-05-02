@@ -82,6 +82,10 @@ def url_for(*a, **kw):
     """Overwrite Flask url_for to force external paths"""
     try:
         kw["_external"] = False
+        query = kw.pop("_query", None)
+        relative = kw.pop("_relative", False)
+        path = flask_url_for(*a, **kw)
+        return url_external(path, query, relative=relative)
     except RuntimeError:
         return None
 

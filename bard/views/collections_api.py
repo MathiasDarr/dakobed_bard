@@ -15,8 +15,6 @@ def index():
     """
     List of collections
     """
-
-
     return "second route dfa dafa  "
 
 

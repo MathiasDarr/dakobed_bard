@@ -54,6 +54,8 @@ SYSTEM_USER = os.getenv("BARD_SYSTEM_USER", "system:bard")
 
 OAUTH = bool(os.getenv("BARD_OAUTH", False))
 
+
+
 # HANDLER IS ONE OF THE KEYCLOAK, GOOGLE, COGNITO, AZURE
 OAUTH_HANDLER = "oidc"
 OAUTH_MIGRATE_SUB = bool(os.getenv("BARD_OAUTH_MIGRATE_SUB", False))
