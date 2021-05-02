@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { AuthenticationDialog } from 'dialogs/AuthenticationDialog/AuthenticationDialog'
 
-
 import {
   Button, Icon, Menu, MenuDivider, MenuItem, Popover, Position
 } from '@blueprintjs/core'
@@ -26,36 +25,6 @@ const messages = {
   status: "System status",
 
 }
-
-class DialogToggleButton extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      isOpen : false
-    };
-    this.toggleDialog = this.toggleDialog.bind(this)
-  }
-
-  toggleDialog() {
-    this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
-  }
-
-  render(){
-
-    const { buttoProps, ButtonComponent = Button, children, Dialog, dialogProps } = this.props
-
-    return (
-      <>
-        <div>
-        Hello
-        </div>
-      </>
-    )
-  }
-}
-
-
-
 
 
 export class AuthButtons extends Component {
@@ -148,9 +117,7 @@ export class AuthButtons extends Component {
       console.log("DFA DFAFAFA ")
       return (
         <span className="AuthButtons">
-          <DialogToggleButton 
-
-          ></DialogToggleButton>
+            
           {/* <AuthenticationDialog /> */}
             {/* <DialogToggleButton 
               buttonProps={{

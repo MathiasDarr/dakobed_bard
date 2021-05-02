@@ -16,13 +16,17 @@ class DialogToggleButton extends Component {
 
   render(){
 
-    const { buttoProps, ButtonComponent = Button, children, Dialog, dialogProps } = this.props
+    const { buttonProps, ButtonComponent = Button, children, Dialog, dialogProps } = this.props
 
     return (
       <>
-        <div>
-        Hello
-        </div>
+        <ButtonComponent onClick={this.toggleDialog} {...buttonProps}>{children}</ButtonComponent>
+        <Dialog
+          isOpen={this.state.isOpen}
+          toggleDialog={this.toggleDialog}
+          {...dialogProps}
+        />
+        
       </>
     )
   }
