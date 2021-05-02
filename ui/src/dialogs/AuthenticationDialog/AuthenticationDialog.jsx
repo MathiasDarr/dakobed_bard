@@ -105,41 +105,55 @@ export class AuthenticationDialog extends Component {
       <div>
         <Dialog 
           icon ="authentication"
-          className="AuthenticaionScreen"
+          className="AuthenticationScreen"
           isOpen={isOpen}
           onClose = {toggleDialog}
           title={firstSection === '' ? messages.title.defaultMessage : messages.registration_title.defaultMessage }
         >
           <div className="inner">
+            
             <section className={firstSection}>
-              {}
+              {passwordLogin && <PasswordAuthLogin buttonClassName="signin-button" onSubmit={this.onLogin} /> }
+              {passwordLogin && (
+                <div className="link-box">
+                  <a key="oauth" href="/" onClick={this.onRegisterClick}>
+                    Don't have account? Register
+                  </a>
+                </div>
+              )}
             </section>
             
-            Hal
+            <section className={secondSection}>
+              {submitted 
+                ? (
+                  <Callout intent={Intent.SUCCESS} icon = "tick">
+                    <h5>Check your inbox </h5>
+                  </Callout>
+                )
+                : (
+                  <span>
+                    <PasswordAuthSignup buttonClassName="signin-button" onSubmit={this.onSignup} />
+                    <div className="link-box">
+                      <a key="oauth" href="/" onClick={this.onSignInClick}>
+                        Already have account? Sign in!
+                      </a>
+                    </div>
+                  </span>
+              )}
+            </section>
+            
+            {auth.oauth_uri && (
+              <>
+                <MenuDivider className="menu-divider" />
+                <Button icon="log-in" large fill onClick={this.onOAuthLogin}>
+                  Sign in via OAuth
+                </Button>
+              </>
+            )}
           </div>
 
         </Dialog>
       </div>
-      // <Dialog 
-      //   icon ="authentication"
-      //   className="AuthenticaionScreen"
-      //   isOpen={isOpen}
-      //   onClose = {toggleDialog}
-      //   title={firstSection === '' ? messages.title : messages.registration_title }
-      // >
-      //   <div className="inner">
-      //     <section className={firstSection}>
-      //       {passwordLogin && <PasswordAuthLogin buttonClassName="signin-button" onSubmit={this.onLogin} /> }
-      //       {passwordLogin && (
-      //         <div className="link-box">
-      //           <a key="oauth" href ="/" onClick={this.onRegisterClick}>
-      //             Don't have an account? Register!
-      //           </a>
-      //         </div>
-      //       )}
-      //     </section>
-      //   </div>
-      // </Dialog>
     )
   }
 
