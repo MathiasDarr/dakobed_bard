@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button } from '@blueprintjs/core';
 
-class DialogToggleButton extends React.Component {
+class DialogToggleButton extends Component {
   constructor(props){
     super(props)
     this.state = {
@@ -15,6 +15,9 @@ class DialogToggleButton extends React.Component {
   }
 
   render(){
+
+    const { buttoProps, ButtonComponent = Button, children, Dialog, dialogProps } = this.props
+
     return (
       <>
         <div>
@@ -24,6 +27,5 @@ class DialogToggleButton extends React.Component {
     )
   }
 }
-
 
 export default DialogToggleButton;

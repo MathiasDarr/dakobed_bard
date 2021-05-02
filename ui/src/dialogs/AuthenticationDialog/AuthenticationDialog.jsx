@@ -86,21 +86,24 @@ export class AuthenticationDialog extends Component {
     const {
       metadata, isOpen, toggleDialog
     } = this.props;
-    //console.log("THE PROPS LOOK LIKE ", this.props)
-    // const { auth } = metadata;
+    console.log("THE PROPS LOOK LIKE ", this.props)
+    const { auth } = metadata;
     const { submitted, firstSection, secondSection } = this.state;
-    
-    //console.log("THE STATE LOOK LIKE ", this.state)
-    
-    //const passwordLogin = auth.password_login_uri;
+    const passwordLogin = auth.password_login_uri;
 
     if(!isOpen){
       return null;
     }
 
+    if (!auth.password_login_uri){
+      this.onOAuthLogin();
+      return null;
+    }
+
     return (
+
       <div>
-        {/* <Dialog 
+        <Dialog 
           icon ="authentication"
           className="AuthenticaionScreen"
           isOpen={isOpen}
@@ -108,10 +111,14 @@ export class AuthenticationDialog extends Component {
           title={firstSection === '' ? messages.title.defaultMessage : messages.registration_title.defaultMessage }
         >
           <div className="inner">
+            <section className={firstSection}>
+              {}
+            </section>
+            
             Hal
           </div>
 
-        </Dialog> */}
+        </Dialog>
       </div>
       // <Dialog 
       //   icon ="authentication"
