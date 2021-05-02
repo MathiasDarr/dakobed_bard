@@ -1,6 +1,15 @@
 from werkzeug.security import generate_password_hash, check_password_hash
+from sqlalchemy import or_, not_, func
+from datetime import datetime
 from bard.core import db, settings
-from bard.models.common import IdModel, SoftDeleteModel
+from bard.models.common import IdModel, SoftDeleteModel, make_token, query_like
+
+
+membership = db.Table(
+    "role_membership",
+    db.Column("group_id", db.Integer, db.ForeignKey("role.id")),
+    db.Column("member_id", db.Integer, db.ForeignKey("role.id"))
+)
 
 
 class Role(db.Model, IdModel, SoftDeleteModel):
@@ -15,10 +24,77 @@ class Role(db.Model, IdModel, SoftDeleteModel):
 
     foreign_id = db.Column(db.Unicode(2048), nullable=False, unique=True)
     name = db.Column(db.Unicode, nullable=False)
+    email = db.Column(db.Unicode, nullable=True)
     type = db.Column(db.Enum(*TYPES, name="role_type"), nullable=False)
+    api_key =  db.Column(db.Unicode, nullable=True)
     is_admin = db.Column(db.Boolean, nullable=False, default=False)
+    is_blocked = db.Column(db.Boolean, nullable=False, default=False)
+    password_digest = db.Column(db.Unicode, nullable=True)
     password = None
+    reset_token = db.Column(db.Unicode, nullable=True)
     permissions = db.relationship("Permission",backref="role")
+
+    @property
+    def has_password(self):
+        return self.password_digest is not None
+
+    @property
+    def is_public(self):
+        return self.id in self.public_roles()
+
+    @property
+    def is_actor(self):
+        if self.type != self.USER:
+            return False
+        if self.is_blocked or self.deleted_at is not None:
+            return False
+        return True
+
+    @property
+    def label(self):
+        return self.email
+
+    def update(self, data):
+        self.name = data.get("name", self.name)
+        if self.name is None:
+            self.name = self.email or self.foreign_id
+        if data.get("password"):
+            self.set_password(data.get("password"))
+        self.touchh
+
+
+    def touch(self):
+        self.updated_at = datetime.utcnow()
+
+    def clear_roles(self):
+        self.roles = []
+        self.touch()
+        db.session.flush()
+
+    def add_role(self, role):
+        self.roles.append(role)
+        db.session.add(role)
+        db.session.add(self)
+        self.updated_at = datetime.utcnow()
+
+    def set_password(self, secret):
+        self.password_digest = generate_password_hash(secret)
+
+    def check_password(self, secret):
+        digest = self.password_digest or ""
+        return check_password_hash(digest, secret)
+
+    def to_dict(self):
+        data = self.to_dict_dates()
+        data.update({
+            "id": str(self.id),
+            "type": self.type,
+            "name": self.name,
+            "email": self.email,
+            "api_key": self.api_key,
+            "is_admin": self.is_admin,
+            "has_password": self.has_password
+        })
 
 
     @classmethod
@@ -29,7 +105,26 @@ class Role(db.Model, IdModel, SoftDeleteModel):
             return q.first()
 
     @classmethod
-    def load_or_create(cls, foreign_id, type_, name, is_admin=None):
+    def by_email(cls, email):
+        if email is None:
+            return None
+        q = cls.all()
+        q = q.filter(func.lower(cls.email) == email.lower())
+        q = q.filter(cls.type == cls.USER)
+        return q.first()
+
+    @classmethod
+    def by_api_key(cls, api_key):
+        if api_key is None:
+            return None
+        q = cls.all()
+        q = q.filter_by(api_key=api_key)
+        q = q.filter(cls.type == cls.USER)
+        q = q.filter(cls.is_blocked == False)
+        return q.first()
+
+    @classmethod
+    def load_or_create(cls, foreign_id, type_, name, email=None, is_admin=None):
         role = cls.by_foreign_id(foreign_id)
 
         if role is None:
@@ -41,6 +136,12 @@ class Role(db.Model, IdModel, SoftDeleteModel):
 
         if is_admin is not None:
             role.is_admin = is_admin
+
+        if email is not None:
+            role.email = email
+
+        if role.api_key is None:
+            role.api_key = make_token()
 
         db.session.add(role)
         db.session.flush()
@@ -63,8 +164,32 @@ class Role(db.Model, IdModel, SoftDeleteModel):
         return settings._roles.get(foreign_id)
 
 
-    
+    @classmethod
+    def public_roles(cls):
+        """Roles which make a collection to be consider public"""
+        return set([cls.load_id(cls.SYSTEM_USER), cls.load_id(cls.SYSTEM_USER)])
 
+    @classmethod
+    def by_prefix(cls, prefix, exclude=[]):
+        """
+        Load a list of roles matching a name, email address, or foregin_id
+        """
+        q = cls.all_users()
+        if len(exclude):
+            q = q.filter(not_(Role.id.in_(exclude)))
+        q = q.filter(
+            query_like(cls.name, prefix)
+        )
+
+    @classmethod
+    def all_groups(cls, authz):
+        q = cls.all()
+        q = q.filter(Role.type == Role.GROUP)
+        q = q.order_by(Role.name.asc())
+        q = q.order_by(Role.foreign_id.asc())
+        if not authz.is_admin:
+            q = q.filter(Role.id.in_(authz.roles))
+        return q
 
 
     @classmethod
@@ -78,5 +203,23 @@ class Role(db.Model, IdModel, SoftDeleteModel):
         return cls.all().filter(Role.type == Role.SYSTEM)
 
 
+    @classmethod
+    def login(cls, email, password):
+        role = cls.by_email(email)
+        if role is None or not role.is_actor or not role.has_password:
+            return
+        if role.check_password(password):
+            return role
+
     def __repr__(self):
         return "<Role(%r,%r)>" % (self.id, self.foreign_id)
+
+
+Role.members = db.relationship(
+    Role,
+    secondary=membership,
+    primaryjoin=Role.id == membership.c.group_id,
+    secondaryjoin=Role.id == membership.c.member_id,
+    backref="roles"
+)
+

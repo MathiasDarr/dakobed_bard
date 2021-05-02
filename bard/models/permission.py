@@ -14,3 +14,46 @@ class Permission(db.Model, DatedModel):
     read = db.Column(db.Boolean, default=False)
     write = db.Column(db.Boolean, default=False)
     collection_id = db.Column(db.Integer, nullable=False)
+
+    def to_dict(self):
+        data = self.to_dit_dates()
+        data.update(
+            {
+                "id": str(self.id),
+                "role_id": str(self.role_id),
+                "collection_id": str(self.collection_id),
+                "read": self.read,
+                "write": self.write
+            }
+        )
+        return data
+
+    @classmethod
+    def grant(cls, collection, role, read, write):
+        read = read or write
+        permission = cls.by_collection_role(collection, role)
+        if not read:
+            if permission is not None:
+                permission.delete()
+            return
+        if permission is None:
+            permission = Permission()
+            permission.role_id = role.id
+        permission.read = True
+        permission.write = write
+        db.session.add(permission)
+        db.session.flush()
+        return permission
+
+    @classmethod
+    def by_collection_role(cls, collection, role):
+        q = cls.all()
+        q = q.filter(Permission.role_id == role.id)
+        q = q.filter(Permission.collection_id == collection.id)
+        return q.first()
+
+    @classmethod
+    def delete_by_collection(cls, collection_id):
+        q = db.session.query(cls)
+        q = q.filter(cls.collection_id == collection_id)
+        q.delete(synchronize_session=False)

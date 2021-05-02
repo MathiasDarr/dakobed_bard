@@ -4,6 +4,9 @@ from werkzeug.exceptions import Unauthorized
 
 from bard.core import db, settings, cache
 from bard.models import Collection, Role
+from bard.models.common import make_token
+
+log = logging.getLogger(__name__)
 
 
 class Authz(object):
@@ -50,10 +53,23 @@ class Authz(object):
             return False
         return collection in self.collections(action)
 
+    def can_read_role(self, role_id):
+        if self.is_admin:
+            return True
+        return int(role_id) in self.roles
+
+    def can_register(self):
+        if self.logged_in or settings.MAINTENACE or not settings.PASSWORD_LOGIN:
+            return False
+        return True
+
+
+
     def destroy(self):
         if self.role is not None:
-            self.f
-
+            self.flush_role(self.role)
+        if self.token_id is not None:
+            cache.delete(cache.key(self.TOKENS, self.token_id))
 
     @property
     def role(self):
@@ -61,10 +77,40 @@ class Authz(object):
             self._role = Role.by_id(self.id)
         return self._role
 
+    @property
+    def private_roles(self):
+        if not self.logged_in:
+            return set()
+        return self.roles.difference(Role.public_roles())
+
+    def to_token(self):
+        if self.token_id is None:
+            self.token_id = "%s.%s" % (self.id, make_token())
+            key = cache.key(self.TOKENS, self.token_id)
+            state = {
+                "id": self.id,
+                "roles": list(self.roles),
+                "is_admin": self.is_admin
+            }
+        return self.token_id
+
+    def __repr__(self):
+        return "<Authz(%s)>" % self.id
+
+
 
     @classmethod
-    def from_role(cls, role, expires=None):
-        roles = set([Role.lo])
+    def from_role(cls, role, expire=None):
+        roles = set([Role.load_id(Role.SYSTEM_GUEST)])
+        if role is None or not role.is_actor:
+            return cls(None, roles)
+
+        roles.add(role.id)
+        roles.add(Role.load_id(Role.SYSTEM_USER))
+        roles.update([g.id for g in role.rolles])
+        return cls(role.id, roles, is_admin=role.is_admin, expire=expire)
+
+
 
     @classmethod
     def from_token(cls, token_id):
@@ -88,6 +134,7 @@ class Authz(object):
         # Clear collections ACL cache
         cache.kv.hdel(cls.ACCESS, role.id)
         if role.is_blocked or role.deleted_at is not None:
+            # End all user sessions
             prefix = cache.key(cls.TOKENS, "%s." % role.id)
             cache.flush(prefix=prefix)
 
