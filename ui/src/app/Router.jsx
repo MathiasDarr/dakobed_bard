@@ -12,14 +12,24 @@ import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
 import EntityScreen from 'screens/EntityScreen/EntityScreen';
 
 import './Router.scss';
-import { selectMetadata } from 'selectors';
+import { selectMetadata, selectSession } from 'selectors';
 
 
 class Router extends Component {
 
-
   componentDidMount(){
     this.props.fetchMetadata()
+  }
+
+  componentDidUpdate() {
+    this.fetchIfNeeded();
+  }
+
+  fetchIfNeeded(){
+    const { metadata } = this.props;
+    if (metadata.shouldLoad) {
+      this.props.fetchMetadata();
+    }
   }
 
   render() {
@@ -56,6 +66,7 @@ class Router extends Component {
 
 const mapStateToProps = state => ({
   metadata: selectMetadata(state),
+  session: selectSession(state)
 });
 
 //export default Router

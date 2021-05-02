@@ -1,3 +1,5 @@
+import { createAction } from 'redux-act'
+
 import { ADD_COLLECTION, TOGGLE_TODO, SET_FILTER } from "./actionTypes";
 
 let nextTodoId = 0;
@@ -16,3 +18,10 @@ export const toggleTodo = id => ({
 });
 
 export const setFilter = filter => ({ type: SET_FILTER, payload: { filter } });
+
+
+export { fetchMetadata, fetchStatistics, fetchSystemStatus } from './metadataActions';
+
+
+export { createAction };
+export const forceMutate = createAction("MUTATE");

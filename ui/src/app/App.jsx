@@ -1,14 +1,48 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from "react-redux";
+import { FocusStyleManager } from '@blueprintjs/core';
+import { inRange } from 'lodash';
 import Router from './Router';
-
-
+import { logout } from 'actions/sessionActions';
 import store from './store'
-//import store from 'redux/store'
-import Collections from '../CollectionApp'
+import { endpoint } from './api';
+
 
 import './App.scss'
+
+
+FocusStyleManager.onlyShowFocusOnTabs();
+
+endpoint.interceptors.request.use((config) => {
+  const state = store.getState();
+  //const { session } = state;
+  
+  // if (session.loggedIn) {
+  //   Object.assign(config.headers.common, {
+  //     Authorization: `Token ${session.token}`,
+  //   })
+  // }
+  // if(session.sessionId) {
+  if(true){
+    Object.assign(config.headers.common, {
+      'X-Bard-Session': "s1"
+      // 'X-Bard-Session': session.sessionId
+    })
+  }
+  return config;
+})
+
+endpoint.interceptors.response.use(
+  response => response,
+  (error) => {
+    if (error.response?.status === 401) {
+      store.dispatch(logout());
+    }
+    return Promise.reject(error);
+  }
+)
+
 
 
 function App() {

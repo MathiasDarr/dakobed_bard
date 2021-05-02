@@ -57,13 +57,43 @@ export function selectMetadata(state){
   const metadata = selectObject(state, state, 'metadata');
   if (!metadata.isPending){
     metadata.shouldLoad = metadata.shouldLoad || metadata.isError;
+    
   }
   return metadata;
+}
+
+export function selectPages(state){
+  return selectMetadata(state).pages
+}
+
+export function selectPage(state, name) {
+  return selectPages(state).find((page) => page.name === name);
 }
 
 
 export function selectStatistics(state){
   return selectObject(state, state, 'statistics')
+}
+
+export function selectRole(state, roleId) {
+  return selectObject(state, state.roles, roleId);
+}
+
+
+export function selectSession(state) {
+  return selectObject(state, state, 'session');
+}
+
+export function selectCurrentRoleId(state) {
+  const session = selectSession(state);
+  if (!!session.token) {
+    return session.token.split('.', 1);
+  }
+}
+
+export function selectCurrentRole(state) {
+  const roleId = selectCurrentRoleId(state);
+  return !!roleId ? selectRole(state, roleId) : {};
 }
 
 
