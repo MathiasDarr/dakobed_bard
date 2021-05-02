@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import AuthenticaionDialog from 'dialogs/AuthenticationDialog/AuthenticationDialog'
 import {
   Button, Icon, Menu, MenuDivider, MenuItem, Popover, Position
 } from '@blueprintjs/core'

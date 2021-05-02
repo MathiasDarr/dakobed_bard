@@ -1,0 +1,29 @@
+@import "app/mixins.scss";
+
+.AuthenticaionScreen {
+  width: 28 em !important;
+
+  .inner {
+    margin-top: 1em;
+    @include rtlSupportInvertedProp(margin, right, 1em, 1em);
+  }
+
+  .menu-divider {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .signin-button {
+    @include rtl(float, right, left)
+  }
+
+  .hide{
+    display: none
+  }
+
+  .link-box {
+    margin-top: 2em;
+    margin-bottom: 2em;
+  }
+
+}
