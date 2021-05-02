@@ -16,23 +16,23 @@ FocusStyleManager.onlyShowFocusOnTabs();
 
 endpoint.interceptors.request.use((config) => {
   const state = store.getState();
-  //const { session } = state;
-  
-  // if (session.loggedIn) {
-  //   Object.assign(config.headers.common, {
-  //     Authorization: `Token ${session.token}`,
-  //   })
-  // }
-  // if(session.sessionId) {
-  if(true){
+  const { session } = state;
+  if (session.loggedIn) {
     Object.assign(config.headers.common, {
-      'X-Bard-Session': "s1"
-      // 'X-Bard-Session': session.sessionId
+      Authorization: `Token ${session.token}`,
+    })
+  }
+  if(session.sessionId) {
+    Object.assign(config.headers.common, {
+      //'X-Bard-Session': "s1"
+      'X-Bard-Session': session.sessionId
     })
   }
   return config;
 })
 
+
+// Upon 401 Unauthorized, e.g session has expire, reset the whole app
 endpoint.interceptors.response.use(
   response => response,
   (error) => {
@@ -42,6 +42,24 @@ endpoint.interceptors.response.use(
     return Promise.reject(error);
   }
 )
+
+// Use a response's error message when available
+endpoint.interceptors.response.use(
+  response => response,
+  (error) => {
+    if (
+      error.response
+      && inRange(error.response.status, 400, 500)
+      && error.response.data && error.response.data.message
+    ) {
+      Object.assign(error, {
+        message: error.response.data.message
+      });
+    }
+    return Promise.reject(error)
+  }
+)
+
 
 
 

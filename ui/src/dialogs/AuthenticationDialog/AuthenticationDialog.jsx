@@ -63,7 +63,7 @@ export class AuthenticationDialog extends Component {
 
   async onLogin(data) {
     const { nextPath, loginWithPassword } = this.props;
-    console.log("I AM LOGGING IN AND THE PROPS LOOK LIKE ", this.props)
+    //console.log("I AM LOGGING IN AND THE PROPS LOOK LIKE ", this.props)
     try {
       await loginWithPassword(data.email, data.password)
       window.location.replace(nextPath || '/')
@@ -111,23 +111,25 @@ export class AuthenticationDialog extends Component {
           onClose = {toggleDialog}
           title={firstSection === '' ? messages.title.defaultMessage : messages.registration_title.defaultMessage }
         >
+  
+  
           <div className="inner">
-            
+  
             <section className={firstSection}>
               {passwordLogin && <PasswordAuthLogin buttonClassName="signin-button" onSubmit={this.onLogin} /> }
-              {passwordLogin && (
+              {/* {passwordLogin && (
                 <div className="link-box">
                   <a key="oauth" href="/" onClick={this.onRegisterClick}>
                     Don't have account? Register
                   </a>
                 </div>
-              )}
+              )} */}
             </section>
             
             <section className={secondSection}>
               {submitted 
                 ? (
-                  <Callout intent={Intent.SUCCESS} icon = "tick">
+                  <Callout intent={Intent.SUCCESS} icon="tick">
                     <h5>Check your inbox </h5>
                   </Callout>
                 )

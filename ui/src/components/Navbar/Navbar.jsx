@@ -70,6 +70,14 @@ export class Navbar extends Component {
                   </Button>
                 </Link>
 
+                <Link to="/logout" >
+                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
+                    Logout
+                  </Button>
+                </Link>
+
+
+
                 <Button icon="comment" className="Navbar__collections-button bp3-minimal">
                   {messages.feedback}
                 </Button>

@@ -41,6 +41,7 @@ const PasswordAuth = ({
           className="bp3-input bp3-fill"
           type="email"
           name="email"
+          value="mddarr@gmail.com"
           required
           autoFocus
           ref={el => emailElement = el}
@@ -66,6 +67,7 @@ const PasswordAuth = ({
           Password
           <input
             id="pass"
+            value="password"
             className="bp3-input bp3-fill"
             type="password"
             name="password"
@@ -111,7 +113,7 @@ export const PasswordAuthLogin = ({ onSubmit, buttonClassName }) => (
     buttonClassName={buttonClassName}
     buttonText="Sign In"
   >
-    {' '}
+    {''}
   </PasswordAuth>
 );
 

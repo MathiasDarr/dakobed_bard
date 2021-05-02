@@ -8,6 +8,7 @@ import { Spinner } from '@blueprintjs/core';
 import Navbar from 'components/Navbar/Navbar';
 import NotFoundScreen from 'screens/NotFoundScreen/NotFoundScreen';
 import HomeScreen from 'screens/HomeScreen/HomeScreen';
+import LogoutScreen from 'screens/LogoutScreen/LogoutScreen';
 import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
 import EntityScreen from 'screens/EntityScreen/EntityScreen';
 import OAuthScreen from 'screens/OAuthScreen/OAuthScreen';
@@ -38,11 +39,11 @@ class Router extends Component {
     const isLoaded = metadata && metadata.app && session;
 
     const Loading = (
-      <div className="RouterLoading">
-        adf 
+      <div className="RouterLoading"> 
         <div className="spinner"><Spinner className="bp3-large" /></div>
       </div>
     );
+    
     if (!isLoaded) {
       return Loading;
     }
@@ -53,11 +54,11 @@ class Router extends Component {
         <Suspense fallback={Loading}>
           <Switch>
             <Route path="/oauth" exact component={OAuthScreen} />
-            <Route path="/" exact component={HomeScreen} />
+            <Route path="/logout" exact component={LogoutScreen} />
             <Route path="/datasets" exact component={CollectionScreen} />
             <Route path="/entities" exact component={EntityScreen} />
+            <Route path="/" exact component={HomeScreen} />
             <Route component={NotFoundScreen} />
-
           </Switch>
         </Suspense>
       </>
@@ -70,17 +71,7 @@ const mapStateToProps = state => ({
   session: selectSession(state)
 });
 
-//export default Router
+
 
 export default connect(mapStateToProps, { fetchMetadata })(Router);
 
-
-{/* <Suspense fallback={Loading}>
-<Switch>
-
-  <Route path="/datasets" exact component={CollectionScreen} />
-  <Route path="/entities" exact component={EntityScreen} />
-  <Route component={NotFoundScreen} />
-
-</Switch>
-</Suspense> */}

@@ -42,7 +42,7 @@ export class AuthButtons extends Component {
   }
 
   fetchIfNeeded(){
-    console.log("THE PROPS AT AUTHBUTTONS ", this.props)
+    //console.log("THE PROPS AT AUTHBUTTONS ", this.props)
     // const { role, roleId } = this.props;
     // if (role.shouldLoadDeep){
     //   this.props.fetchRole({ id: roleId });
@@ -59,13 +59,14 @@ export class AuthButtons extends Component {
   render(){
     const { role, metadata } = this.props
 
-    // console.log("THE ROLE LOOKS LIKE ", role)
-    // console.log("THE METADATA LOOKS LIKE ", metadata)
-    // console.log("THE METADATA AUTH LOOKS LIKE ", metadata.auth)
-
-    if (!role.id && role.isPending){
-       return this.renderSkeleton();
-    }
+    console.log("THE ROLE LOOKS LIKE ", role)
+    //console.log("THE METADATA LOOKS LIKE ", metadata)
+    //console.log("THE METADATA AUTH LOOKS LIKE ", metadata.auth)
+    
+    // if (!role.id && role.isPending){
+    //     console.log("ADFAFAFAAAAAAAAAAAAAAAA")
+    //    return this.renderSkeleton();
+    // }
 
     var hasroleid = !!role.id
 
@@ -117,7 +118,7 @@ export class AuthButtons extends Component {
       console.log("DFA DFAFAFA ")
       return (
         <span className="AuthButtons">
-            
+            dfa 
           {/* <AuthenticationDialog /> */}
             {/* <DialogToggleButton 
               buttonProps={{

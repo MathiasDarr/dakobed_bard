@@ -2,8 +2,8 @@ import { createAction } from 'redux-act'
 import asyncActionCreator from './asyncActionCreator'
 import { endpoint } from 'app/api'
 
-export const loginWithToken = createAction('ACTION')
-export const hideDisclaimer = createAction('HIDE_DISCLAIMER')
+export const loginWithToken = createAction('LOGIN')
+// export const hideDisclaimer = createAction('HIDE_DISCLAIMER')
 
 export const loginWithPassword = (email, password) => async (dispatch) => {
   const response = await endpoint.post("/sessions/login", { email, password });

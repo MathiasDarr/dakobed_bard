@@ -47,7 +47,7 @@ export class Screen extends React.Component {
     // console.log("forceAuth ", forceAuth)
     // console.log("AUTH")
     const auth = metadata.auth
-    console.log(auth)
+    //console.log(auth)
 
     return (
       <div className={c('Screen', "HomePage")}>
