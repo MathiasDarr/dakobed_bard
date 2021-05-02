@@ -9,8 +9,6 @@ from bard import redis_settings
 log = logging.getLogger(__name__)
 
 
-
-
 def get_redis():
     if redis_settings.REDIS_URL is None:
         return get_fakeredis()
@@ -62,4 +60,4 @@ def service_retries():
 def get_fakeredis():
     if not hasattr(redis_settings, "_redis_fake"):
         redis_settings._redis_fake = FakeRedis(decode_responses=True)
-    return redis_settings._fake_redis
+    return redis_settings._redis_fake

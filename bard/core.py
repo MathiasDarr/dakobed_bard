@@ -76,6 +76,7 @@ def get_cache():
 
 
 es = LocalProxy(get_es)
+kv = LocalProxy(get_redis)
 cache = LocalProxy(get_cache)
 
 def url_for(*a, **kw):

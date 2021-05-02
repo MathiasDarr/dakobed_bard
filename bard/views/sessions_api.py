@@ -38,20 +38,23 @@ def password_login():
     request_data = request.get_json()
     email = request_data.get('email')
     password = request_data.get('password')
-    log.info("THE REQUEST DATA LOOKS LIKE {}".format(request_data))
+    log.warning("THE REQUEST DATA LOOKS LIKE {}".format(request_data))
 
     require(settings.PASSWORD_LOGIN)
     data = request.get_json()
     role = Role.login(data.get("email"), data.get("password"))
+
+    #log.warning("LOGGING IN FROM THE SESSIONS API: {}".format(role.email))
+
     if role is None:
         raise BadRequest("Invalid user or password")
-
+    #
     role.touch()
     db.session.commit()
-    update_role(role)
+    # update_role(role)
     authz = Authz.from_role(role)
     return jsonify({"status": "ok", "token": authz.to_token()})
-
+    #return jsonify(role.to_dict())
 
 @blueprint.route("/api/2/sessions/oauth")
 def oauth_init():

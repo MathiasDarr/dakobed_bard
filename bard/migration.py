@@ -4,13 +4,14 @@ from sqlalchemy.exc import InternalError
 from sqlalchemy.dialects.postgresql import ENUM
 
 from bard.core import db
-from bard.logic.roles import create_system_roles
+from bard.logic.roles import create_system_roles, create_user
 
 from bard.core import db
 
 def upgrade_system():
     flask_migrate.upgrade()
     create_system_roles()
+    #create_user("mddarr@gmail.com", "Mathias", "password", True)
 
 def cleanup_deleted():
     from bard.models import Collection

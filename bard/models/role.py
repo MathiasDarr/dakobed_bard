@@ -1,8 +1,12 @@
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy import or_, not_, func
 from datetime import datetime
+import logging
 from bard.core import db, settings
 from bard.models.common import IdModel, SoftDeleteModel, make_token, query_like
+
+
+log = logging.getLogger(__name__)
 
 
 membership = db.Table(
@@ -82,6 +86,10 @@ class Role(db.Model, IdModel, SoftDeleteModel):
 
     def check_password(self, secret):
         digest = self.password_digest or ""
+
+        log.warning("CHECKING THE PASSWORD {}".format(check_password_hash(digest, secret)))
+
+
         return check_password_hash(digest, secret)
 
     def to_dict(self):
@@ -206,9 +214,15 @@ class Role(db.Model, IdModel, SoftDeleteModel):
     @classmethod
     def login(cls, email, password):
         role = cls.by_email(email)
+
+        log.warning("I AM LOGGING IN {}".format(role.email))
+        log.warning("I AM LOGGING IN {}".format(role.password))
+
         if role is None or not role.is_actor or not role.has_password:
+            log.warning("BAD STUFF")
             return
         if role.check_password(password):
+            log.warning("THE ROLE HAS BEEN FOUND")
             return role
 
     def __repr__(self):

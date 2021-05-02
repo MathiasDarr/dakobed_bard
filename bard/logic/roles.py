@@ -39,7 +39,7 @@ def create_user(email, name, password, is_admin=False):
         role.set_password(password)
     db.session.add(role)
     db.session.commit()
-    update_role(role)
+    #update_role(role)
     return role
 
 

@@ -63,6 +63,7 @@ export class AuthenticationDialog extends Component {
 
   async onLogin(data) {
     const { nextPath, loginWithPassword } = this.props;
+    console.log("I AM LOGGING IN AND THE PROPS LOOK LIKE ", this.props)
     try {
       await loginWithPassword(data.email, data.password)
       window.location.replace(nextPath || '/')
@@ -162,7 +163,7 @@ export class AuthenticationDialog extends Component {
 
 const mapStateToProps = state => ({ metadata: selectMetadata(state)} );
 const mapDispatchToProps = {
-  loginWithToken: loginWithTokenAction, loginWithPassword: loginWithTokenAction,
+  loginWithToken: loginWithTokenAction, loginWithPassword: loginWithPasswordAction,
 };
 
 export default compose(

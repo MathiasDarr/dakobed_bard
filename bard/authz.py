@@ -97,8 +97,6 @@ class Authz(object):
     def __repr__(self):
         return "<Authz(%s)>" % self.id
 
-
-
     @classmethod
     def from_role(cls, role, expire=None):
         roles = set([Role.load_id(Role.SYSTEM_GUEST)])
@@ -107,7 +105,7 @@ class Authz(object):
 
         roles.add(role.id)
         roles.add(Role.load_id(Role.SYSTEM_USER))
-        roles.update([g.id for g in role.rolles])
+        roles.update([g.id for g in role.roles])
         return cls(role.id, roles, is_admin=role.is_admin, expire=expire)
 
 
