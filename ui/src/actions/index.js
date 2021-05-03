@@ -6,4 +6,13 @@ export {
   queryProfileExpand
 } from './profileActions'
 
+export {
+  createCollection,
+  fetchCollection,
+  queryCollections
+} from './collectionActions';
+
+
+
 export { loginWithToken, loginWithPassword, logout } from './sessionActions';
+

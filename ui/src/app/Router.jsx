@@ -56,7 +56,8 @@ class Router extends Component {
           <Switch>
             <Route path="/oauth" exact component={OAuthScreen} />
             <Route path="/logout" exact component={LogoutScreen} />
-            <Route path="/datasets" exact component={CollectionScreen} />
+            <Route path="/collections" exact component={CollectionScreen} />
+            
             <Route path="/entities" exact component={EntityScreen} />
             <Route path="/search" exact component={SearchScreen} />
             <Route path="/" exact component={HomeScreen} />

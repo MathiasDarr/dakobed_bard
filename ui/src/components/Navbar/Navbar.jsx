@@ -19,13 +19,15 @@ import { selectMetadata, selectSession } from 'selectors';
 
 const messages = {
   datasets: 'Datasets',
-  trip_reports: 'Trip Reports',
+  home_page:'Home',
+  collections: 'Collections',
   music: 'Music',
   writing: 'Writing',
-  feedback: 'Send Feedback'
+  feedback: 'Send Feedback',
+  placeholder: 'Search Placeholder'
 }
 
-export class Navbar extends Component {
+export class Navbar extends React.Component {
   constructor(props) {
     super(props);
     this.navbarRef = React.createRef()
@@ -36,21 +38,22 @@ export class Navbar extends Component {
   }
 
   onSearchSubmit(queryText) {
-    const { history, query } = this.props;
-    let search = queryString.stringify({ q: queryText });
-    if (query) {
-      const newQuery = query.set('q',queryText);
-      search = newQuery.toLocation();
-    }
-    history.push({
-      pathname: '/search',
-      search
-    });
+    console.log("THE PROPS LOOK LIKE", this.props)
+    // const { history, query } = this.props;
+    // let search = queryString.stringify({ q: queryText });
+    // if (query) {
+    //   const newQuery = query.set('q',queryText);
+    //   search = newQuery.toLocation();
+    // }
+    // history.push({
+    //   pathname: '/search',
+    //   search
+    // });
 
   }
 
   render(){
-    const {metadata, session, query, result } = this.props
+    const {metadata, session, query, result, isHomepage } = this.props
     const { advancedSearchOpen, mobileSearchOpen } = this.state;
     
     const queryText = query?.getString('q')
@@ -68,7 +71,9 @@ export class Navbar extends Component {
                 <div className="Navbar__search-container__content">
                   <div className="Navbar__search-container__searchbar">
                     <SearchBox 
-
+                      onSearch={this.onSearchSubmit}
+                      query={query}
+                      placeholder={messages.placeholder}
                     />
                   </div>
                 </div>
@@ -77,15 +82,15 @@ export class Navbar extends Component {
 
             <Bp3Navbar.Group align={Alignment.RIGHT} className={c('Navbar__right-group')}>
               <>
-                <Link to="/datasets">
+                <Link to="/">
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    {messages.datasets}
+                    {messages.home_page}
                   </Button>
                 </Link>
               
-                <Link to="/" >
+                <Link to="/collections" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    {messages.trip_reports}
+                    {messages.collections}
                   </Button>
                 </Link>
 

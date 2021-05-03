@@ -4,7 +4,9 @@ from fakeredis import FakeRedis
 import time
 import random
 import json
+
 from bard import redis_settings
+from bard.util import service_retries, backoff
 
 log = logging.getLogger(__name__)
 
@@ -35,6 +37,7 @@ def get_redis_pool():
         wait_for_redis(pool)
     return redis_settings._redis_pool
 
+
 def wait_for_redis(pool):
     """Wait for redis to load its data into memory on initial system bootup"""
     for attempt in service_retries():
@@ -46,15 +49,8 @@ def wait_for_redis(pool):
             backoff(failures=attempt)
     raise RuntimeError("REDIS IS NOT READY")
 
-def backoff(failures=0):
-    """Implement a random growing delary between external service retries """
-    sleep = max(1, failures -1) + random.random()
-    log.debug("Back-off: %.2fs", sleep)
-    time.sleep(sleep)
 
 
-def service_retries():
-    return range(30)
 
 
 def get_fakeredis():

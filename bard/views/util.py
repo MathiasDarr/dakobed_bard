@@ -31,10 +31,24 @@ def obj_or_404(obj):
     return obj
 
 
+def clean_objects(data):
+    """Remove unset values from the response to save from bandwidth"""
+    pass
+
+
+def get_session_id():
+    role_id = str(request.authz.id) or "anonymous"
+    session_id = str(request._session_id)
+    return "%s:%s" % (role_id, session_id)
+
+
 def get_db_collection(collection_id, action=Authz.READ):
     collection = obj_or_404(Collection.by_id(collection_id))
     require(request.authz.can(collection.id, action))
     return collection
+
+
+
 
 
 def get_url_path(url):
@@ -42,7 +56,6 @@ def get_url_path(url):
         return url_parse(url).replace(netloc="", scheme="")
     except Exception:
         return "/"
-
 
 def jsonify(obj, status=200, headers=None, encoder=JSONEncoder):
     """Serialize to JSON and also dump from the given schema."""

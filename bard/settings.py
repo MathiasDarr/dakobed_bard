@@ -82,6 +82,7 @@ DEFAULT_LANGUAGE = os.getenv("BARD_DEFAULT_LANGUAGE", "en")
 # Document processing pipeline
 INGEST_PIPELINE = ["analyze"]
 
+ELASTICSEARCH_REPLICAS = os.getenv("ELASTICSEARCH_REPLICAS", 2)
 
 # Number of replicas to maintain, '2' means overall copies
 INDEX_REPLICAS = int(os.getenv("BARD_INDEX_REPLICAS", 0))

@@ -57,7 +57,6 @@ export function selectMetadata(state){
   const metadata = selectObject(state, state, 'metadata');
   if (!metadata.isPending){
     metadata.shouldLoad = metadata.shouldLoad || metadata.isError;
-    
   }
   return metadata;
 }
@@ -91,9 +90,27 @@ export function selectCurrentRoleId(state) {
   }
 }
 
+export function selectCollection(state, collectionId) {
+  const collection = selectObject(state, state.collections, collectionId);
+  // const stats = collection.status || {};
+  // status.pending = status.pending || 0;
+  // status.running = status.running || 0;
+  // status.total = status.active + status.finished;
+  // collection.status = status;
+  return collection;
+}
+
 export function selectCurrentRole(state) {
   const roleId = selectCurrentRoleId(state);
   return !!roleId ? selectRole(state, roleId) : {};
+}
+
+export function selectCollectionsResults(state, query) {
+  return selectEntitiesResult(state, query, selectCollection);
+}
+
+export function selectEntitiesResult(state, query) {
+
 }
 
 
