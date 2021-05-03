@@ -5,6 +5,8 @@ import { withRouter } from 'react-router';
 import { entitiesQuery } from 'queries';
 import Screen from 'components/Screen/Screen';
 import FacetedEntitySearch from 'components/EntitySearch/FacedEntitySearch';
+
+
 import './SearchScreen.scss'
 
 const messages = {
@@ -26,7 +28,7 @@ export class SearchScreen extends React.Component {
           daf aa 
         </div>
         <FacetedEntitySearch>
-          
+          {/* query={query} */}
         </FacetedEntitySearch>
         
       </Screen>

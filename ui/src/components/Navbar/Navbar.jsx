@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import queryString from 'query-string' 
 import { Alignment, Button, Navbar as Bp3Navbar } from '@blueprintjs/core'
 import c from 'classnames'
 
@@ -12,6 +13,8 @@ import AuthButtons from 'components/AuthButtons/AuthButtons';
 import { SearchBox } from 'components/common/SearchBox'
 
 import './Navbar.scss'
+import { entitiesQuery } from 'queries';
+import { selectMetadata, selectSession } from 'selectors';
 
 
 const messages = {
@@ -30,12 +33,28 @@ export class Navbar extends Component {
       mobileSearchOpen: false,
       advancedSearchOpen: false,
     }
-  
   }
+
+  onSearchSubmit(queryText) {
+    const { history, query } = this.props;
+    let search = queryString.stringify({ q: queryText });
+    if (query) {
+      const newQuery = query.set('q',queryText);
+      search = newQuery.toLocation();
+    }
+    history.push({
+      pathname: '/search',
+      search
+    });
+
+  }
+
   render(){
-    const {metadata} = this.props
+    const {metadata, session, query, result } = this.props
     const { advancedSearchOpen, mobileSearchOpen } = this.state;
-    const title = "Bard Home"
+    
+    const queryText = query?.getString('q')
+
     return(
       <>
         <div className="Navbar" ref={this.navbarRef}>
@@ -99,9 +118,13 @@ export class Navbar extends Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  const {location} = ownProps;
+  const { location } = ownProps;
+  const query = entitiesQuery(location);
   return({
-    isHomepage: location.pathname === '/'
+    query,
+    isHomepage: location.pathname === '/',
+    metadata: selectMetadata(state),
+    session: selectSession(state)
   });
 };
 

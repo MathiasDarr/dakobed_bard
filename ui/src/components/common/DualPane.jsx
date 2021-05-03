@@ -7,9 +7,15 @@ class SidePane extends PureComponent {
   render() {
     const { children, className } = this.props;
     return (
-      <aside className={c('SidePane', className)} style={this.props.style} >
-        {children}
-      </aside>
+      <div>
+        { children} 
+        <aside className={c('SidePane', className)} style={this.props.style} >
+          {children}
+
+
+          dfafa 
+        </aside>
+      </div>
     )
   }
 }
