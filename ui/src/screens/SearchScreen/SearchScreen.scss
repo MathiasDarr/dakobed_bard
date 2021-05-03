@@ -1,0 +1,34 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.SearchScreen {
+  .SignInCallout {
+    margin-bottom: $bard-grid-size;
+  }
+
+  &__control-bar {
+    &__tracking {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-right: 10px;
+      font-size: 0.94rem;
+
+      .bp3-icon.bp3-icon-feed {
+        margin: 0 3px 0 0;
+        
+        svg {
+          fill: $gray4;
+        }
+      }
+
+      .bold {
+        font-weight: bold;
+      }
+
+      > span {
+        margin: 0 8px;
+      }
+    }
+  }
+}

@@ -1,4 +1,10 @@
 import Skeleton from './Skeleton';
+import DualPane from './DualPane'
+import ResultText from './ResultText'
 
-export { Skeleton} ;
+export { 
+  Skeleton,
+  DualPane,
+  ResultText
+};
 

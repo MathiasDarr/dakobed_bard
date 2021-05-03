@@ -1,0 +1,42 @@
+@import "app/variables.scss";
+@import "app/layouts.scss";
+@import "app/mixins.scss";
+
+.DualPane {
+  padding: $bard-content-padding;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column nowrap;
+
+  @media screen and (max-width: $bard-screen-sm-max-width) {
+    padding: $bard-mobile-content-padding;
+  }
+
+  &__inner-container {
+    @extend .pane-layout;
+  }
+}
+
+.DualPane .ContentPane {
+  @extend .pane-layout-main;
+  padding: 0;
+  @include rtlSupportInvertedProp(padding, left, $bard-content-padding, null);
+
+  @media screen and (max-width: $bard-screen-sm-max-width) {
+    order: 2;
+    padding: $bard-grid-size 0 !important;
+  }
+}
+
+.DualPane .SidePane{
+  @extend .pane-layout-side;
+  @include rtlSupportInvertedProp(border, right, 1px solid $bard-border-color, null);
+  @include rtlSupportInvertedProp(padding, right, $bard-content-padding, null);
+
+  @media screen and (max-width: $bard-screen-sm-max-width) {
+    margin-bottom: 1em;
+    @include rtlSupportInvertedProp(border, right, none, null);
+    @include rtlSupportInvertedProp(padding, right, 0, null);
+    border-bottom: 1px solid $bard-border-color;
+  }
+}
