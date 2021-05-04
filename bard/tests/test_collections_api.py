@@ -14,5 +14,5 @@ class CollectionsApiTestCase(TestCase):
         url = "/api/2/collections"
         data = {"label": "first_label"}
         res = self.client.post(url, data=json.dumps(data), content_type=JSON)
-        #assert res.status_code == 200
+        assert res.status_code == 200
 

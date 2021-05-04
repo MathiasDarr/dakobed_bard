@@ -14,5 +14,3 @@ class BaseApiTestCase(TestCase):
         assert res.status_code == 200
         # log.warning("THE RESULT IS {}".format(res))
 
-    # def test_metadata(self):
-    #     res = self.client()
