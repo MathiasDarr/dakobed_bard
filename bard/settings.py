@@ -38,7 +38,7 @@ DATABASE_URI = 'postgresql://bard:bard@postgres:5432/bard'
 SQLALCHEMY_TRACK_MODIFICATIONS = False
 ALEMBIC_DIR = os.path.join(APP_DIR, "migrate")
 
-ELASTICSEARCH_URL = os.getenv("DAKOBED_ELASTIC_URI","http://localhost:9200")
+ELASTICSEARCH_URL = os.getenv("BARD_ELASTICSEARCH_URI", "http://localhost:9200")
 ELASTICSEARCH_TIMEOUT = int(os.getenv("ELASTICSEARCH_TIMEOUT", 30))
 
 
@@ -81,6 +81,9 @@ DEFAULT_LANGUAGE = os.getenv("BARD_DEFAULT_LANGUAGE", "en")
 
 # Document processing pipeline
 INGEST_PIPELINE = ["analyze"]
+
+
+ELASTICSEARCH_SYNONAMES_PATH = os.getenv("ELASTICSEARCH_SYNONAMES_PATH", "synonames.txt")
 
 ELASTICSEARCH_REPLICAS = os.getenv("ELASTICSEARCH_REPLICAS", 2)
 

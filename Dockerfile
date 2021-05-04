@@ -23,5 +23,8 @@ ENV PYTHONPATH /bard
 RUN pip install -q -e /bard
 
 
+ENV BARD_ELASTICSEARCH_URI=http://elasticsearch:9200
+
+
 COPY requirements.txt /tmp/
 RUN pip3 install --no-cache-dir -q -r /tmp/requirements.txt

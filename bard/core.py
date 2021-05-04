@@ -5,14 +5,15 @@ from flask_migrate import Migrate
 from elasticsearch import Elasticsearch, TransportError
 from werkzeug.local import LocalProxy
 from flask_cors import CORS
-from bard.cache import Cache
-from bard.get_redis import get_redis
-
 from urllib.parse import urljoin, urlencode
 from flask import url_for as flask_url_for
 
 from bard import settings
 from bard.oauth import configure_oath
+from bard.cache import Cache
+from bard.get_redis import get_redis
+from bard.util import service_retries, backoff, LoggingTransport
+from bard import service_settings
 
 
 NONE = "'none'"
@@ -62,11 +63,35 @@ def configure_alembic(config):
 
 
 def get_es():
-    url = settings.ELASTICSEARCH_URL
+    # url = settings.ELASTICSEARCH_URL
+    url = "http://elasticsearch:9200"
     timeout = settings.ELASTICSEARCH_TIMEOUT
-    es = Elasticsearch(url, timeout = timeout)
-    es.info()
-    return es
+    log.warning("ADFAIDFDAFAFDDAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+    for attempt in service_retries():
+        try:
+            if not hasattr(settings, "_es_instance"):
+                if service_settings.LOG_FORMAT == "JSON":
+                    es = Elasticsearch(
+                        url, transport_class=LoggingTransport, timeout=timeout
+                    )
+                    log.info("DFDFAAAAAAAAAA")
+
+                else:
+                    log.info("DFDFA")
+                    es = Elasticsearch(url, timeout=timeout)
+                es.info()
+                settings._es_instance = es
+            return settings._es_instance
+        except TransportError as exc:
+            log.warning("ElasticSearch error: %s", exc.error)
+            backoff(failures=attempt)
+        raise RuntimeError("Could not connect to ElasticSearch")
+
+
+
+    # es = Elasticsearch(url, timeout = timeout)
+    # es.info()
+    # return es
 
 
 def get_cache():
@@ -78,6 +103,7 @@ def get_cache():
 es = LocalProxy(get_es)
 kv = LocalProxy(get_redis)
 cache = LocalProxy(get_cache)
+
 
 def url_for(*a, **kw):
     """Overwrite Flask url_for to force external paths"""

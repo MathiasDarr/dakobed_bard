@@ -3,15 +3,22 @@ from sqlalchemy import MetaData, inspect
 from sqlalchemy.exc import InternalError
 from sqlalchemy.dialects.postgresql import ENUM
 
-from bard.core import db
+from bard.index.admin import upgrade_search, delete_index
+from bard.index.util import delete_safe
 from bard.logic.roles import create_system_roles, create_user
-
 from bard.core import db
+
 
 def upgrade_system():
-    flask_migrate.upgrade()
-    create_system_roles()
-    #create_user("mddarr@gmail.com", "Mathias", "password", True)
+    # delete_index()
+    index = 'bard-collection-v1'
+    delete_safe(index)
+
+    # flask_migrate.upgrade()
+    # create_system_roles()
+    upgrade_search()
+    # create_user("mddarr@gmail.com", "Mathias", "password", True)
+
 
 def cleanup_deleted():
     from bard.models import Collection

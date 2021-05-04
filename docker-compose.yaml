@@ -21,17 +21,18 @@ services:
 
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.4.0
+    #image: ghcr.io/alephdata/aleph-elasticsearch:fc76f89bb369132171af4629cc12cd7f57098ba6
     container_name: elasticsearch
     hostname: elasticsearch
     environment:
-      - xpack.security.enabled=false
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
       - discovery.type=single-node
-    cap_add:
-      - IPC_LOCK
     volumes:
       - elasticsearch-data:/usr/share/elasticsearch/data
     ports:
-      - "127.0.0.1:19200:9200"
+      - 19200:9200
+#    ports:
+#      - "127.0.0.1:19200:9200"
 
 
   app:

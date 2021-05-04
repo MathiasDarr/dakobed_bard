@@ -5,14 +5,14 @@ import time
 import random
 import json
 
-from bard import redis_settings
+from bard import service_settings
 from bard.util import service_retries, backoff
 
 log = logging.getLogger(__name__)
 
 
 def get_redis():
-    if redis_settings.REDIS_URL is None:
+    if service_settings.REDIS_URL is None:
         return get_fakeredis()
     conn = Redis(connection_pool=get_redis_pool(), decode_responses=True)
 
@@ -31,11 +31,11 @@ def make_key(*criteria):
 
 
 def get_redis_pool():
-    if not hasattr(redis_settings, "_redis_pool"):
-        pool = ConnectionPool.from_url(redis_settings.REDIS_URL, decode_responses=True)
-        redis_settings._redis_pool = pool
+    if not hasattr(service_settings, "_redis_pool"):
+        pool = ConnectionPool.from_url(service_settings.REDIS_URL, decode_responses=True)
+        service_settings._redis_pool = pool
         wait_for_redis(pool)
-    return redis_settings._redis_pool
+    return service_settings._redis_pool
 
 
 def wait_for_redis(pool):
@@ -54,6 +54,6 @@ def wait_for_redis(pool):
 
 
 def get_fakeredis():
-    if not hasattr(redis_settings, "_redis_fake"):
-        redis_settings._redis_fake = FakeRedis(decode_responses=True)
-    return redis_settings._redis_fake
+    if not hasattr(service_settings, "_redis_fake"):
+        service_settings._redis_fake = FakeRedis(decode_responses=True)
+    return service_settings._redis_fake

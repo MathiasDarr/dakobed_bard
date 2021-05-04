@@ -5,8 +5,24 @@ from collections.abc import Mapping
 import logging
 import random
 import time
+from elasticsearch import Transport
+
 
 log = logging.getLogger(__name__)
+
+
+BOOL_TRUEISH  = ["1", "yes", "y", "t", "true", "on","enabled"]
+
+
+def as_bool(value, default):
+    if isinstance(value, bool):
+        return value
+    if value is None:
+        return default
+    value = str(value).strip().lower()
+    if not len(value):
+        return default
+    return value in BOOL_TRUEISH
 
 
 def backoff(failures=0):
@@ -64,3 +80,21 @@ class JSONEncoder(json.JSONEncoder):
             return obj.to_dict()
         return json.JSONEncoder.default(self, obj)
 
+
+class LoggingTransport(Transport):
+    def __init__(self, *args, **kwargs):
+        super(LoggingTransport, self).__init__(*args, **kwargs)
+
+    def perform_request(self, method, url, headers=None, params=None, body=None):
+        result = super(LoggingTransport, self).perform_request(
+            method, url, headers, params, body
+        )
+        payload = {
+            "es_req_method": method,
+            "es_url": url,
+            "es_req_params": params,
+            "es_req_body": body,
+            "took": hasattr(result, "get") and result.get("took")
+        }
+        log.warning("Performed ES request", **payload)
+        return result

@@ -2,6 +2,7 @@ from flask import Blueprint, request, jsonify
 import logging
 from bard.logic import collections
 from bard.models.collection import MyModel, Collection
+from bard.search import CollectionsQuery
 from bard.views.serializers import CollectionSerializer
 from bard.views.util import get_db_collection
 from bard.views.util import request, jsonify
@@ -12,11 +13,19 @@ log = logging.getLogger(__name__)
 
 blueprint = Blueprint("collections_api", __name__)
 
+def dump(obj):
+    for attr in dir(obj):
+        log.warning("obj.%s = %r" % (attr, getattr(obj, attr)))
+
+
 @blueprint.route("/api/2/collections", methods=["GET"])
 def index():
     """
     List of collections
     """
+    result = CollectionsQuery.handle(request)
+    log.warning("RESULT {}".format(result))
+    dump(result)
     return "second route dfa dafa  "
 
 

@@ -2,18 +2,18 @@ import logging
 import json
 from bard.util import JSONEncoder
 from bard.get_redis import make_key
-from bard import redis_settings
+from bard import service_settings
 
 log = logging.getLogger(__name__)
 
 
 class Cache(object):
-    EXPIRE = redis_settings.REDIS_EXPIRE
+    EXPIRE = service_settings.REDIS_EXPIRE
     STATISTICS = "statistics"
 
     def __init__(self, kv, expires=None, prefix=None):
         self.kv = kv
-        self.expires = expires or redis_settings.REDIS_LONG
+        self.expires = expires or service_settings.REDIS_LONG
         self.prefix = prefix
 
     def key(self, *parts):

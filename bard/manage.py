@@ -5,6 +5,7 @@ import logging
 from pprint import pprint  # noqa
 from flask.cli import FlaskGroup
 
+from bard.index.admin import delete_index
 from bard.models import Collection
 from bard.migration import upgrade_system, destroy_db
 from bard.core import create_app
@@ -30,6 +31,13 @@ def upgrade():
     """Create or upgrade the search index and database."""
     log.info("DFADF ")
     upgrade_system()
+
+
+@cli.command()
+def resetindex():
+    delete_index()
+    upgrade_system()
+
 
 
 @cli.command()
