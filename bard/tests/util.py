@@ -3,24 +3,20 @@ import os
 import unittest
 from flask import json
 from werkzeug.utils import cached_property
-from faker import Factory
+import shutil
 
-from tempfile import mkdtemp
 from bard.core import db, kv, create_app
 from bard.oauth import oauth
-from bard.migration import destroy_db
-from bard.logic.roles import create_system_roles
-from bard.models import Role, Collection, Permission
-from bard.index.admin import delete_index, upgrade_search, clear_index
+from bard.migration import upgrade_system
 from bard import settings
-import shutil
+
 
 
 log = logging.getLogger(__name__)
 APP_NAME = "bard-test"
 UI_URL="http://bard.ui"
 FIXTURES = os.path.join(os.path.dirname(__file__), "fixtures")
-DB_URI = settings.DATABASE_URI + "_test"
+DB_URI = "postgresql://bard:bard@postgres:5432/bard_test"
 JSON = "application/json"
 
 class JsonResponseMixin(object):
@@ -47,6 +43,10 @@ class TestCase(unittest.TestCase):
         settings.INDEX_WRITE = "yolo"
         settings.INDEX_READ = [settings.INDEX_WRITE]
         app = create_app({})
+
+        with app.app_context():
+            db.create_all()
+
         return app
 
     def setUp(self):

@@ -23,7 +23,8 @@ ENV PYTHONPATH /bard
 RUN pip install -q -e /bard
 
 
-ENV BARD_ELASTICSEARCH_URI=http://elasticsearch:9200
+ENV BARD_ELASTICSEARCH_URI=http://elasticsearch:9200/ \
+    BARD_DATABASE_URI=postgresql://bard:bard@postgres:5432/bard
 
 
 COPY requirements.txt /tmp/
