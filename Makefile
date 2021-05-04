@@ -20,7 +20,8 @@ services:
 	$(COMPOSE) up -d --remove-orphans \
 		$(SERVICES_CONTAINERS)
 
-
+test:
+	$(APPDOCKER) contrib/test.sh
 
 # clean:
 #     find . -name '*.egg' -exec rm -f {} +

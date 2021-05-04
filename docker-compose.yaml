@@ -46,6 +46,7 @@ services:
     tmpfs: /tmp
     volumes:
       - archive-data:/data
+      - "./contrib:/bard/contrib"
       - "./bard:/bard/bard"
       - "~:/host"
     cap_add:

@@ -1,0 +1,11 @@
+build
+ui
+services
+bard.env
+bard.egg-info
+docker-compose.*
+.git
+.vscode
+.travis.yml
+.env
+.txt
