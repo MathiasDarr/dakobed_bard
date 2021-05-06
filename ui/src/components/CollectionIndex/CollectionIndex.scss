@@ -1,0 +1,12 @@
+@import "app/variables.scss";
+
+.CollectionIndex {
+  &__controls{
+    .QueryTags {
+      margin-top: $bard-grid-size*1.5;
+    }
+    .bp3-input-group {
+      margin-bottom: $bard-grid-size;
+    }
+  }
+}

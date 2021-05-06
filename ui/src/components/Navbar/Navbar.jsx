@@ -24,7 +24,8 @@ const messages = {
   music: 'Music',
   writing: 'Writing',
   feedback: 'Send Feedback',
-  placeholder: 'Search Placeholder'
+  placeholder: 'Search Placeholder',
+  index: 'Indices'
 }
 
 export class Navbar extends React.Component {
@@ -93,6 +94,13 @@ export class Navbar extends React.Component {
                     {messages.collections}
                   </Button>
                 </Link>
+
+                <Link to="/collection_index" >
+                  <Button icon="music" className="Navbar_collections-button bp3-minimal">
+                    {messages.index}
+                  </Button>
+                </Link>
+
 
                 <Link to="/logout" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">

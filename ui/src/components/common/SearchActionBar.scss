@@ -1,0 +1,12 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.SearchActionBar {
+  margin-bottom: $bard-grid-size;
+  padding-right: 1px;
+  flex-wrap: wrap;
+  
+  &__main {
+    margin-right: 5px !important;
+  }
+}

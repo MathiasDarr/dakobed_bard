@@ -49,3 +49,4 @@ def destroy_db():
     for enum in inspect(db.engine).get_enums():
         enum = ENUM(name=enum["name"])
         enum.drop(bind=db.engine, checkfirst=True)
+

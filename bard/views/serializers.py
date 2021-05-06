@@ -58,8 +58,6 @@ class Serializer(object):
 
 
 class CollectionSerializer(Serializer):
-    def collect(self, obj):
-        self.queue(Role, obj.get("creator_id"))
 
     def _serialize(self, obj):
         pk = obj.get("id")

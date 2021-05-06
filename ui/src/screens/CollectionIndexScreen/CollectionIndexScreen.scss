@@ -1,0 +1,9 @@
+@import "app/variables.scss";
+
+.CollectionIndexScreen {
+  .note {
+    color: $bard-greyed-text;
+    margin-top: $bard-grid-size;
+    padding-bottom: $bard-grid-size * 2;
+  }
+}
