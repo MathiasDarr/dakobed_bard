@@ -14,6 +14,7 @@ import EntityScreen from 'screens/EntityScreen/EntityScreen';
 import OAuthScreen from 'screens/OAuthScreen/OAuthScreen';
 import SearchScreen from 'screens/SearchScreen/SearchScreen'
 import CollectionIndexScreen from 'screens/CollectionIndexScreen/CollectionIndexScreen';
+import CollectionViews from 'components/Collections/CollectionViews'
 import './Router.scss';
 import { selectMetadata, selectSession } from 'selectors';
 
@@ -58,7 +59,9 @@ class Router extends Component {
             <Route path="/logout" exact component={LogoutScreen} />
             <Route path="/collections" exact component={CollectionScreen} />
             <Route path="/collection_index" exact component={CollectionIndexScreen} />
+            <Route path="/collection_views" exact component={CollectionViews} />
             <Route path="/entities" exact component={EntityScreen} />
+
             <Route path="/search" exact component={SearchScreen} />
             <Route path="/" exact component={HomeScreen} />
             <Route component={NotFoundScreen} />

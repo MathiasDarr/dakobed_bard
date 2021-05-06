@@ -101,6 +101,13 @@ export class Navbar extends React.Component {
                   </Button>
                 </Link>
 
+                <Link to="/collection_views" >
+                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
+                    Views
+                  </Button>
+                </Link>
+
+
 
                 <Link to="/logout" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
