@@ -91,9 +91,6 @@ def view(collection_id):
     return CollectionSerializer.jsonify(cobj)
 
 
-
-
-
 @blueprint.route("/api/2/collections/<int:collection_id>", methods=["DELETE"])
 def delete(collection_id):
     """

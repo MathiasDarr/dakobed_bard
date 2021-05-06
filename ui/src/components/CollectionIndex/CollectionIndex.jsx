@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-
+import { SearchBox } from 'components/common/SearchBox';
+// import SearchActionBar from 'components/common/SearchActionBar';
 
 import './CollectionIndex.scss';
 
@@ -21,7 +22,10 @@ export class CollectionIndex extends Component {
 
     return (<div className="CollectionIndex">
         <div className="CollectionIndex__controls">
-        
+          <SearchBox
+            onSearch={this.onSearch}
+            inputProps={{large:true, autoFocus: true}}
+          />
         </div>
       </div>
     )

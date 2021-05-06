@@ -40,3 +40,5 @@ export class SearchBox extends PureComponent{
     )
   }
 }
+
+export default SearchBox
