@@ -23,7 +23,8 @@ class Serializer(object):
         return obj
 
     def serialize(self, obj):
-        pass
+        obj = self._to_dict(obj)
+        return obj
 
     # def queue(self, clazz, key, schema=None):
     #     if not self.nested(request, clazz, key, schema=schema)
@@ -46,8 +47,16 @@ class Serializer(object):
 
     @classmethod
     def jsonify(cls, obj, **kwargs):
-        data = cls().serialize(obj)
-        return jsonify(data, **kwargs)
+
+        collection = {
+            "id": obj.id,
+            "label": obj.label
+        }
+        return jsonify(collection)
+        # data = cls().serialize(obj)
+        # log.warning("THE TYPE OF DATA {}".format(str(type(data))))
+        # # return jsonify(data,: ok **kwargs)
+        # return jsonify({"status": "ok"})
 
     @classmethod
     def jsonify_result(cls, result, extra=None, **kwargs):
@@ -61,4 +70,5 @@ class CollectionSerializer(Serializer):
 
     def _serialize(self, obj):
         pk = obj.get("id")
+        # log.warning("I GET CALLED AND {}".format(obj.to_dict()))
         return obj

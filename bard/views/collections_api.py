@@ -83,8 +83,12 @@ def view(collection_id):
     cobj = get_db_collection(collection_id)
     label = cobj.label
     log.warning("THE COBJ LOOKS LIKE {}".format(label))
-    return "MADE THE CALL {}".format(label)
-    # return CollectionSerializer.jsonify(data)
+    # return "MADE THE CALL {}".format(label)
+    data = {
+        "id": cobj.id,
+        "label": cobj.label
+    }
+    return CollectionSerializer.jsonify(cobj)
 
 
 

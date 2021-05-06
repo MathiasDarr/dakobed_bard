@@ -6,10 +6,7 @@ export const queryCollections = asyncActionCreator(query => async() => queryEndp
 
 export const fetchCollection = asyncActionCreator(({ id, refresh }) => async () => {
   const config = { params: { refresh } };
-  // const response = await endpoint.get(`collections/${id}`, config);
-  const response = await endpoint.get(`collections/2, config);
-  import { withRouter } from 'react-router';
-
+  const response = await endpoint.get(`collections/3`, config);
   return { id, data: response.data };
 }, { name: 'FETCH_COLLECTION'});
 
