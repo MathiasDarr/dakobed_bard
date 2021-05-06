@@ -7,8 +7,9 @@ from flask.cli import FlaskGroup
 
 from bard.index.admin import delete_index
 from bard.models import Collection
-from bard.migration import upgrade_system, destroy_db
+from bard.migration import upgrade_system, destroy_db, cleanup_deleted
 from bard.core import create_app
+
 
 log = logging.getLogger("bard")
 
@@ -39,9 +40,14 @@ def resetindex():
     upgrade_system()
 
 
-
 @cli.command()
 def evilshit():
     """EVIL: Delete all data and recreate the database."""
     destroy_db()
     upgrade()
+
+
+@cli.command()
+def flushdeleted():
+    cleanup_deleted()
+

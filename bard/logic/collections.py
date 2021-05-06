@@ -10,7 +10,7 @@ log = logging.getLogger(__name__)
 
 def create_collection(data):
     now = datetime.utcnow()
-    collection = Collection.create(data,created_at=now)
+    collection = Collection.create(data, created_at=now)
     # collection.id = 7
     # db.session.add(collection)
     # log.info("*******************************************")
@@ -31,15 +31,21 @@ def refresh_collection(collection_id):
         cache.object_key(Collection, collection_id, "stats")
     )
 
-def delete_collection(collection, keep_metadata=False, sync=False):
 
+def delete_collection(collection, keep_metadata=False, sync=False):
+    log.warning("DFAAAAAAAAAAAAAAAAAAAAAA")
     deleted_at = collection.deleted_at or datetime.utcnow()
     if not keep_metadata:
+        log.warning("am i getting deleted..")
         collection.delete(deleted_at=deleted_at)
+    else:
+        log.warning("WHHHHYYY")
+    db.session.commit()
     if not keep_metadata:
         index.delete_collection(collection.id, sync=True)
     Authz.flush()
     refresh_collection(collection.id)
+
 
 def upgrade_collections():
     for collection in Collection.all(deleted=True):

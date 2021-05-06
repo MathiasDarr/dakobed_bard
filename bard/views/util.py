@@ -44,11 +44,8 @@ def get_session_id():
 
 def get_db_collection(collection_id, action=Authz.READ):
     collection = obj_or_404(Collection.by_id(collection_id))
-    require(request.authz.can(collection.id, action))
+    # require(request.authz.can(collection.id, action))
     return collection
-
-
-
 
 
 def get_url_path(url):
@@ -56,6 +53,7 @@ def get_url_path(url):
         return url_parse(url).replace(netloc="", scheme="")
     except Exception:
         return "/"
+
 
 def jsonify(obj, status=200, headers=None, encoder=JSONEncoder):
     """Serialize to JSON and also dump from the given schema."""

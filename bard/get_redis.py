@@ -29,7 +29,6 @@ def make_key(*criteria):
     return ":".join(parts)
 
 
-
 def get_redis_pool():
     if not hasattr(service_settings, "_redis_pool"):
         pool = ConnectionPool.from_url(service_settings.REDIS_URL, decode_responses=True)

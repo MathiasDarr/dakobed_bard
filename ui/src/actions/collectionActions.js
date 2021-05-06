@@ -16,6 +16,10 @@ export const createCollection = asyncActionCreator(({id, refresh }) => async () 
   return { id, data: response.data };
 }, { name: 'FETCH_COLLECTION'});
 
+
+
+
+
 // export const deleteCollection = asyncActionCreator(collection => {
 //   const config = { params: { sync: false }};
 //   await endpoint.delete(`collections/${collection.id}`, config);

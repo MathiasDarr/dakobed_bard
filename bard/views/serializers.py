@@ -25,6 +25,9 @@ class Serializer(object):
     def serialize(self, obj):
         pass
 
+    # def queue(self, clazz, key, schema=None):
+    #     if not self.nested(request, clazz, key, schema=schema)
+
     # def serialize_many(self, objs):
     #     collected = []
     #     for obj in ensure_list(objs):
@@ -52,13 +55,6 @@ class Serializer(object):
         if extra is not None:
             data.update(extra)
         return jsonify(data, **kwargs)
-
-
-class RoleSerializer(Serializer):
-    def _serialize(self, obj):
-        obj["links"] = {"self": url}
-
-
 
 
 class CollectionSerializer(Serializer):

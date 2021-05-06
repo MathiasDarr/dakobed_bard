@@ -1,5 +1,5 @@
 from bard.core import db
-from bard.models.common import IdModel, DatedModel, make_textid
+from bard.models.common import IdModel, DatedModel, make_textid, SoftDeleteModel
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import JSONB
 import logging
@@ -15,7 +15,7 @@ class MyModel(db.Model):
         return '<User %r>' % self.username
 
 
-class Collection(db.Model, IdModel, DatedModel):
+class Collection(db.Model, IdModel, SoftDeleteModel):
     label = db.Column(db.Unicode)
 
     def touch(self):

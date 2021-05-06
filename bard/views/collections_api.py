@@ -1,12 +1,13 @@
 from flask import Blueprint, request, jsonify
 import logging
-from bard.logic import collections
+from bard.logic.collections import create_collection, delete_collection
 from bard.models.collection import MyModel, Collection
 from bard.search import CollectionsQuery
 from bard.views.serializers import CollectionSerializer
 from bard.views.util import get_db_collection
 from bard.views.util import request, jsonify
 from bard.core import db
+from bard.authz import Authz
 
 
 log = logging.getLogger(__name__)
@@ -25,7 +26,6 @@ def index():
     """
     result = CollectionsQuery.handle(request)
     log.warning("RESULT {}".format(result))
-    dump(result)
     return "second route dfa dafa  "
 
 
@@ -73,9 +73,24 @@ def create():
     # db.session.add(collection)
     # db.session.commit()
     #
-    collections.create_collection(data=request_data)
+    create_collection(data=request_data)
 
     return jsonify(resp_dictionary)
 
+
+@blueprint.route("/api/2/collections/<int:collection_id>", methods=["DELETE"])
+def delete(collection_id):
+    """
+    ---
+    delete:
+        summary: Delete a collection
+    """
+    log.warning("AAAAAAAAAAAADFFFFFFFFFFFF")
+    collection = get_db_collection(collection_id, Authz.WRITE)
+    keep_metadata = False
+    sync = False
+    delete_collection(collection, keep_metadata=keep_metadata, sync=sync)
+
+    return jsonify({"status": "ok"})
 
 
