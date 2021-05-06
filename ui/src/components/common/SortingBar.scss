@@ -1,0 +1,18 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+$bard-size: 13px;
+.SortingBar{
+  position: relative;
+  white-space: nowrap;
+  @include rtl(text-align, right, left)
+
+  // &__item {
+  //   display: inline-block;
+  //   @include rtlSupportInvertedProp(margin, left, $bard-grid-size, null);
+  //   @__popover { 
+
+  //   }
+  // }
+
+}

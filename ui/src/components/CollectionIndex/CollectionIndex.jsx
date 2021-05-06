@@ -3,7 +3,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { SearchBox } from 'components/common/SearchBox';
-// import SearchActionBar from 'components/common/SearchActionBar';
+import { SearchActionBar } from 'components/common'
+
+
 
 import './CollectionIndex.scss';
 
@@ -14,7 +16,7 @@ export class CollectionIndex extends Component {
   }
 
   onSearch(queryText){
-    const { query } = this.props;
+    const { query, result } = this.props;
 
   }
 
@@ -26,6 +28,10 @@ export class CollectionIndex extends Component {
             onSearch={this.onSearch}
             inputProps={{large:true, autoFocus: true}}
           />
+          <SearchActionBar 
+            result={"dfadfa"}
+          />
+          
         </div>
       </div>
     )
