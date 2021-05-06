@@ -13,18 +13,48 @@ class CollectionContextLoader extends PureComponent {
   constructor(props){
     super(props);
     this.state = { timeout: null };
+    this.fetchRefresh = this.fetchRefresh.bind(this);
   }
 
   componentDidMount(){
-    
+    this.fetchRefresh();
+    this.fetchIfNeeded();    
   }
 
   componentDidUpdate(){
+    this.fetchIfNeeded();
+  }
 
+  componentWillUnmount(){
+    clearTimeout(this.state.timeout);
+  }
+
+  fetchIfNeeded(){
+    const { collectionId, collection } = this.props;
+    const refresh = false;
+    this.props.fetchCollection({id: collectionId, refresh });
+  }
+
+
+  fetchRefresh(){
+    const { collection } = this.props;
+    const { status } = collection;
+    clearTimeout(this.state.timeout);
+    console.log("adfadfafd adf fetch ")
+    this.props.fetchCollection(collection);
+  
+    
+  
   }
 
   render(){
-    return this.props.children;
+    console.log("THE PROPS LOOK LIKE ", this.props);
+    return(
+      <div>
+        i want to grab collections from the api..
+      </div>
+    )
+    // return this.props.children;
   }
 }
 

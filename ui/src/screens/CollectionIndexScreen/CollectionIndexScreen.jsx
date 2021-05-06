@@ -19,7 +19,7 @@ class CollectionIndexScreen extends React.Component {
 
     return(
       <Screen
-        title ={collection.label}
+        title ={"Collection Label"}
         description={"Summary"}
       >
         <CollectionWrapper >
