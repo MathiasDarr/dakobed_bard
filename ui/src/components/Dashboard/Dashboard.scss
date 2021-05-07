@@ -1,0 +1,41 @@
+@import "app/variables";
+@import "app/mixins.scss";
+
+$dashboard-padding: $bard-grid-siz3 * 2.5;
+
+.Dashboard {
+  padding: $dashboard-padding;
+
+  &__inner-container {
+    display:flex;
+    flex-flow: row nowrap;
+  }
+
+  &__menu {
+    display: flex;
+  }
+
+  &__actions {
+    margin-top: $bard-grid-siz2 * 2;
+  }
+
+  &__title-container {
+    margin: $dashboard-padding 0;
+  }
+
+  &__subheading {
+    color: $dark-gray5;
+    line-height: 1.5;
+    clear: both;
+    max-width: 700px;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 6;
+    overflow-x: auto;
+    @include rtlSupportInvertedProp(padding, left, $bard-grid-size/2, $bard-grid-size/2);
+  }
+
+}

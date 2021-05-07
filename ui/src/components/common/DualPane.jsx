@@ -7,15 +7,10 @@ class SidePane extends PureComponent {
   render() {
     const { children, className } = this.props;
     return (
-      <div>
-        { children} 
         <aside className={c('SidePane', className)} style={this.props.style} >
           {children}
-
-
           dfafa 
         </aside>
-      </div>
     )
   }
 }
@@ -34,6 +29,7 @@ class ContentPane extends PureComponent {
 class DualPane extends PureComponent {
   static SidePane = SidePane;
   static ContentPane = ContentPane;
+  
   render() {
     const { children, className, ...restProps } = this.props;
     return(

@@ -25,7 +25,9 @@ const messages = {
   writing: 'Writing',
   feedback: 'Send Feedback',
   placeholder: 'Search Placeholder',
-  index: 'Indices'
+  index: 'Indices',
+  outdoors: 'Outdoors',
+  trip_reports: 'Trip Reports'
 }
 
 export class Navbar extends React.Component {
@@ -88,7 +90,21 @@ export class Navbar extends React.Component {
                     {messages.home_page}
                   </Button>
                 </Link>
-              
+
+                <Link to="/trip_reports">
+                  <Button icon="camera" className="Navbar_collections-button bp3-minimal">
+                    {messages.trip_reports}
+                  </Button>
+                </Link>
+
+                <Link to="/outdoors">
+                  <Button icon="mountain" className="Navbar_collections-button bp3-minimal">
+                    {messages.outdoors}
+                  </Button>
+                </Link>
+
+
+
                 <Link to="/collections" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     {messages.collections}
