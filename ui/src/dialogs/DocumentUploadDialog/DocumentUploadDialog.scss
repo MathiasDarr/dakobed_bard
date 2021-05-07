@@ -1,0 +1,21 @@
+@import "app/variables.scss";
+
+.DocumentUploadDialog {
+  &.bp3-dialog {
+    padding-bottom: 0;
+  }
+
+  &__divider {
+    text-align: center;
+    padding: $bard-grid-size 0;
+  }
+
+  .document-upload-progress-bar {
+    margin-bottom: 1em;
+  }
+
+  .bp3-form-group {
+    margin: $bard-grid-size 0;
+  }
+
+}

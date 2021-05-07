@@ -15,22 +15,43 @@ const messages = {
 export class CollectionWrapper extends Component {
   constructor(props){
     super(props);
-
+    this.onSearch();
+    
   }
+
+  onSearch(queryText){
+    const { collectionId } = this.props;
+    console.log("THE COLLECTION ID IS LOOKS LIKE", collectionId)
+  }
+
 
   render(){
     const {
       children, collection, collectionId
     } = this.props;
     
+    console.log("THE COLLECITON LOOKS LIKE ", collectionId);
+
+
     return (
-      <CollectionContextLoader collectionId={collectionId}>
+      <div>
+        I AM IN COLLECTION WRAPPER {collectionId}
+        <p>
+
+        </p>
         {children}
-      </CollectionContextLoader>
+      </div>
     )
   }
 
 }
+
+
+      
+// <CollectionContextLoader collectionId={collectionId}>
+// {/* {children} */}
+// </CollectionContextLoader>
+
 
 const mapStateToProps = (state, ownProps) => {
   const { collection, collectionId: id, location} = ownProps;

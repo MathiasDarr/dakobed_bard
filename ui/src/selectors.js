@@ -92,7 +92,6 @@ export function selectCurrentRoleId(state) {
 
 export function selectCollection(state, collectionId) {
   const collection = selectObject(state, state.collections, collectionId);
-  // const stats = collection.status || {};
   // status.pending = status.pending || 0;
   // status.running = status.running || 0;
   // status.total = status.active + status.finished;

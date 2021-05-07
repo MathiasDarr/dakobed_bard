@@ -9,14 +9,14 @@ import Navbar from 'components/Navbar/Navbar';
 import NotFoundScreen from 'screens/NotFoundScreen/NotFoundScreen';
 import HomeScreen from 'screens/HomeScreen/HomeScreen';
 import LogoutScreen from 'screens/LogoutScreen/LogoutScreen';
-import CollectionScreen from 'screens/CollectionScreen/CollectionScreen';
+import TodoScreen from 'screens/CollectionScreen/TodoScreen';
 import EntityScreen from 'screens/EntityScreen/EntityScreen';
 import OAuthScreen from 'screens/OAuthScreen/OAuthScreen';
 import SearchScreen from 'screens/SearchScreen/SearchScreen'
 import CollectionIndexScreen from 'screens/CollectionIndexScreen/CollectionIndexScreen';
 import CollectionViews from 'components/Collections/CollectionViews'
 import TripReportScreen from 'screens/TripReportScreen/TripReportScreen';
-
+import CollectionScreen from 'screens/CollectionScreen/CollectionScreen'
 import TripReportIndexScreen from 'screens/TripReportIndexScreen/TripReportIndexScreen';
 import OutdoorsScreen from 'screens/OutdoorsScreen/OutdoorsScreen';
 
