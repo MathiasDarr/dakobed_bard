@@ -1,5 +1,9 @@
 import React from 'react'
+import { connect } from 'react-redux';
 import { Button, Tooltip, Position, Intent } from '@blueprintjs/core';
+
+import CreateCollectionDialog from 'dialogs/CreateCollectionDialog/CreateCollectionDialog';
+import { selectSession } from 'selectors';
 
 const messages = {
   login: "You must sign in to create a collection"
@@ -9,7 +13,7 @@ class CollectionCreateButton extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isOpen: false
+      isOpen: true
     }
     this.toggle = this.toggle.bind(this);
   
@@ -38,10 +42,21 @@ class CollectionCreateButton extends React.Component {
             disabled={buttonDisabled}
           />
         </Tooltip>
+        <CreateCollectionDialog
+          isOpen={this.state.isOpen}
+          toggleDialog={this.toggle}
+
+        />
       </>
     )
   }
   
 }
 
-export default CollectionCreateButton;
+const mapStateToProps = state => ({session: selectSession(state)})
+
+
+
+
+CollectionCreateButton = connect(mapStateToProps)(CollectionCreateButton)
+export default CollectionCreateButton; 

@@ -9,7 +9,9 @@ import CollectionCreateButton from 'components/Toolbar/CollectionCreateButton'
 const messages = {
   title:"Trip Reports Index",
   subheading: "Collections let you upload and share documents.",
-  create: "New trip report"
+  create: "New trip report",
+  empty: "You do not have any collections yet",
+  no_results: "No collections were found matching this query"
 }
 
 class TripReportIndexScreen extends Component{
@@ -21,23 +23,20 @@ class TripReportIndexScreen extends Component{
       >
       <Dashboard>
         <div className="Dashboard__title-container">
-          <h5 className="Dashboard__title">
-            {messages.title}
-          </h5>
-          
-          <p className="Dashboard__subheading">
-            {messages.subheading}
-          </p>
-          
+          <h5 className="Dashboard__title"> {messages.title} </h5>
+          <p className="Dashboard__subheading"> {messages.subheading} </p>
           <div className="Dashboard__actions">  
             <CollectionCreateButton 
               icon="briefcase"
               text={messages.create}
             />
           </div>
-        
         </div>
-        
+        <CollectionIndex
+          icon="briefcase"
+          noResultsText={messages.no_results}
+          emptyText={messages.empty}
+        />
       </Dashboard>
         
       </Screen>
