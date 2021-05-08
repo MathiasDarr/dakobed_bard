@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 
 import { fetchStatistics } from 'actions/index';
-
+import { Statistics } from 'components/common';
 import './HomeScreen.scss';
 import { selectStatistics, selectMetadata } from 'selectors';
 
@@ -53,10 +53,21 @@ export class HomeScreen extends Component {
             <h1 className="Homescreen_app-title">
               {messages.title}
             </h1>
+            
+            
             <div className="HomeScreen__thirds">
               <div>
+
+                <Statistics 
+                  styleType="dark"
+                  itemLink={value=>({
+                    pathname:'search'
+                  })}
+                />
+
+
                 <b>
-                  Hrsdfg
+                  Hrsdfgf
                 </b>
                 <div className ="HomeScreen__contact">
                   Helaf adf 

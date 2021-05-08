@@ -6,7 +6,7 @@ import SearchActionBar from './SearchActionBar';
 import ErrorSection from './ErrorSection';
 import Breadcrumbs from './BreadCrumbs';
 import SearchBox from './SearchBox';
-
+import Statistics from './Statistics'
 
 
 export { 
@@ -17,6 +17,7 @@ export {
   SearchActionBar,
   ErrorSection,
   Breadcrumbs,
-  SearchBox
+  SearchBox,
+  Statistics
 };
 

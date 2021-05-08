@@ -1,0 +1,42 @@
+@import 'app/variables.scss';
+@import "app/mixins.scss";
+
+.Statistics {
+  display: inline-block;
+
+  &.bp3-callout.dark {
+    background-color: white;
+  }
+
+  &__headline{
+    color: white !important;
+    @include rtl(text-align, left, right);
+    margin-bottom: 15px;
+  
+    .dark & {
+      color: $blue1 im !important;
+    }
+  }
+
+  &__filter {
+    margin-bottom: 15px;
+  }
+
+  &__list {
+    list-style: none;
+    padding: unset;
+    margin: 0;
+  }
+
+
+  &__more-toggle.bp3-button {
+    padding: 0;
+    margin-bottom: 0 im !important;
+  }
+
+  &__list-item {
+    margin: 7px;
+    display: flex;
+  }
+
+}

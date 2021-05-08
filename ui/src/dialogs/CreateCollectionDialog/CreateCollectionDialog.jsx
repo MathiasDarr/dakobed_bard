@@ -5,9 +5,10 @@ import { withRouter } from 'react-router';
 
 import FormDialog from 'dialogs/common/FormDialog';
 
-import {
-  createCollection
-} from 'actions';
+import { createCollection } from 'actions';
+import { showWarningToast } from 'app/toast';
+
+
 
 const messages = {
   title: "Create Collection Dialog",
@@ -23,21 +24,28 @@ class CreateCollectionDialog extends Component {
       },
       blocking: false
     }
-    
+
   }
 
   async onSubmit(){
     console.log("SUBMITTED FORM");
   }
 
-  onChangeLabel(){
-      
+  onChangeLabel(target){
+    const { collection } = this.state;
+    collection.label = target.value;
+    this.setState({ collection });      
+  }
+  checkValid(){
+    const { collection } = this.state;
+    return collection.label.trim().length >= 3;
   }
 
-  render(){
-    const { isOpen, toggleDialog } = this.props
 
-    const disabled = false;
+  render(){
+    const { isOpen, toggleDialog } = this.props;
+    const { collection, blocking } = this.state;
+    const disabled = blocking || !this.checkValid();
     return(
       <div>
         <FormDialog
@@ -46,6 +54,9 @@ class CreateCollectionDialog extends Component {
           className="CreateCollectionDialog"
           isOpen={isOpen}
           title={messages.title}
+          onClose={toggleDialog}
+          enforceFocus={false}
+          autoFocus={false}
         >
           <div className="bp3-dialog-body">
             <label className="bp3-label" htmlFor="label" >
@@ -62,6 +73,7 @@ class CreateCollectionDialog extends Component {
               </div>
             </label>
           </div>
+          
           <div className="bp3-dialog-footer">
             <div className="bp3-dialog-footer-actions">
               <Button 

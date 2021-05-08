@@ -9,6 +9,7 @@ import Navbar from 'components/Navbar/Navbar';
 import NotFoundScreen from 'screens/NotFoundScreen/NotFoundScreen';
 import HomeScreen from 'screens/HomeScreen/HomeScreen';
 import LogoutScreen from 'screens/LogoutScreen/LogoutScreen';
+import ActivateScreen from 'screens/ActivateScreen/ActivateScreen';
 import TodoScreen from 'screens/CollectionScreen/TodoScreen';
 import EntityScreen from 'screens/EntityScreen/EntityScreen';
 import OAuthScreen from 'screens/OAuthScreen/OAuthScreen';
@@ -68,13 +69,24 @@ class Router extends Component {
           <Switch>
             <Route path="/oauth" exact component={OAuthScreen} />
             <Route path="/logout" exact component={LogoutScreen} />
-            <Route path="/collections" exact component={CollectionScreen} />
+
+
+
+
+            <Route path="/activate/:code" exact component={ActivateScreen} />
+            {/* 
+            <Route path="/collections" exact component={CollectionScreen} /> */}
+
+            <Route path="/collections/:collectionId" exact component={CollectionScreen} />
+
+
+
             <Route path="/collection_index" exact component={CollectionIndexScreen} />
             <Route path="/collection_views" exact component={CollectionViews} />
             <Route path="/entities" exact component={EntityScreen} />
             <Route path="/trip_reports/:collectionId" exact component={TripReportScreen} />
             <Route path="/trip_reports" exact component={TripReportIndexScreen} />
-            
+
             <Route path="/outdoors" exact component={OutdoorsScreen} />
 
             <Route path="/lists/:entitySetId" exact component={ListScreen} />
