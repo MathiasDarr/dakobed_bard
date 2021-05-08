@@ -43,7 +43,7 @@ class CollectionScreen extends Component{
   }
 }
 const mapStateToProps = (state, ownProps) => {
-  const { collectionId } = 1;
+  const { collectionId } = ownProps.match.params;
   const activeMode = true;
   return {
     collectionId,

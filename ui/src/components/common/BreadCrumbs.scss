@@ -1,0 +1,97 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.Breadcrumbs {
+  z-index: 1;
+  padding: $bard-grid-size/2 $bard-content-padding;
+  background-color: $bard-breadcrumbs-background;
+
+  @media screen and (max-width: $bard-screen-sm-max-width) {
+    @include rtlSupportInvertedProp(padding, left, $bard-mobile-content-padding, $bard-mobile-content-padding);
+  }
+
+  &.tripfile {
+    background-color: $bard-dataset-theme;
+  }
+
+  &.dataset{
+    background-color: $bard-dataset-theme;
+  }
+
+  &__inner-container {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+  }
+
+  &__main, &__right {
+    margin: 2px 0;
+  }
+
+  &__main {
+    @include rtlSupportInvertedProp(margin, right, $bard-content-padding,0);
+  }
+
+  &__right {
+    display: flex;
+
+    .bp3-button-group {
+      align-items: center;
+    }
+
+    .bp3-divider:last-child {
+      display: none;
+    }
+
+    .bp3-control-group, .bp3-input, .bp3-button-group {
+      border-radius: $bard-grid-size !important;
+    }
+
+    .bp3-input-group {
+      min-width: $bard-grid-size * 20.5;
+    }
+  }
+
+  .bp3-breadcrumbs {
+    height: auto;
+    margin: 1px 0;
+
+    & > li {
+      margin: 5px 0;
+      &::after {
+        margin: 0 10px;
+      }
+    }
+    .bp3-popover-target {
+      display: flex;
+    }
+  }
+
+  .bp3-breadcrumb {
+    font-size: $bard-font-size;
+    &.CollectionLabel {
+      font-weight: 600;
+      .bp3-spinner-head {
+        stroke: white;
+      }
+    }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+    }
+
+    .bp3-breadcrumb-current {
+      color: $blue1;
+      
+      .bp3-spinner-head {
+        stroke: $blue1;
+      }
+    }
+   
+  .EntityLabel > * {
+    display: inline-flex !important;
+    white-space: nowrap !important;
+  }
+
+}
