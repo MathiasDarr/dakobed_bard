@@ -1,0 +1,24 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.ListScreen {
+  &__schema-counts {
+    @include rtlSupportInvertedProp(padding, right, $bard-content-padding, null);
+    @include rtlSupportInvertedProp(border, right, 1px solid $bard-border-color, null);
+
+    @media screen and (max-width: $bard-screen-sm-max-width) {
+      padding: 0 0 $bard-content-padding !important;
+      margin-bottom: $bard-content-padding;
+      border: none !important;
+      border-bottom: 1px solid $bard-border-color !important;
+    }
+  }
+
+  .SchemaCounts {
+    width: $bard-grid-size*22.5;
+
+    @media screen and (max-width: $bard-screen-sm-max-width){
+      width: 100%;
+    }
+  }
+}

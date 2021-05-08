@@ -20,6 +20,12 @@ import CollectionScreen from 'screens/CollectionScreen/CollectionScreen'
 import TripReportIndexScreen from 'screens/TripReportIndexScreen/TripReportIndexScreen';
 import OutdoorsScreen from 'screens/OutdoorsScreen/OutdoorsScreen';
 
+import ListScreen from 'screens/ListScreen/ListScreen';
+
+
+import ProfileScreen from 'screens/ProfileScreen/ProfileScreen';
+
+
 import './Router.scss';
 import { selectMetadata, selectSession } from 'selectors';
 
@@ -70,6 +76,9 @@ class Router extends Component {
             <Route path="/trip_reports" exact component={TripReportIndexScreen} />
             
             <Route path="/outdoors" exact component={OutdoorsScreen} />
+
+            <Route path="/lists/:entitySetId" exact component={ListScreen} />
+
 
             <Route path="/search" exact component={SearchScreen} />
             <Route path="/" exact component={HomeScreen} />
