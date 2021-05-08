@@ -29,7 +29,7 @@ def upgrade_system():
 
     flask_migrate.upgrade()
     create_system_roles()
-    upgrade_search()
+    #upgrade_search()
     create_user("mddarr@gmail.com", "Mathias", "password", True)
     seed_data()
 

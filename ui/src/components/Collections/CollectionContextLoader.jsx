@@ -6,6 +6,8 @@ import { withRouter } from 'react-router';
 
 import { fetchCollection } from 'actions';
 import { selectCollection } from 'selectors';
+import timestamp from 'util/timestamp';
+
 
 
 
@@ -39,21 +41,28 @@ class CollectionContextLoader extends PureComponent {
   fetchRefresh(){
     const { collection } = this.props;
     const { status } = collection;
-    clearTimeout(this.state.timeout);
-    console.log("adfadfafd adf fetch ")
+    // clearTimeout(this.state.timeout);
+    // const statleDuration = status.active ? 3000 : 30000;
+    // console.log("adfadfafd adf fetch ")
     this.props.fetchCollection(collection);
-  
+  //   const shouldRefresh = (age )
+  //   const ()
+
+  //   const age = timestamp() - collection.loadedAt;
+
+  //   const timeout = setTimeout(this.fetchRefresh, 1000);
+  //   this.setState({ timeout })
     
-  
-  }
+   }
 
   render(){
     console.log("THE PROPS LOOK LIKE ", this.props);
-    return(
-      <div>
-        i want to grab collections from the api..
-      </div>
-    )
+    return this.props.children;
+    // return(
+    //   <div>
+    //     i want to grab collections from the api..
+    //   </div>
+    // )
     // return this.props.children;
   }
 }

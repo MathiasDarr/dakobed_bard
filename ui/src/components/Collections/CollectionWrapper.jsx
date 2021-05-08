@@ -7,16 +7,19 @@ import { selectCollection } from 'selectors';
 import viewIds from './ViewIds';
 import CollectionContextLoader from './CollectionContextLoader';
 
+import CollectionManageMenu from './CollectionManageMenu';
+import { Breadcrumbs, SearchBox } from 'components/common';
+
+
 const messages = {
-  collection: 'Search this dataset',
+  collection: 'Search this collection',
   
 }
 
 export class CollectionWrapper extends Component {
   constructor(props){
     super(props);
-    this.onSearch();
-    
+    this.onSearch();    
   }
 
   onSearch(queryText){
@@ -27,20 +30,46 @@ export class CollectionWrapper extends Component {
 
   render(){
     const {
-      children, collection, collectionId
+      children, collection, collectionId, query
     } = this.props;
     
     console.log("THE COLLECITON LOOKS LIKE ", collectionId);
 
+    const operation = <CollectionManageMenu collection={collection} />
+    
+    const search = (
+      <SearchBox
+        onSearch={this.onSearch}
+        placeholder={"CollectionWrapper Search"}
+        query={"QUERY FOR DATA"}
+        inputProps={{ disabled: !collection?.id }}
+      />
+    )
+
+    const breadcrumbs = (
+      <Breadcrumbs operation={operation} search={search}>
+        <Breadcrumbs.Collection key="collection" collection={collection} />
+      </Breadcrumbs>
+    )
 
     return (
       <div>
-        I AM IN COLLECTION WRAPPER {collectionId}
-        <p>
+ 
+        <CollectionContextLoader collectionId={collectionId}>
+          {breadcrumbs}
+          {search}
+          { children }
+        </CollectionContextLoader>
 
-        </p>
-        {children}
       </div>
+      // <CollectionContextLoader collectionId={collectionId}>
+      //   {breadcrumbs}
+      //   I AM IN COLLECTION WRAPPER {collectionId}
+      //   <p>
+
+      //   </p>
+      //   {children}
+      // </CollectionContextLoader>
     )
   }
 

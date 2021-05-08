@@ -5,6 +5,8 @@ import HotKeysContainer from './HotKeysContainer'
 import SearchActionBar from './SearchActionBar';
 import ErrorSection from './ErrorSection';
 import Breadcrumbs from './BreadCrumbs';
+import SearchBox from './SearchBox';
+
 
 
 export { 
@@ -14,6 +16,7 @@ export {
   HotKeysContainer,
   SearchActionBar,
   ErrorSection,
-  Breadcrumbs
+  Breadcrumbs,
+  SearchBox
 };
 
