@@ -7,6 +7,7 @@ import ErrorSection from './ErrorSection';
 import Breadcrumbs from './BreadCrumbs';
 import SearchBox from './SearchBox';
 import Statistics from './Statistics'
+import Collection from './Collection'
 
 
 export { 
@@ -18,6 +19,7 @@ export {
   ErrorSection,
   Breadcrumbs,
   SearchBox,
-  Statistics
+  Statistics,
+  Collection
 };
 

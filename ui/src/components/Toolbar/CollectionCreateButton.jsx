@@ -25,7 +25,7 @@ class CollectionCreateButton extends React.Component {
 
   render(){
     const { icon, text } = this.props;
-    const buttonDisabled = true;
+    const buttonDisabled = false;
 
     return(
       <>

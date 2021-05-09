@@ -1,6 +1,18 @@
 import React, { Component } from 'react';
+import queryString from 'query-string'
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+import { Redirect, withRouter } from 'react-router'; 
+
 import Screen from 'components/Screen/Screen'
 import { DualPane} from 'components/common'
+import CollectionIndex from 'components/CollectionIndex/CollectionIndex';
+import TripReportSidebar from 'components/TripReports/TripReportSidebar';
+import TripReportViews from 'components/TripReports/TripReportViews';
+import ErrorScreen from 'components/Screen/ErrorScreen';
+import { selectCollection } from 'selectors';
+import { CollectionWrapper } from 'components/Collections/CollectionWrapper';
+
 
 
 const messages = {
@@ -15,48 +27,41 @@ export class TripReportScreen extends Component {
   }
 
   render(){
+    const { collection, collectionId, activeMode, activeType } = this.props;
     return(
     <Screen
         title ={"TripReportScreen"}
         description={"Trip reports"}
     >
+      <CollectionWrapper collectionId = {collectionId} collection={collection} >
+        <DualPane>
+          <DualPane.SidePane>
+            <>
+              
+              <h2>
+              { messages.side_pane_message }
+              </h2>
+              sdfa
+            </>
+          </DualPane.SidePane>
+          <DualPane.ContentPane>
+            <div className="TripReportScreen__body-content">
+              <TripReportViews 
+                collectionId={collectionId}
+                activeMode={activeMode}
+                activeType={activeType}
+              />
+            </div>
 
-      <DualPane>
-        <DualPane.SidePane>
-          <>
-            
-            <h2>
-            { messages.side_pane_message }
-            </h2>
-            sdfa
-          </>
-        </DualPane.SidePane>
-        <DualPane.ContentPane>
-          <h1>
-            { messages.content_pane_message }
-          </h1>
-
-          <DualPane>
-        <DualPane.SidePane>
-          <>
-            
-            <h2>
-            { "Inner Side Pane" }
-            </h2>
-            sdfa
-          </>
-        </DualPane.SidePane>
-        <DualPane.ContentPane>
-          <h1>
-            { "Inner Dual Pane" }
-          </h1>
-        </DualPane.ContentPane>
-      </DualPane>
-
-        </DualPane.ContentPane>
-      </DualPane>
+            <h1>
+              { messages.content_pane_message }
+            </h1>
 
 
+          </DualPane.ContentPane>
+        </DualPane>
+
+      </CollectionWrapper>
     </Screen>
     )
   }
@@ -64,4 +69,22 @@ export class TripReportScreen extends Component {
 
 }
 
-export default TripReportScreen;
+const mapStateToProps = (state, ownProps) => {
+  const { collectionId } = ownProps.match.params;
+  const { location } = ownProps;
+  const hashQuery = queryString.parse(location.hash);
+  const activeMode = hashQuery.mode;
+  const activeType = hashQuery.type;
+  return {
+    collectionId,
+    collection: selectCollection(state, collectionId),
+    activeMode,
+    activeType
+  }
+}
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(TripReportScreen);
+ 

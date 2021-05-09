@@ -3,9 +3,9 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { SearchBox } from 'components/common/SearchBox';
-import { SearchActionBar } from 'components/common'
+import { ErrorSection, SearchActionBar } from 'components/common'
 
-
+import CollectionIndexItem from './CollectionIndexItem';
 
 import './CollectionIndex.scss';
 
@@ -20,9 +20,38 @@ export class CollectionIndex extends Component {
 
   }
 
+  renderErrors(){
+    const { emptyText, icon, result } = this.props;
+    
+    if (result.isError) {
+      return <ErrorSection error={result.error} />;
+    }
+
+    if (result.total === 0) {
+      const message = emptyText;
+      return <ErrorSection icon={icon} title={message} />
+    }
+    
+    return null;
+  }
+
+  renderResults(){
+    const { result } = this.props;
+    const skeletonItems = [...Array(10).keys()];
+    return (
+      <ul className="index">
+        {result.results.map(
+          res => <CollectionIndexItem key={res.id} collection={res} />
+        )}
+        
+      </ul>
+    )
+  }
+
   render () {
 
-    return (<div className="CollectionIndex">
+    return (
+      <div className="CollectionIndex">
         <div className="CollectionIndex__controls">
           <SearchBox
             onSearch={this.onSearch}

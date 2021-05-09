@@ -1,0 +1,35 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+
+$metadata-width: $bard-investigation-sidebar-width;
+$metadata-padding: $bard-content-padding;
+$default-breakpoint: $bard-screen-sm-max-width;
+
+
+
+@mixin foldup {
+  @media screen and (max-width: $default-breakpoint) {
+    @content;
+  }
+  
+}
+
+
+.CollectionOverviewMode {
+  display: flex;
+  flex-flow: row;
+  width: 100%;
+
+  &__main {
+    width: calc(100% - #{$metadata-width} - #{$metadata-padding});
+  }
+
+  &__secondary {
+    width: $metadata-width;
+    @include rtlSupportInvertedProp(margin, left, $metadata-padding, 0);
+    @include rtlSupportInvertedProp(padding, left, $metadata-padding, 0);
+    @include rtlSupportInvertedProp(border, left, 1px solid $bard-border-color, none);
+
+  }
+}

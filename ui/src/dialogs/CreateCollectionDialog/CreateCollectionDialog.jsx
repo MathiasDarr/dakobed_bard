@@ -29,16 +29,24 @@ class CreateCollectionDialog extends Component {
 
   async onSubmit(){
     console.log("SUBMITTED FORM");
+    const { history, createCollection, toggleDialog } = this.props;
+    const { collection } = this.state;
+    this.seteState({ blocking: true });
+    try {
+      const response = await createCollection(collection);
+    } catch (e) {
+      this.setState({ blocking: false })
+    }
   }
 
   onChangeLabel(target){
-    const { collection } = this.state;
-    collection.label = target.value;
-    this.setState({ collection });      
+    // const { collection } = this.state;
+    // collection.label = target.value;
+    // this.setState({ collection });      
   }
   checkValid(){
-    const { collection } = this.state;
-    return collection.label.trim().length >= 3;
+    // const { collection } = this.state;
+    // return collection.label.trim().length >= 3;
   }
 
 
@@ -88,8 +96,8 @@ class CreateCollectionDialog extends Component {
       </div>
     )
   }
-
-
 }
 
-export default CreateCollectionDialog;
+
+CreateCollectionDialog = withRouter(CreateCollectionDialog);
+export default connect(null, { CreateCollectionDialog })(CreateCollectionDialog);

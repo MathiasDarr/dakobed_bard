@@ -1,0 +1,35 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+$transition-duration: .3s;
+$sidebar-padding: $bard-grid-size*2;
+
+.TripReportSideBar{
+  width: $bard-investigation-sidebar-width;
+
+  &__content {
+
+  }
+
+  &__section {
+    padding: 15px;
+    border-radius: 5px;
+    background: $light-gray5;
+    margin: $bard-content-padding 0;
+    border: none;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @media screen and (min-width: 450px) and (max-width: $bard-screen-sm-max-width){
+      width: 50%;
+      margin: $bard-content-padding/2;
+    }
+
+    &__title.bp3-heading {
+      color: $bard-investigation-theme;
+      padding-bottom: px;
+    }
+  }
+}

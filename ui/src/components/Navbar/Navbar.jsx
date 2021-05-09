@@ -97,6 +97,13 @@ export class Navbar extends React.Component {
                   </Button>
                 </Link>
 
+                <Link to="/trip_reports/2">
+                  <Button icon="camera" className="Navbar_collections-button bp3-minimal">
+                    {"FIRST TRIP REPORT"}
+                  </Button>
+                </Link>
+
+
                 <Link to="/outdoors">
                   <Button icon="mountain" className="Navbar_collections-button bp3-minimal">
                     {messages.outdoors}
@@ -105,7 +112,7 @@ export class Navbar extends React.Component {
 
 
 
-                <Link to="/collections" >
+                <Link to="/collections/2" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     {messages.collections}
                   </Button>

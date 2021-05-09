@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+
+
 
 import Screen from 'components/Screen/Screen';
 import Dashboard from 'components/Dashboard/Dashboard';
 import CollectionIndex from 'components/CollectionIndex/CollectionIndex';
 import CollectionCreateButton from 'components/Toolbar/CollectionCreateButton'
+import { tripReportsQuery } from 'queries';
+
 
 
 const messages = {
@@ -24,7 +30,10 @@ class TripReportIndexScreen extends Component{
       <Dashboard>
         <div className="Dashboard__title-container">
           <h5 className="Dashboard__title"> {messages.title} </h5>
-          <p className="Dashboard__subheading"> {messages.subheading} </p>
+          <p className="Dashboard__subheading"> 
+            {messages.subheading}
+          </p>
+
           <div className="Dashboard__actions">  
             <CollectionCreateButton 
               icon="briefcase"
@@ -44,4 +53,11 @@ class TripReportIndexScreen extends Component{
   }
 }
 
-export default TripReportIndexScreen;
+const mapStateToProps = (state, ownProps) => {
+  const { location } = ownProps;
+  return { query: tripReportsQuery(location)}
+};
+
+export default compose(
+  connect(mapStateToProps, {})
+)(TripReportIndexScreen);

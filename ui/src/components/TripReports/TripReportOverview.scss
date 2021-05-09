@@ -1,0 +1,15 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.TripReportOverview{
+  &__section {
+    position: relative;
+    margin: $bard-content-padding/2 0 $bard-content-padding*1.5;
+  }
+
+  &__title.bp3-heading {
+    margin-bottom: $bard-content-padding;
+    padding-bottom: $bard-grid-size*.7;
+    border-bottom: 1px solid $bard-border-color;
+  }
+}

@@ -15,7 +15,7 @@ import { selectCollection } from 'selectors';
 class CollectionScreen extends Component{
 
   render(){
-    const collectionId = 1;
+    const collectionId = "1";
     const activeMode = true;
 
     return(
@@ -25,19 +25,16 @@ class CollectionScreen extends Component{
         dfa 
         <CollectionWrapper collectionId={collectionId}>
 
-          dfadff 
-
           <SinglePane>
             <CollectionHeading />
             <CollectionViews
               collectionId={collectionId}
-              activeMode={activeMode}
             />
 
             Single Pane  
           </SinglePane>
         </CollectionWrapper>
-          CollectionScreendfdaf 
+
       </Screen>
     )
   }
@@ -45,6 +42,10 @@ class CollectionScreen extends Component{
 const mapStateToProps = (state, ownProps) => {
   const { collectionId } = ownProps.match.params;
   const activeMode = true;
+  const { location } = ownProps;
+  console.log("THE location LOOKS LIKE ", location );
+  const hashQuery = queryString.parse(location.hash);
+  console.log("THE HASH QUERY LOOKS LIKE ", hashQuery );
   return {
     collectionId,
     collection: selectCollection(state, collectionId),
