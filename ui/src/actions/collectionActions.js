@@ -10,11 +10,11 @@ export const fetchCollection = asyncActionCreator(({ id, refresh }) => async () 
   return { id, data: response.data };
 }, { name: 'FETCH_COLLECTION'});
 
-export const createCollection = asyncActionCreator(({id, refresh }) => async () => {
-  const config = { params: { refresh }};
-  const response = await endpoint.get(`collections/${id}`, config);
-  return { id, data: response.data };
-}, { name: 'FETCH_COLLECTION'});
+export const createCollection = asyncActionCreator(collection => async () => {
+  const config = { params: { sync: true }};
+  const response = await endpoint.post('collections', collection, config);
+  return { id: response.id, data: response.data };
+}, { name: 'CREATE_COLLECTION'});
 
 
 

@@ -20,6 +20,7 @@ class CollectionCreateButton extends React.Component {
   }
 
   toggle() {
+    console.log("BUTTON GETTING TOGGLED")
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
   }
 
@@ -32,7 +33,7 @@ class CollectionCreateButton extends React.Component {
         <Tooltip
           content={"Loging"}
           position={Position.BOTTOM}
-          disabled={buttonDisabled}
+          disabled={!buttonDisabled}
         >
           <Button
             onCLock={this.toggle}

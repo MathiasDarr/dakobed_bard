@@ -20,29 +20,39 @@ class CreateCollectionDialog extends Component {
     super(props);
     this.state = {
       collection: {
-        label: ''
+        label: '',
+        summary: '',
+        casefile: true
       },
       blocking: false
     }
-
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeLabel = this.onChangeLabel.bind(this);
   }
 
   async onSubmit(){
     console.log("SUBMITTED FORM");
     const { history, createCollection, toggleDialog } = this.props;
     const { collection } = this.state;
-    this.seteState({ blocking: true });
-    try {
-      const response = await createCollection(collection);
-    } catch (e) {
-      this.setState({ blocking: false })
-    }
+    console.log("THE collection IS ", collection)
+    console.log("THE STATE IS IS ", this.state)
+    this.setState({ blocking: true });
+    showWarningToast()
+    const response = await createCollection(collection);
+
+    // try {
+    //   const response = await createCollection(collection);
+    // } catch (e) {
+    //   this.setState({ blocking: false })
+    // }
   }
 
   onChangeLabel(target){
-    // const { collection } = this.state;
-    // collection.label = target.value;
-    // this.setState({ collection });      
+    const { collection } = this.state;
+    console.log("THE TARGET IS ", target);
+    console.log("THE TARGET VALUE IS ", target.value);
+    collection.label = target.value;
+    this.setState({ collection: {label: target.value} });      
   }
   checkValid(){
     // const { collection } = this.state;
@@ -53,7 +63,8 @@ class CreateCollectionDialog extends Component {
   render(){
     const { isOpen, toggleDialog } = this.props;
     const { collection, blocking } = this.state;
-    const disabled = blocking || !this.checkValid();
+    // const disabled = blocking || !this.checkValid();
+    const disabled = false;
     return(
       <div>
         <FormDialog
@@ -76,7 +87,7 @@ class CreateCollectionDialog extends Component {
                 className="bp3-input"
                 autoComplete="off"
                 onChange={this.onChangeLabel}
-                value={"COLLECTION LABEL"}
+                value={collection.label}
                 />
               </div>
             </label>
@@ -100,4 +111,4 @@ class CreateCollectionDialog extends Component {
 
 
 CreateCollectionDialog = withRouter(CreateCollectionDialog);
-export default connect(null, { CreateCollectionDialog })(CreateCollectionDialog);
+export default connect(null, { createCollection, CreateCollectionDialog })(CreateCollectionDialog);
