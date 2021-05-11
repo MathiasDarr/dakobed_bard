@@ -1,13 +1,16 @@
 import queryString from 'query-string';
 
 export default function getCollectionLink({ collection, mode, hash, search }) {
-  if(!collection?.id) {
+  if(!collection?.collection_id) {
     return null;
   }
-  const collectionId = collection.id;
+
+  const collection_id = collection.collection_id;
+
+  console.log("I AM IN THE CGET CLOOLECTION LINK ", collection_id)
 
   return ({
-    pathame: ``
+    pathame: `trip_reports/${collection_id}`
   })
 
 }

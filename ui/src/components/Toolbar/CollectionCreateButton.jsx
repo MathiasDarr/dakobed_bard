@@ -19,6 +19,7 @@ class CollectionCreateButton extends React.Component {
   }
 
   toggle() {
+    console.log("I GET TOGGLED ADFDAWFA ")
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
   }
 

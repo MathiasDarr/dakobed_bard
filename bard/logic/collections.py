@@ -16,6 +16,7 @@ def create_collection(data):
     # log.info("*******************************************")
     # log.info(db.session)
     db.session.commit()
+    return collection
     # log.info("dfadfa")
 
 

@@ -30,48 +30,35 @@ class CreateCollectionDialog extends Component {
   }
 
   async onSubmit(){
-    const { history, createCollection, toggleDialog, preventRedirect } = this.props;
-  
+    const { history, createCollection, toggleDialog } = this.props;
+    let preventRedirect = false;
+    console.log("PREVENT REDIRECT ", preventRedirect)
     const { collection } = this.state;
     
     this.setState({ blocking: true });
     try {
       const response = await createCollection(collection);
+      console.log("THE RESPONSE LOOKS LIKE ", response.data.collection_id)
       this.setState({ blocking: false });
+      
+      this.collection_id = response.data;
+      
+      if(preventRedirect) {
+        toggleDialog(response.data);
+      } else {
+        history.push(`/trip_reports/${response.data.collection_id}`)
+      }
+
       toggleDialog()
     }catch(e) {
       showWarningToast(e.message);
-      this.setState({ blocking: false });
+      // this.setState({ blocking: false });
     }
 
-    // history.push(getCollectionLink({collection: response.data}))
-    // try {
-    //   const response = await createCollection(collection);
-    //   const collectionId = response.data.id;
-    //   this.setState({blocking: false})
-    //   if (preventRedirect) {
-    //     toggleDialog(response.data);
-    //   } else {
-    //     history.push(getCollectionLink({collection: response.data}))
-    //   }     
-    // }catch (e) {
-    //   this.setState({ blocking: false });
-    //   showWarningToast(e.message);
-    // }
-    
-
-
-    // try {
-    //   const response = await createCollection(collection);
-    // } catch (e) {
-    //   this.setState({ blocking: false })
-    // }
   }
 
   onChangeLabel({ target }){
     const { collection } = this.state;
-    console.log("THE TARGET IS ", target);
-    console.log("THE TARGET VALUE IS ", target.value);
     collection.label = target.value;
     this.setState({ collection: {label: target.value} });      
   }
@@ -134,7 +121,6 @@ class CreateCollectionDialog extends Component {
     )
   }
 }
-
 
 CreateCollectionDialog = withRouter(CreateCollectionDialog);
 export default connect(null, { createCollection })(CreateCollectionDialog);

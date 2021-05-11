@@ -57,7 +57,9 @@ def create():
     # summary = request_data['summary']
     label = request_data['label']
 
-    resp_dictionary = {'mylabel':label}
+    # resp_dictionary = {'mylabel':label}
+
+
     #
     # log.info(str(request))
     # log.info(str(request_data))
@@ -74,8 +76,11 @@ def create():
     # db.session.add(collection)
     # db.session.commit()
     #
-    create_collection(data=request_data)
-
+    collection = create_collection(data=request_data)
+    resp_dictionary = {
+        "collection_id": collection.id,
+        "label": collection.label
+    }
     return jsonify(resp_dictionary)
 
 
