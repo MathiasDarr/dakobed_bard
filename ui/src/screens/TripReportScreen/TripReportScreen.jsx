@@ -71,6 +71,7 @@ export class TripReportScreen extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { collectionId } = ownProps.match.params;
+  console.log("THE COLLECTION ID IS BEING SET TO FROM THE TRIP REPORT SCREEN ", collectionId)
   const { location } = ownProps;
   const hashQuery = queryString.parse(location.hash);
   const activeMode = hashQuery.mode;

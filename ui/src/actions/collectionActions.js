@@ -17,7 +17,13 @@ export const queryCollections = asyncActionCreator(({ id, refresh }) => async ()
 
 export const fetchCollection = asyncActionCreator(({ id, refresh }) => async () => {
   const config = { params: { refresh } };
-  const response = await endpoint.get(`collections/3`, config);
+  console.log("THE ID IS ", id)
+  let post_url = "collections/"+id
+
+  if(!!!id){
+    return;
+  }
+  const response = await endpoint.get(post_url, config);
   return { id, data: response.data };
 }, { name: 'FETCH_COLLECTION'});
 

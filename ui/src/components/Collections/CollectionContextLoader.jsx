@@ -34,6 +34,7 @@ class CollectionContextLoader extends PureComponent {
   fetchIfNeeded(){
     const { collectionId, collection } = this.props;
     const refresh = false;
+    console.log("I AM FETCHING THE COLLECTION ", collectionId)
     this.props.fetchCollection({id: collectionId, refresh });
   }
 
