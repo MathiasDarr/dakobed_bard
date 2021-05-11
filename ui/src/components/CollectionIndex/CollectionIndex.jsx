@@ -71,13 +71,13 @@ export class CollectionIndex extends Component {
           <SearchActionBar 
             result={"dfadfa"}
           />
-          {this.renderErrors()}
+          {/* {this.renderErrors()}
           {this.renderResults()}
           <QueryInfiniteLoad 
             query={query}
             result={result}
             fetch={this.props.queryCollections}
-          />
+          /> */}
         </div>
       </div>
     )

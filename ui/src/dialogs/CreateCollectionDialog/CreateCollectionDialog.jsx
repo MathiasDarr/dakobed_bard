@@ -4,10 +4,9 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
 import FormDialog from 'dialogs/common/FormDialog';
-
 import { createCollection } from 'actions';
 import { showWarningToast } from 'app/toast';
-
+import getCollectionLink from 'util/getCollectionLink';
 
 
 const messages = {
@@ -20,7 +19,7 @@ class CreateCollectionDialog extends Component {
     super(props);
     this.state = {
       collection: {
-        label: '',
+        label: 'Initial Label',
         summary: '',
         casefile: true
       },
@@ -31,14 +30,36 @@ class CreateCollectionDialog extends Component {
   }
 
   async onSubmit(){
-    console.log("SUBMITTED FORM");
-    const { history, createCollection, toggleDialog } = this.props;
+    const { history, createCollection, toggleDialog, preventRedirect } = this.props;
+  
     const { collection } = this.state;
-    console.log("THE collection IS ", collection)
-    console.log("THE STATE IS IS ", this.state)
+    
     this.setState({ blocking: true });
-    showWarningToast()
-    const response = await createCollection(collection);
+    try {
+      const response = await createCollection(collection);
+      this.setState({ blocking: false });
+      toggleDialog()
+    }catch(e) {
+      showWarningToast(e.message);
+      this.setState({ blocking: false });
+    }
+
+    // history.push(getCollectionLink({collection: response.data}))
+    // try {
+    //   const response = await createCollection(collection);
+    //   const collectionId = response.data.id;
+    //   this.setState({blocking: false})
+    //   if (preventRedirect) {
+    //     toggleDialog(response.data);
+    //   } else {
+    //     history.push(getCollectionLink({collection: response.data}))
+    //   }     
+    // }catch (e) {
+    //   this.setState({ blocking: false });
+    //   showWarningToast(e.message);
+    // }
+    
+
 
     // try {
     //   const response = await createCollection(collection);
@@ -47,13 +68,14 @@ class CreateCollectionDialog extends Component {
     // }
   }
 
-  onChangeLabel(target){
+  onChangeLabel({ target }){
     const { collection } = this.state;
     console.log("THE TARGET IS ", target);
     console.log("THE TARGET VALUE IS ", target.value);
     collection.label = target.value;
     this.setState({ collection: {label: target.value} });      
   }
+
   checkValid(){
     // const { collection } = this.state;
     // return collection.label.trim().length >= 3;
@@ -91,7 +113,10 @@ class CreateCollectionDialog extends Component {
                 />
               </div>
             </label>
-            
+
+
+          {collection.label}
+
           </div>
           
           <div className="bp3-dialog-footer">
@@ -112,4 +137,4 @@ class CreateCollectionDialog extends Component {
 
 
 CreateCollectionDialog = withRouter(CreateCollectionDialog);
-export default connect(null, { createCollection, CreateCollectionDialog })(CreateCollectionDialog);
+export default connect(null, { createCollection })(CreateCollectionDialog);

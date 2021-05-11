@@ -16,11 +16,9 @@ class CollectionCreateButton extends React.Component {
       isOpen: false
     }
     this.toggle = this.toggle.bind(this);
-  
   }
 
   toggle() {
-    console.log("BUTTON GETTING TOGGLED")
     this.setState(({ isOpen }) => ({ isOpen: !isOpen }));
   }
 
@@ -43,10 +41,10 @@ class CollectionCreateButton extends React.Component {
             disabled={buttonDisabled}
           />
         </Tooltip>
+        
         <CreateCollectionDialog
           isOpen={this.state.isOpen}
           toggleDialog={this.toggle}
-
         />
       </>
     )
