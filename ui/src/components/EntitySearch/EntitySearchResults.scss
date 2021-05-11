@@ -1,0 +1,53 @@
+// @import "app/variables.scss";
+// @import "app/mixins.scss";
+
+// .EntitySearchResults {
+//   border-color: $bard-border-color;
+//   .schema {
+//     max-width: 8em;
+//     @media screen and (max-width: $bard-screen-md-max-width) {
+//       display: none;
+//     }
+//   }
+
+//   .bp3-control {
+//     margin-bottom: 0 !important;
+//   }
+// }
+
+// .EntitySearchResultsRow {
+//   &.active {
+//     em {
+//       background: inherit;
+//     }
+//   }
+
+//   em {
+//     background: $bard-text-highlight-color;
+//     font-style: normal;
+//   }
+
+//   .bp3-skeleton {
+//     height: 42px;
+//   }
+
+//   .collection, .location {
+//     min-width: 10vw;
+//   }
+
+//   .date {
+//     min-width: 5vw;
+//   }
+// }
+
+// @media screen and (max-width: $bard-screen-md-max-width) {
+//   .EntitySearchResults {
+//     .header-location, .header-dates, .header-size {
+//       display: none
+//     }
+//   }
+//   .location, .date, .file-size {
+//     display: none;
+//   }
+  
+// }
