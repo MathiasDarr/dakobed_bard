@@ -8,7 +8,7 @@ import Breadcrumbs from './BreadCrumbs';
 import SearchBox from './SearchBox';
 import Statistics from './Statistics'
 import Collection from './Collection'
-
+import QueryInfiniteLoad from './QueryInfiniteLoad'
 
 export { 
   Skeleton,
@@ -20,6 +20,7 @@ export {
   Breadcrumbs,
   SearchBox,
   Statistics,
-  Collection
+  Collection,
+  QueryInfiniteLoad
 };
 

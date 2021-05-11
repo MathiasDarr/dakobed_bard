@@ -52,6 +52,32 @@ function selectObject(state, objects, id){
   return obj;
 }
 
+function selectResult(state, query, expand) {
+  if (!query || !query.path){
+    return {
+      ...loadState(),
+      results: [],
+      shouldLoad: false,
+      shouldLoadDeep: false,
+      isPending: true
+    };
+  }
+  const result = {
+    results: [],
+    ...selectObject(state, state.results, query.toKey())
+  }
+
+  if (expand) {
+    result.results = result.results
+      .map(id => expand(state, id))
+      .filter((r) => r.id !== undefined)
+    }
+  return result;
+}
+
+
+
+
 
 export function selectMetadata(state){
   const metadata = selectObject(state, state, 'metadata');
@@ -104,8 +130,8 @@ export function selectCurrentRole(state) {
   return !!roleId ? selectRole(state, roleId) : {};
 }
 
-export function selectCollectionsResults(state, query) {
-  return selectEntitiesResult(state, query, selectCollection);
+export function selectCollectionsResult(state, query) {
+  return selectResult(state, query, selectCollection);
 }
 
 export function selectEntitiesResult(state, query) {

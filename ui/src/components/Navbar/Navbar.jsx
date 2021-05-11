@@ -104,11 +104,11 @@ export class Navbar extends React.Component {
                 </Link>
 
 
-                <Link to="/outdoors">
+                {/* <Link to="/outdoors">
                   <Button icon="mountain" className="Navbar_collections-button bp3-minimal">
                     {messages.outdoors}
                   </Button>
-                </Link>
+                </Link> */}
 
 
 
@@ -132,17 +132,17 @@ export class Navbar extends React.Component {
 
 
 
-                <Link to="/logout" >
+                {/* <Link to="/logout" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     Logout
                   </Button>
-                </Link>
+                </Link> */}
 
 
 
-                <Button icon="comment" className="Navbar__collections-button bp3-minimal">
+                {/* <Button icon="comment" className="Navbar__collections-button bp3-minimal">
                   {messages.feedback}
-                </Button>
+                </Button> */}
 
               </>
 

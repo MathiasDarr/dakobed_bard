@@ -13,41 +13,16 @@ const FormDialog = ({ processing, children, onSubmit, ...rest }) => {
     <Dialog {...rest}>
       <div className="FormDialog__content">
         <form onSubmit={!!onSubmit ? onSubmitForm: undefined}>
+          {processing && <div className="FormDialog__overlay" />}
           {children}
+          {processing && (
+            <Spinner className="FormDialog__spinner bp3-large" />
+          )}
         </form>
       </div>
     </Dialog>
   )
   
 }
-
-
-
-// class FormDialog extends React.Component {
-//   // const onSubmitForm = (event) => {
-//   //   event.preventDefault();
-
-//   // }
-
-//   onSubmitForm
-
-
-//   render(){
-//     return(
-//       <Dialog>
-//         <div className="FormDialog__content">
-//           <form onSubmit={!!onSubmit ? onSubmitForm : undefined}>
-
-//           </form>
-//         </div>
-
-
-//       </Dialog> 
-
-
-
-//     )
-//   }
-// }
 
 export default FormDialog;

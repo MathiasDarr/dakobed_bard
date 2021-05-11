@@ -9,7 +9,13 @@ import Screen from 'components/Screen/Screen'
 import './CollectionIndexScreen.scss'
 import { DualPane} from 'components/common'
 
+import Dashboard from 'components/Dashboard/Dashboard';
 
+
+const messages = {
+  empty: "You do not have any collections yet",
+  create: "Create a new collection"
+}
 class CollectionIndexScreen extends React.Component {
 
   constructor(props){
@@ -18,14 +24,24 @@ class CollectionIndexScreen extends React.Component {
   
   render(){
 
-    const { collectionId, collection } = this.props;
+    const { query } = this.props;
 
     return(
       <Screen
         title ={"Collection Label"}
         description={"Summary"}
       >
-        <CollectionWrapper >
+        <Dashboard>
+          <div className="Dashboard__title-container" >
+            <CollectionIndex
+              query={query}
+              icon="briefcase"
+              empty ={messages.empty}
+            />
+
+          </div>
+        </Dashboard>
+        {/* <CollectionWrapper >
         </CollectionWrapper>
         <DualPane>
           <DualPane.SidePane>
@@ -37,9 +53,10 @@ class CollectionIndexScreen extends React.Component {
             <h1>Hello dfdaf</h1>
             <CollectionIndex
               icon="database"
+              emptyText={""}
             />
           </DualPane.ContentPane>
-        </DualPane>
+        </DualPane> */}
 
 
       </Screen>
@@ -52,6 +69,7 @@ class CollectionIndexScreen extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   const { collectionId } = ownProps.match.params;
   const { location } = ownProps;
+  
 } 
 
 

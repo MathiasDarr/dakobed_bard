@@ -69,7 +69,7 @@ class CreateCollectionDialog extends Component {
       <div>
         <FormDialog
           icon="briefcase"
-          processing={true}
+          processing={blocking}
           className="CreateCollectionDialog"
           isOpen={isOpen}
           title={messages.title}
@@ -91,6 +91,7 @@ class CreateCollectionDialog extends Component {
                 />
               </div>
             </label>
+            
           </div>
           
           <div className="bp3-dialog-footer">

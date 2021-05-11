@@ -13,7 +13,7 @@ class CollectionCreateButton extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      isOpen: true
+      isOpen: false
     }
     this.toggle = this.toggle.bind(this);
   
@@ -36,7 +36,7 @@ class CollectionCreateButton extends React.Component {
           disabled={!buttonDisabled}
         >
           <Button
-            onCLock={this.toggle}
+            onClick={this.toggle}
             icon={icon}
             text={text}
             intent={Intent.PRIMARY}

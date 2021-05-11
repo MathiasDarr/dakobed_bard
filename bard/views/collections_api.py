@@ -24,6 +24,7 @@ def index():
     """
     List of collections
     """
+    log.warning("THE COLLECTIONS INDEX API LOOKS LIKE ")
     result = CollectionsQuery.handle(request)
     log.warning("RESULT {}".format(result))
     return "second route dfa dafa  "

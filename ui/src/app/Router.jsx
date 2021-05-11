@@ -23,8 +23,9 @@ import OutdoorsScreen from 'screens/OutdoorsScreen/OutdoorsScreen';
 
 import ListScreen from 'screens/ListScreen/ListScreen';
 
-
 import ProfileScreen from 'screens/ProfileScreen/ProfileScreen';
+
+import DiagramScreen from 'screens/DiagramScreen/DiagramScreen';
 
 
 import './Router.scss';
@@ -88,7 +89,7 @@ class Router extends Component {
             <Route path="/trip_reports" exact component={TripReportIndexScreen} />
 
             <Route path="/outdoors" exact component={OutdoorsScreen} />
-
+            <Route path="diagrams" exact component={DiagramScreen} />
             <Route path="/lists/:entitySetId" exact component={ListScreen} />
 
 
