@@ -5,6 +5,12 @@ import { withRouter } from 'react-router';
 
 
 import CollectionViewIds from 'components/Collections/collectionViewIds'; 
+import CollectionView from 'components/Collections/CollectionView';
+
+import CollectionOverviewMode from 'components/Collections/CollectionOverviewMode';
+
+import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch';
+
 import { ErrorSection } from 'components/common';
 import { collectionSearchQuery } from 'queries';
 
@@ -17,6 +23,10 @@ const messages = {
 }
 
 class TripReportViews extends React.Component {
+  constructor(props) {
+    super(props)
+    console.log("does THE CONSTRUCTOR GET CALLED")
+  }
   renderContent(){
     const { collectionId } = this.props;
 
@@ -26,25 +36,49 @@ class TripReportViews extends React.Component {
         title={messages.empty}
       />
     )
+    
+    const activeMode = 'overview';
+    
+    const isTripReport = true;
+
+    switch (activeMode) {
+      case 'search':
+        console.log("FACETED SEARCH")
+        return <FacetedEntitySearch collectionId={collectionId} />
+      default:
+        console.log("DEFAULT COLLECTION OVERVIEW VIEW")
+        return <CollectionOverviewMode collectionId={collectionId} isTripReport />
+    }
       
-      
-    return <div>RENDER CONTENT </div>
   }
 
 
   render(){
+    const { activeMode, activeType } = this.props;
+    
+    
     let title, subheading;
 
-
+    console.log("FROM TRIP REPORT VIEWS COMPONENT ", this.props);
+    
+    
+    if (activeMode === CollectionViewIds.SEARCH) {
+      title = null;
+    } else {
+      title = <CollectionView.Label id ={activeMode} icon />
+      subheading = "This is the subheading"
+    }
+  
     return(
       <div className="TripReportViews">
         {!!title && (
           <div className="TripReportViews__title-container">
             <h5 className="TripReportViews__title">
               <span>
-                {"THE TITLE GOES HERE"}
+                {title}
               </span>
             </h5>
+            {subheading && <p className="TripReportViews__subheading">{subheading}</p>}
           </div>
         )}
         <div className="ToolbarView__content">

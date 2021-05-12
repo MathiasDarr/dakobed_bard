@@ -3,9 +3,14 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { AnchorButton, Intent } from '@blueprintjs/core';
+import { selectCollection } from 'selectors';
 
 
 class TripReportOverview extends React.Component {
+  constructor(props){
+    super(props)
+    console.log("TRIP REPORTS OVER VIEW DFADDDDDDDDDDDDDDDDDDDDDDDDD")
+  }
   render(){
     return(
       <div className="TripReportOverview">
@@ -36,3 +41,19 @@ class TripReportOverview extends React.Component {
     )
   }
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+  const { collectionId, location } = ownProps;
+  const context = {
+    'facet': 'event',
+    'filter:channels': `Collection:${collectionId}` 
+  }
+  return {
+    collection: selectCollection(state, collectionId)
+  }; 
+}
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
+)(TripReportOverview);

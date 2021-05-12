@@ -30,6 +30,10 @@ $default-breakpoint: $bard-screen-sm-max-width;
     @include rtlSupportInvertedProp(margin, left, $metadata-padding, 0);
     @include rtlSupportInvertedProp(padding, left, $metadata-padding, 0);
     @include rtlSupportInvertedProp(border, left, 1px solid $bard-border-color, none);
-
+    @include foldup {
+      padding: 0 0 $metadata-padding !important;
+      margin: 0 !important;
+      border: none !important;
+    }
   }
 }

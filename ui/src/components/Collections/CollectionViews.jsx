@@ -5,18 +5,23 @@ import { Tabs, Tab } from '@blueprintjs/core';
 import queryString from 'query-string';
 
 import CollectionView from './CollectionView';
-
 import { selectCollection } from 'selectors';
-
 import collectionViewIds from 'components/Collections/collectionViewIds';
 // import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch';
 
+
+import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch'
+
 import Collection from './Collection';
+
+import './CollectionViews.scss';
+
 
 
 class CollectionViews extends React.Component {
   constructor(props){
     super(props);
+    console.log("PRIVATE CARE IS A MESS")
 
   }
 
@@ -48,105 +53,89 @@ class CollectionViews extends React.Component {
     } = this.props;
 
     return(
-      <Tabs 
-        id="CollectionInfoTabs"
-        className="@CollectionViews__tabs info-tabs-padding"
-        onChange={this.handleTabChange}
-        selectedTabId={activeMode}
-        renderActiveTabPanelOnly
-      >
-        <Tab
-          id={collectionViewIds.OVERVIEW}
-          className="CollectionViews__tab"
-          title={(
-            <CollectionView.Label id={collectionViewIds.OVERVIEW} icon />
-          )}
-          panel={"I'm a panel"}
-        >
-        </Tab>
-
-        <Tab
-          id={collectionViewIds.OVERVIEW}
-          className="CollectionViews__tab"
-          title={(
-            <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-          )}
-          panel={"I AM A SECOND PANEL"}
-        >
+      <div>
+        HEllo
+      </div>
 
 
-          </Tab>
-        
-          <Tab
-          id={collectionViewIds.SEARCH}
-          className="CollectionViews__tab"
-          title={(
-            <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-          )}
-          panel={"Disconnec"}
-          >
-
-          </Tab>
-        
-        <Tab
-          id={collectionViewIds.DOCUMENTS}
-          className="CollectionViews__tab"
-          title={collectionViewIds.SEARCH === activeMode && (
-            <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-          )}
-          // panel={<FacetedEntitySearch query={searchQuery} />}
-          panel={"I AM THE DOCUMENTS PANEL"}
-        />
-
-        <Tab
-          id={collectionViewIds.SEARCH}
-          className="CollectionViews__tab"
-          title={collectionViewIds.SEARCH === activeMode && (
-            <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-          )}
-          // panel={<FacetedEntitySearch query={searchQuery} />}
-          panel={"I AM A SECOND PANEL"}
-        />
-
-      </Tabs>
       // <Tabs 
-        // id="CollectionInfoTabs"
-        // className="@CollectionViews__tabs info-tabs-padding"
-        // onChange={this.handleTabChange}
-        // selectedTabId={activeMode}
-        // renderActiveTabPanelOnly
+      //   id="CollectionInfoTabs"
+      //   className="@CollectionViews__tabs info-tabs-padding"
+      //   onChange={this.handleTabChange}
+      //   selectedTabId={activeMode}
+      //   renderActiveTabPanelOnly
       // >
+      //   <Tab
+      //     id={collectionViewIds.OVERVIEW}
+      //     className="CollectionViews__tab"
+      //     title={(
+      //       <CollectionView.Label id={collectionViewIds.OVERVIEW} icon />
+      //     )}
+      //     panel={"I'm a panel"}
+      //   >
+      //   </Tab>
+
+      //   <Tab
+      //     id={collectionViewIds.OVERVIEW}
+      //     className="CollectionViews__tab"
+      //     title={(
+      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
+      //     )}
+      //     panel={"I AM A SECOND PANEL"}
+      //   >
+
+
+      //     </Tab>
+        
+      //     <Tab
+      //     id={collectionViewIds.SEARCH}
+      //     className="CollectionViews__tab"
+      //     title={(
+      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
+      //     )}
+      //     panel={"Disconnec"}
+      //     >
+
+      //     </Tab>
+        
+      //   <Tab
+      //     id={collectionViewIds.DOCUMENTS}
+      //     className="CollectionViews__tab"
+      //     title={collectionViewIds.SEARCH === activeMode && (
+      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
+      //     )}
+      //     // panel={<FacetedEntitySearch query={searchQuery} />}
+      //     panel={"I AM THE DOCUMENTS PANEL"}
+      //   />
+
       //   <Tab
       //     id={collectionViewIds.SEARCH}
       //     className="CollectionViews__tab"
-      //     title={  <CollectionView.Label id={collectionViewIds.OVERVIEW} icon /> }
-      //   >
-      //     <>
-      //       Hdllo dfa
-      //     </>
+      //     title={collectionViewIds.SEARCH === activeMode && (
+      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
+      //     )}
+      //     // panel={<FacetedEntitySearch query={searchQuery} />}
+      //     panel={"I AM A SECOND PANEL"}
+      //   />
 
-      //   </Tab>
-        // <Tab
-        //   id={collectionViewIds.OVERVIEW}
-        //   className="CollectionViews__tab"
-        //   title={"Title1"}
-        // >
-        //   <>
-        //     Hdllo dfa
-        //   </>
-        // </Tab>
       // </Tabs>
+
     )
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//   const { collectionId, location } = ownProps;
-//   return {
-//     collection: selectCollection(state, collectionId)
-//   }
-// }
 
-// CollectionViews = connect(mapStateToProps, {})(CollectionViews);
-// CollectionViews =- withRouter(CollectionViews);
+
+const mapStateToProps = (state, ownProps) => {
+  const { collectionId } = ownProps;
+  return {
+    collection: selectCollection(state, collectionId)
+  }
+}
+
+
+CollectionViews = connect(mapStateToProps, {})(CollectionViews)
+CollectionViews = withRouter(CollectionViews);
 export default CollectionViews;
+
+// export default CollectionViews;

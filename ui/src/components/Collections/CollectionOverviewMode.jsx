@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { compose } from 'redux';
 import { connect }from 'react-redux';
 import c from 'classnames';
@@ -8,30 +8,59 @@ import { ErrorSection } from 'components/common';
 import { selectCollection } from 'selectors';
 
 import './CollectionOverviewMode.scss';
-import { render } from 'node-sass';
+
 
 
 const messages = {
   empty: 'This collection is empty'
 }
 
-const CollectionOverviewMode = ({ collection, collectionId, isTripReport }) => {
-  const emptyComponent = (
-    <ErrorSection 
-      icon="database"
-      title={messages.empty}
-    />
-  )
-  
-  return(
-    <div className={c('CollectionOverviewMOde', { tripReport: true})}>
-      <div className="CollectionOverviewMode__main">
-        {isTripReport}
+class CollectionOverviewMode extends Component{
+  constructor(props){
+    super(props)
+  }
+  render(){
+    const { collection, collectionId, isTripReport } = this.props;
+    
+    const emptyComponent = (
+      <ErrorSection 
+        icon="database"
+        title={messages.empty}
+      />
+    )
+    
+    return(
+      <div className={c('CollectionOverviewMode', { tripReport: true})}>
+        <div className="CollectionOverviewMode__main">
+          {isTripReport && <TripReportOverview collectionId={collectionId} />}
+
+          
+        </div>
       </div>
-    </div>
-  );
-  
+    )
+  }
 }
+
+
+
+
+// const CollectionOverviewMode = ({ collection, collectionId, isTripReport }) => {
+  // const emptyComponent = (
+  //   <ErrorSection 
+  //     icon="database"
+  //     title={messages.empty}
+  //   />
+  // )
+  
+  // return(
+  //   <div className={c('CollectionOverviewMOde', { tripReport: true})}>
+  //     {/* <div className="CollectionOverviewMode__main">
+  //       {isTripReport}
+  //     </div> */}
+  //   </div>
+//   );
+  
+// }
 
 const mapStateToProps = (state, ownProps) => { 
   const { collectionId } = ownProps;

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { entitiesQuery } from 'queries';
 import Screen from 'components/Screen/Screen';
-import FacetedEntitySearch from 'components/EntitySearch/FacedEntitySearch';
+import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch';
 
 
 import './SearchScreen.scss'

@@ -5,7 +5,10 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import { DualPane, HotKeysContainer  } from 'components/common';
+import { DualPane, ErrorSection, HotKeysContainer  } from 'components/common';
+import EntitySearch from 'components/EntitySearch/EntitySearch';
+
+
 import SearchActionBar from 'components/common/SearchActionBar';
 
 import './FacetedEntitySearch.scss'
@@ -15,7 +18,8 @@ const defaultFacets = [
 ]
 
 const messages = {
-  filters: 'Filters'
+  no_results_title: 'No search results',
+  no_results_description: 'Try making your search more general'
 }
 
 
@@ -54,7 +58,7 @@ export class FacetedEntitySearch extends React.Component {
 
 
   render() {
-    const { additionalFacets = [], children, result } = this.props
+    const { additionalFacets = [], children, result, query } = this.props
     const { hideFacets } = this.state;
     const hideFacetsClass = hideFacets ? 'show': 'hide';
     const plusMinusIcon = hideFacets ? 'minues': 'plus';
@@ -63,6 +67,16 @@ export class FacetedEntitySearch extends React.Component {
     
     console.log("FACETS",facets)
     console.log('HIDE FACETS',hideFacets)
+
+    const empty = (
+      <ErrorSection 
+        icon="search"
+        title={messages.no_results_title}
+        description={messages.no_results_description}
+      />
+    )
+
+
 
     return(
       <HotKeysContainer
@@ -105,6 +119,14 @@ export class FacetedEntitySearch extends React.Component {
             <SearchActionBar result={result}>
 
             </SearchActionBar>
+
+
+            <EntitySearch 
+              query={query}
+              updateQuery={this.updateQuery}
+              result={result}
+              emptyComponent={empty}
+            />
           </DualPane.ContentPane>
         </DualPane>
       </HotKeysContainer>

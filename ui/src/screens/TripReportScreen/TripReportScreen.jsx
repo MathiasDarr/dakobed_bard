@@ -52,12 +52,6 @@ export class TripReportScreen extends Component {
                 activeType={activeType}
               />
             </div>
-
-            <h1>
-              { messages.content_pane_message }
-            </h1>
-
-
           </DualPane.ContentPane>
         </DualPane>
 
