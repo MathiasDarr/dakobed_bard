@@ -22,6 +22,10 @@ const messages = {
 
 class TripReportIndexScreen extends Component{
   render(){
+
+
+    const { query } = this.props;
+
     return(
       <Screen
         className="TripReportIndexScreen"
@@ -42,7 +46,9 @@ class TripReportIndexScreen extends Component{
           </div>
         </div>
         <CollectionIndex
+          query={query}
           icon="briefcase"
+          placeholder={"TripReportIndex Search Placeholder"}
           noResultsText={messages.no_results}
           emptyText={messages.empty}
         />

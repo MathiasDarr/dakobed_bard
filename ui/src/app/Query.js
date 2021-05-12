@@ -19,8 +19,44 @@ class Query {
     return new Query(path, state, context, queryName);
   }
 
+  clone() {
+    const state = _.cloneDeep(this.state);
+    return new Query(this.path, state, this.context, this.queryName);
+  }
+
+  setPlain(name, value){
+    this.state[this.pqueryName + name] = ensureArray(value);
+  }
+
+
+  add(name, value) {
+    const values = this.getList(name);
+    return this.set(name, _.union(values, [value]));
+  }
+
+
+  clear(name){
+    return this.set(name, []);
+  }
+
+
+  
+  fields() {
+    const keys = _.keys(this.context);
+    _.keys(this.state).forEach((name) => {
+      if(name.startsWith(this.queryName)) {
+        keys.push(name.substr(this.queryName.length));
+      }
+    });
+    return _.uniq(keys);
+  }
+  
+  
+  
+  
   set(name, value) {
-    return this.set(name, _.toString(value));
+    const child = this.clone();
+    return this.setPlain.call(child, name, value);  
   }
   
   setString(name, value) {
@@ -45,6 +81,18 @@ class Query {
 
   }
 
+  toKey(){
+    // Strip the parts of the query that are irrelevanmnt to the result 
+    return this.toString();
+  }
+
+  toParams() {
+    const params = {};
+    this.fields().forEach((name)=> {
+      params[name] = this.getList(name);
+    });
+    return params;
+  }
 
 
 

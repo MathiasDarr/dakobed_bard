@@ -53,6 +53,7 @@ function selectObject(state, objects, id){
 }
 
 function selectResult(state, query, expand) {
+  console.log("SELECT RESULT FROM THE SELECTOR", state)
   if (!query || !query.path){
     return {
       ...loadState(),

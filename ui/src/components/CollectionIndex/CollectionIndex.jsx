@@ -18,7 +18,6 @@ export class CollectionIndex extends Component {
   constructor(props) {
     super(props);
     this.onSearch = this.onSearch.bind(this);
-    console.log("HSDFGAGFASGADFAFA ")
   }
 
   onSearch(queryText){
@@ -44,7 +43,6 @@ export class CollectionIndex extends Component {
   renderResults(){
     const { result } = this.props;
     const skeletonItems = [...Array(10).keys()];
-    console.log("THE RESULTS ARE ", result)
     return (
       <div>
 

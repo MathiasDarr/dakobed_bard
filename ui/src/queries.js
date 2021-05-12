@@ -24,8 +24,7 @@ export function collectionSearchQuery(location, collectionId){
 }
 
 
-
 export function tripReportsQuery(location) {
-  const context= {'trips': 'casefile'}
+  const context= {'exclude:category': 'casefile'}
   return Query.fromLocation('collections', location, context, 'collections')
 }
