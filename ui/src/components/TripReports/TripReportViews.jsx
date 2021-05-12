@@ -25,7 +25,6 @@ const messages = {
 class TripReportViews extends React.Component {
   constructor(props) {
     super(props)
-    console.log("does THE CONSTRUCTOR GET CALLED")
   }
   renderContent(){
     const { collectionId } = this.props;
@@ -43,10 +42,8 @@ class TripReportViews extends React.Component {
 
     switch (activeMode) {
       case 'search':
-        console.log("FACETED SEARCH")
         return <FacetedEntitySearch collectionId={collectionId} />
       default:
-        console.log("DEFAULT COLLECTION OVERVIEW VIEW")
         return <CollectionOverviewMode collectionId={collectionId} isTripReport />
     }
       
@@ -59,7 +56,7 @@ class TripReportViews extends React.Component {
     
     let title, subheading;
 
-    console.log("FROM TRIP REPORT VIEWS COMPONENT ", this.props);
+
     
     
     if (activeMode === CollectionViewIds.SEARCH) {

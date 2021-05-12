@@ -20,6 +20,12 @@ def create_collection(data):
     # log.info("dfadfa")
 
 
+def query_collections():
+    collections = Collection.all().all()
+    collection_dicts = [{"id":c.id, "label":c.label} for c in collections]
+    return collection_dicts
+
+
 def update_collection(collection, sync=False):
     Authz.flush()
     refresh_collection(collection.id)

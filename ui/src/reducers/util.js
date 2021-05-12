@@ -20,6 +20,11 @@ export function loadComplete(data){
   }
 }
 
+export function objectLoadComplete(state, id, data ={}) {
+  return {...state, [id]: loadComplete(data) };
+}
+
+
 export function loadStart(state){
   const prevState = state || {}
   return{
@@ -46,7 +51,31 @@ export function loadError(state, error){
 }
 
 
+export function objectLoadError(state, id, error) {
+  return { ...state, [id]: loadError(state[id], error) };
+}
 
+export function resultLoadError(state, query, error) {
+  return objectLoadError(state, query.toKey(), error);
+}
+
+export function objectReload(state, id) {
+  const object = { isPending: true, shouldLoad: true };
+  return { ...state, [id]: _.assign({}, state[id], object)};
+}
+
+export function objectDelete(state, id) {
+  _.unset(state, id);
+  return state;
+}
+
+export function resultObjects(state, result, onComplete = objectLoadComplete) {
+  if (result.results !== undefined) {
+    return result.results
+      .reduce((finalState, object) => onComplete(finalState, object.id, object), state);
+  }
+  return state;
+}
 
 
 

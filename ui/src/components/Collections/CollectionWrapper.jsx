@@ -24,7 +24,6 @@ export class CollectionWrapper extends Component {
 
   onSearch(queryText){
     const { collectionId } = this.props;
-    console.log("THE COLLECTION ID IS LOOKS LIKE", collectionId)
   }
 
 
@@ -33,8 +32,6 @@ export class CollectionWrapper extends Component {
       children, collection, collectionId, query
     } = this.props;
     
-    console.log("THE COLLECITON LOOKS LIKE ", collectionId);
-
     const operation = <CollectionManageMenu collection={collection} />
     
     const search = (

@@ -9,7 +9,7 @@ import { queryEndpoint } from './util';
 
 export const queryCollections = asyncActionCreator(({ id, refresh }) => async () => {
   const config = { params: { refresh } };
-  const response = await endpoint.get(`collections/3`, config);
+  const response = await endpoint.get(`collections`, config);
   return { id, data: response.data };
 }, { name: 'QUERY_COLLECTIONS'});
 

@@ -12,6 +12,9 @@ export {
   queryCollections
 } from './collectionActions';
 
+export {
+  queryEntities 
+} from './entityActions';
 
 
 export { loginWithToken, loginWithPassword, logout } from './sessionActions';

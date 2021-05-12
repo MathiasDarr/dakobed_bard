@@ -6,6 +6,7 @@ from bard.search import CollectionsQuery
 from bard.views.serializers import CollectionSerializer
 from bard.views.util import get_db_collection
 from bard.views.util import request, jsonify
+from bard.logic.collections import query_collections
 from bard.core import db
 from bard.authz import Authz
 
@@ -24,10 +25,13 @@ def index():
     """
     List of collections
     """
-    log.warning("THE COLLECTIONS INDEX API LOOKS LIKE ")
-    result = CollectionsQuery.handle(request)
-    log.warning("RESULT {}".format(result))
-    return "second route dfa dafa  "
+    # log.warning("THE COLLECTIONS INDEX API LOOKS LIKE ")
+    # result = CollectionsQuery.handle(request)
+    # log.warning("RESULT {}".format(result))
+
+    return jsonify(query_collections())
+
+
 
 
 @blueprint.route("/api/2/collections", methods=["POST", "PUT"])

@@ -58,8 +58,6 @@ export class AuthButtons extends Component {
   
   render(){
     const { role, metadata } = this.props
-
-    console.log("THE ROLE LOOKS LIKE ", role)
     //console.log("THE METADATA LOOKS LIKE ", metadata)
     //console.log("THE METADATA AUTH LOOKS LIKE ", metadata.auth)
     
@@ -115,7 +113,6 @@ export class AuthButtons extends Component {
 
 
     if (metadata.auth.password_login_uri || metadata.auth.oauth_uri){
-      console.log("DFA DFAFAFA ")
       return (
         <span className="AuthButtons">
             dfa 

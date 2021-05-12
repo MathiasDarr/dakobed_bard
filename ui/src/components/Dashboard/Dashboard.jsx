@@ -24,12 +24,11 @@ class Dashboard extends Component {
   }
 
   render(){
-    console.log("DASBHAOARD")
     return(
       <div className="Dashboard">
         <div className="Dasboard__inner-container">
           <div className="Dashboard__menu">
-            {/* <Menu>
+            <Menu>
               <li className="bp3-menu-header">
                 <h6 className="bp3-heading">
                   Activity
@@ -54,7 +53,7 @@ class Dashboard extends Component {
                 text
 
               />
-            </Menu> */}
+            </Menu>
           
           </div>
           <div className="Dashboard__body">

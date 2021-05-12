@@ -9,7 +9,6 @@ import { selectCollection } from 'selectors';
 class TripReportOverview extends React.Component {
   constructor(props){
     super(props)
-    console.log("TRIP REPORTS OVER VIEW DFADDDDDDDDDDDDDDDDDDDDDDDDD")
   }
   render(){
     return(

@@ -3,25 +3,59 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 
 import { withRouter } from 'react-router';
+import Query from 'app/Query';
+import { ErrorSection, QueryInfiniteLoad } from 'components/common';
 import c from 'classnames';
+
+
+import './EntitySearch.scss'
+
+
+const messages = {
+  no_results_title: 'No search results',
+  no_results_description: 'Try making your search more general'
+}
+
 
 export class EntitySearch extends  Component {
   constructor(props){
-
+    super(props);
+    console.log("THE ENTITY SEAR4CH PROPS LOOK LIKE")
   }
   
   fetchIfNeeded(){
+    
+  }
 
+  componentDidUpdate(){
+    this.fetchIfNeeded();
+  }
+
+  componentDidMount() {
+    this.fetchIfNeeded();
   }
 
   render(){
     const {
-      history, hideCollection, className, selection 
+      history, hideCollection, className, selection, result, collection, updateSelection, query
     } = this.props;
   
+    const isEmpty = !query.hasQuery();
+    
     return(
       <div className={c('EntitySearch', className)}>
-
+        {result.total === 0 && (
+          <section className="PartialError">
+            { !isEmpty && (
+            <ErrorSection 
+            icon="search"
+            title={messages.no_results_title}
+            description={messages.no_results_description}
+            />
+            
+            )}
+          </section>
+        )}
       </div>
     )
   }
