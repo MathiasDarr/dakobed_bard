@@ -8,11 +8,13 @@ import { SearchBox } from 'components/common/SearchBox';
 import { ErrorSection, SearchActionBar, QueryInfiniteLoad } from 'components/common'
 import CollectionIndexItem from './CollectionIndexItem';
 import { queryCollections } from 'actions';
+import SortingBar from 'components/common/SortingBar';
 import { selectCollection, selectCollectionsResult } from 'selectors';
 
 
 
 import './CollectionIndex.scss';
+
 
 export class CollectionIndex extends Component {
   constructor(props) {
@@ -22,7 +24,16 @@ export class CollectionIndex extends Component {
 
   onSearch(queryText){
     const { query, result } = this.props;
+    const newQuery = query.set('q', queryText);
+    this.updateQuery(newQuery);
+  }
 
+  updateQuery(newQuery) {
+    const { history, location } = this.props;
+    history.push({
+      pathname: location.pathname,
+      search: newQuery.toLocation()
+    });
   }
 
   renderErrors(){
@@ -51,7 +62,9 @@ export class CollectionIndex extends Component {
           {result.results.map(
             res => <CollectionIndexItem key={res.id} collection={res} />
           )}
-          
+          {result.results.map(
+            item => <CollectionIndexItem key={item} isPending />
+          )}
         </ul>
       </div>
     )
@@ -66,9 +79,12 @@ export class CollectionIndex extends Component {
             onSearch={this.onSearch}
             inputProps={{large:true, autoFocus: true}}
           />
-          <SearchActionBar 
-            result={"dfadfa"}
-          />
+          <SearchActionBar result={result}>
+            <SortingBar
+              query={query}
+              updateQuery={this.updateQuery}
+            />
+          </SearchActionBar>
           {this.renderErrors()}
           {this.renderResults()}
           <QueryInfiniteLoad 
