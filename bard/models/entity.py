@@ -19,6 +19,24 @@ class Entity(db.Model, DatedModel):
         nullable=False,
         unique=False
     )
+
+    collection_id = db.Column(db.Integer, db.ForeignKey("collection.id"), index=True)
+    collection = db.relationship(
+        Collection, backref=db.backref("entities", lazy="dynamic")
+    )
+
+    def update(self):
+        self.updated_at = datetime.utcnow()
+        db.session.add(self)
+
+    @classmethod
+    def create(cls):
+        entity = cls()
+        entity.collection_id = 1
+        entity.update()
+        return entity
+
+
     # schema = db.Column(db.String(255), index=True)
     # data = db.Column('data', JSONB)
     # collection_id = db.Column(db.Integer, db.ForeignKey("collection.id"), index=True)

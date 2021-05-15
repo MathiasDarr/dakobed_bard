@@ -5,14 +5,17 @@ from sqlalchemy.dialects.postgresql import ENUM
 
 from bard.index.admin import upgrade_search, delete_index
 from bard.index.util import delete_safe
+from bard.logic.entities import upsert_entity
 from bard.logic.roles import create_system_roles, create_user
 from bard.logic.collections import create_collection
 from bard.core import db
 
 
 def seed_data():
+    collection = create_collection({"label": "Third_collection"})
+    upsert_entity(collection)
 
-    create_collection({"label": "first_collection"})
+
 
 
 def cleanup_deleted():
@@ -26,11 +29,11 @@ def upgrade_system():
     # delete_index()
     # index = 'bard-collection-v1'
     # delete_safe(index)
-
-    flask_migrate.upgrade()
-    create_system_roles()
-    #upgrade_search()
-    create_user("mddarr@gmail.com", "Mathias", "password", True)
+    #
+    # flask_migrate.upgrade()
+    # create_system_roles()
+    # #upgrade_search()
+    # create_user("mddarr@gmail.com", "Mathias", "password", True)
     seed_data()
 
 
