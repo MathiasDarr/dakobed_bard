@@ -129,7 +129,14 @@ export class Navbar extends React.Component {
                     Views
                   </Button>
                 </Link>
-
+                
+                
+                <Link to="/entities" >
+                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
+                    Entities
+                  </Button>
+                </Link>
+                
 
 
                 {/* <Link to="/logout" >

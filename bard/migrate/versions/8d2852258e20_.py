@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: 8b6f183f85c1
+Revision ID: 8d2852258e20
 Revises: None
-Create Date: 2021-05-08 06:41:41.088737
+Create Date: 2021-05-15 22:00:07.363870
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '8b6f183f85c1'
+revision = '8d2852258e20'
 down_revision = None
 
 from alembic import op
@@ -22,6 +22,12 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('label', sa.Unicode(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('entity',
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.Column('id', sa.String(length=128), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('my_model',
@@ -86,5 +92,6 @@ def downgrade():
     op.drop_table('document')
     op.drop_table('role')
     op.drop_table('my_model')
+    op.drop_table('entity')
     op.drop_table('collection')
     # ### end Alembic commands ###

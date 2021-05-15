@@ -1,9 +1,19 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import Screen from 'components/Screen/Screen';
+import CollectionWrapper from 'components/Collections/CollectionWrapper';
+import { Breadcrumbs, DualPane, Schema} from 'components/common';
 
-export class EntityScreen extends Component {
-    render(){
-        return <div>Bogger</div>
-    }
-    
+
+
+class EntityScreen extends Component {
+  render(){
+    return(
+      <Screen>
+        <div>
+          Helloa
+        </div>
+      </Screen>
+    )
+  }
 }
-export default EntityScreen
+export default EntityScreen;

@@ -80,13 +80,14 @@ class Router extends Component {
 
             <Route path="/collections/:collectionId" exact component={CollectionScreen} />
 
-
+ 
 
             <Route path="/collection_index" exact component={CollectionIndexScreen} />
             <Route path="/collection_views" exact component={CollectionViews} />
-            <Route path="/entities" exact component={EntityScreen} />
             <Route path="/trip_reports/:collectionId" exact component={TripReportScreen} />
             <Route path="/trip_reports" exact component={TripReportIndexScreen} />
+
+            <Route path="/entities" exact component={EntityScreen} />
 
             <Route path="/outdoors" exact component={OutdoorsScreen} />
             <Route path="diagrams" exact component={DiagramScreen} />

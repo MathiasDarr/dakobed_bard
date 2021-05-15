@@ -1,0 +1,47 @@
+@import "app/variables.scss";
+
+.ItemOverview {
+  height: auto !important;
+  &__heading {
+    padding: ($bard-grid-size * 4) 0;
+  
+    .preview & {
+      background-color: $bard-breadcrumbs-background;
+      padding: $bard-grid-size * 3 $bard-grid-size*2;
+      border: none;
+    }
+
+    .profile & {
+      background-color: $bard-profile-dark;
+      color: white;
+      padding: $bard-grid-size*4 $bard-grid-size*2;
+      border-radius: $bard-grid-size 0 0;
+      .bp3-text-muted {
+        color: white;
+      }
+    }
+    
+    &__title, &__subtitle, &__description {
+      margin: 10px 0;
+      overflow-wrap: break-word;
+    }
+
+    &__title {
+      line-height: 1.5;
+    }    
+  }
+
+  &__callout {
+    padding: 0 0 2*$bard-grid-size;
+    .preview & {
+      margin-top: 2*$bard-grid-size;
+      padding-bottom: $bard-grid-size;
+    }
+    .profile & {
+      padding-bottom: $bard-grid-size;
+    }
+  
+
+  
+  }
+}

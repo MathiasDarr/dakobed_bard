@@ -15,6 +15,7 @@ log = logging.getLogger(__name__)
 
 blueprint = Blueprint("collections_api", __name__)
 
+
 def dump(obj):
     for attr in dir(obj):
         log.warning("obj.%s = %r" % (attr, getattr(obj, attr)))
