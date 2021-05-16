@@ -1,6 +1,8 @@
+import logging
+
 from bard.models import Entity
 from bard.core import db, cache
-import logging
+from bard.dakobed_schemas.types import registry
 
 log = logging.getLogger(__name__)
 

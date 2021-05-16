@@ -1,14 +1,18 @@
 import json
 from datetime import datetime, date
-from typing import Sequence
+from typing import Sequence, Generator, Any, Set, List, Iterable
 from collections.abc import Mapping
 import logging
 import random
 import time
 from elasticsearch import Transport
+from typing import Any, Optional
+from decimal import Decimal
 
 
 log = logging.getLogger(__name__)
+
+DEFAULT_ENCODING = 'utf-8'
 
 
 BOOL_TRUEISH  = ["1", "yes", "y", "t", "true", "on","enabled"]
@@ -64,6 +68,23 @@ def ensure_list(obj):
     return [o for o in obj]
 
 
+def unique_list(lst: Sequence) -> List:
+    uniq = []
+    for item in lst:
+        if item not in uniq:
+            uniq.append(item)
+    return uniq
+
+
+def first(lst: Sequence) -> Any:
+    """
+    Return the first non null element in the list if None
+    """
+    pass
+
+
+
+
 
 class JSONEncoder(json.JSONEncoder):
     """This encoder will serialize all entities that have a to_dict
@@ -98,3 +119,4 @@ class LoggingTransport(Transport):
         }
         log.warning("Performed ES request", **payload)
         return result
+

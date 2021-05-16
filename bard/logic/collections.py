@@ -5,6 +5,7 @@ from bard.models.collection import Collection
 from bard.core import db, cache
 from bard.authz import Authz
 from bard.index import collections as index
+from bard.dakobed_schemas.types import registry
 
 log = logging.getLogger(__name__)
 

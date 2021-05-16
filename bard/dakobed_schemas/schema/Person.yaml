@@ -1,0 +1,11 @@
+Person:
+  label: Person
+  description: >
+    A natural person,
+
+  required:
+    - name
+  caption:
+    - name
+    - lastName
+

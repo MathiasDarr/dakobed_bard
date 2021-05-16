@@ -1,9 +1,11 @@
 import logging
 from functools import lru_cache
 from flask import Blueprint, request, current_app
+
 from bard import __version__
 from bard.core import settings, url_for
 from bard.views.util import jsonify
+from bard.dakobed_schemas import model
 import os
 
 
@@ -46,7 +48,6 @@ def _metadata_locale():
         pass
         #log.warning("adfafafa")
 
-
     log.warning("AUTH: {}".format(auth))
     app_logo = settings.APP_LOGO
 
@@ -59,6 +60,7 @@ def _metadata_locale():
             "logo": app_logo,
             "favicon": settings.APP_FAVICON,
         },
+        "model": model.to_dict(),
         "token": None,
         "auth": auth
 
