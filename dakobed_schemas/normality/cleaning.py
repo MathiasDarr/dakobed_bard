@@ -1,8 +1,8 @@
 import re
 import unicodedata
 from typing import Any, Optional
-from bard.dakobed_schemas.normality.utils import is_text
-from bard.dakobed_schemas.normality.constants import WS
+from dakobed_schemas.normality.utils import is_text
+from dakobed_schemas.normality.constants import WS
 
 COLLAPSE_REGULAR_EXPRESSION = re.compile(r'\s+', re.U)
 BOM_REGULAR_EXPRESSION = re.compile(r'^ufeff', re.U)

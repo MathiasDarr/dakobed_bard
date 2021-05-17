@@ -1,9 +1,8 @@
-from bard.util import is_mapping
-from bard.dakobed_schemas.normality import stringify
+from dakobed_schemas.normality import stringify
 
-from bard.dakobed_schemas.exc import InvalidModel
-from bard.dakobed_schemas.types import registry
-from bard.dakobed_schemas.utils import gettext
+from dakobed_schemas.exc import InvalidModel
+from dakobed_schemas.types import registry
+from dakobed_schemas.utils import gettext
 
 class Property(object):
     RESERVED = ["id", "caption", "schema", "schemata"]
@@ -11,9 +10,9 @@ class Property(object):
     def __init__(self, schema, name, data):
         self.schema = schema
         self.model = schema.model
-
-        self.qname = "%s:%s" % (schema.name, self.name)
         self.name = stringify(name)
+        self.qname = "%s:%s" % (schema.name, self.name)
+
         if self.name in self.RESERVED:
             raise InvalidModel("Reserved name: %s" % self.name)
 
@@ -27,8 +26,10 @@ class Property(object):
         if self.type is None:
             raise InvalidModel("Invalid type: %s" % type_)
 
-    # def generate(self):
-    #     self.properties.add(self)
+    def generate(self):
+        self.model.properties.add(self)
+
+
 
     @property
     def label(self):

@@ -1,7 +1,7 @@
 from itertools import product
 from typing import Any, Optional
-from bard.util import ensure_list
-from bard.dakobed_schemas.utils import gettext, sanitize_text, get_locale
+from dakobed_schemas.utils import ensure_list
+from dakobed_schemas.utils import gettext, sanitize_text, get_locale
 
 
 class PropertyType(object):

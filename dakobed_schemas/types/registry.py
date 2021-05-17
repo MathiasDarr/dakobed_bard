@@ -1,5 +1,5 @@
-from bard.util import ensure_list
-from bard.dakobed_schemas.types.common import PropertyType
+from dakobed_schemas.utils import ensure_list
+from dakobed_schemas.types.common import PropertyType
 
 
 class Registry(object):

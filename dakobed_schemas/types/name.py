@@ -1,10 +1,9 @@
-from bard.util import ensure_list
-from bard.dakobed_schemas.types.common import PropertyType
-from bard.dakobed_schemas.normality import slugify
-from bard.dakobed_schemas.normality.cleaning import strip_quotes, collapse_spaces
-from bard.dakobed_schemas.utils import sanitize_text, dampen
-from bard.util import first
-from bard.dakobed_schemas.utils import defer as _
+from dakobed_schemas.types.common import PropertyType
+from dakobed_schemas.normality import slugify
+from dakobed_schemas.normality.cleaning import strip_quotes, collapse_spaces
+from dakobed_schemas.utils import sanitize_text, dampen
+from dakobed_schemas.utils import first, ensure_list
+from dakobed_schemas.utils import defer as _
 
 from Levenshtein import jaro_winkler, setmedian
 

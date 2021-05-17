@@ -1,5 +1,5 @@
 import io
-from bard.dakobed_schemas.normality.utils import Encoding
+from dakobed_schemas.normality.utils import Encoding
 import chardet
 import codecs
 from typing import cast, BinaryIO

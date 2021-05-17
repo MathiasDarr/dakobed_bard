@@ -1,7 +1,5 @@
+from dakobed_schemas.types.common import EnumType
 
-
-from bard.dakobed_schemas.types.common import EnumType
-# from bard.dakobed_schemas.utils import ge
 
 class RegionType(EnumType):
     name = "location"

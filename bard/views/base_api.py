@@ -5,7 +5,7 @@ from flask import Blueprint, request, current_app
 from bard import __version__
 from bard.core import settings, url_for
 from bard.views.util import jsonify
-from bard.dakobed_schemas import model
+from dakobed_schemas import model
 import os
 
 

@@ -5,10 +5,10 @@ dakobed_schemas/normality includes functions to convert arbitrary Python objects
 
 """
 from typing import Any, Optional
-from bard.dakobed_schemas.normality.utils import Encoding
-from bard.dakobed_schemas.normality.stringify import stringify
-from bard.dakobed_schemas.normality.encoding import DEFAULT_ENCODING
-from bard.dakobed_schemas.normality.constants import WS
+from dakobed_schemas.normality.utils import Encoding
+from dakobed_schemas.normality.stringify import stringify
+from dakobed_schemas.normality.encoding import DEFAULT_ENCODING
+from dakobed_schemas.normality.constants import WS
 
 
 def normalize(text, encoding_default: Encoding = DEFAULT_ENCODING, encoding: Optional[str] = None):

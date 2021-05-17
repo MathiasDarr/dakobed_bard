@@ -1,11 +1,8 @@
 from typing import Any, Optional
 from decimal import Decimal
-from datetime import datetime
+from datetime import datetime, date
 
-
-DEFAULT_ENCODING='utf-8'
-
-
+DEFAULT_ENCODING = 'utf-8'
 def stringify(value: Any, encoding_default: str = DEFAULT_ENCODING, encoding: Optional[str] = None):
     if value is None:
         return None
