@@ -1,0 +1,4 @@
+Document:
+  label: Document
+  extends:
+    - Thing

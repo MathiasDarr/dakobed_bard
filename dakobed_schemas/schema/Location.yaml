@@ -1,0 +1,10 @@
+Location:
+  label: Location
+  extends:
+    - Thing
+  description: >
+    A location in the world,
+  properties:
+    name:
+      label: Name
+      type: string

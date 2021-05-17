@@ -16,9 +16,3 @@ Document:
       type: string
     fileName:
       label: "File name"
-    bodyText:
-      label: "Text"
-      hidden: true
-      type: "text"
-
-

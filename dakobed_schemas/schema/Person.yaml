@@ -5,7 +5,12 @@ Person:
 
   required:
     - name
+
   caption:
     - name
     - lastName
 
+  properties:
+    name:
+      label: Name
+      type: string

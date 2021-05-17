@@ -46,6 +46,9 @@ class Model(object):
             data = yaml.safe_load(fh)
             if not isinstance(data, dict):
                 raise InvalidModel("Model file is not a mapping: %s " % filepath)
+
+            log.warning("what does the data look liek for {}".format(filepath))
+            log.warning(data)
             for name, config in data.items():
                 self.schemata[name] = Schema(self, name, config)
 
@@ -101,5 +104,3 @@ class Model(object):
 
     def __iter__(self):
         return iter(self.schemata.values())
-
-
