@@ -1,0 +1,15 @@
+Thing:
+  abstract: true
+  featured:
+    - name
+  required:
+    - name
+  caption:
+    - name
+  properties:
+    name:
+      label: Name
+      type: string
+    summary:
+      label: Summary
+      type: text

@@ -15,3 +15,7 @@ class Query(object):
             parser = SearchQueryParser(request.args, request.authz)
         query = cls(parser, **kwargs)
         return SearchQueryParser
+
+    def to_text(self, empty="*:*"):
+        parts = []
+        return " ".join([p for p in parts if p is not None])

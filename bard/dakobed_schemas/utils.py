@@ -5,6 +5,7 @@ from threading import local
 from bard.util import ensure_list, unique_list
 import os
 import logging
+from bard.dakobed_schemas.string_utils.locale import Locale
 
 
 """
@@ -31,7 +32,8 @@ log = logging.getLogger(__name__)
 def gettext(*args, **kwargs):
     if not hasattr(state, "translation"):
         set_model_locale(DEFAULT_LOCALE)
-    return state.translation.gettext(*args, **kwargs)
+    return "resp"
+    # return state.translation.gettext(*args, **kwargs)
 
 
 def defer(text):
@@ -40,9 +42,20 @@ def defer(text):
 
 def set_model_locale(locale):
     state.locale = locale
-    state.translation = translation(
-        "dakobedschema",
-    )
+
+
+def get_locale():
+    if not hasattr(state, "locale"):
+        return Locale(state.locale)
+
+
+def get_env_list(name, default=[]):
+    value = stringify(os.environ.get(name))
+    if value is not None:
+        values = value.split(":")
+        if len(values):
+            return values
+    return default
 
 
 def sanitize_text(text, encoding=DEFAULT_ENCODING):

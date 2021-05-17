@@ -1,8 +1,7 @@
 from itertools import product
 from typing import Any, Optional
 from bard.util import ensure_list
-
-
+from bard.dakobed_schemas.utils import gettext, sanitize_text, get_locale
 
 
 class PropertyType(object):
@@ -30,8 +29,25 @@ class PropertyType(object):
             return 0.0
         return self._specificity(value)
 
-    def __eg__(self, other):
+    def to_dict(self):
+        data = {"label": gettext(self.label)}
+        return data
+
+    def __hash__(self):
+        return hash(self.name)
+
+    def __eq__(self, other):
         return self.name == other.name
 
     def __repr__(self):
         return "<%s()>" % type(self).__name__
+
+
+class EnumType(PropertyType):
+    def __init__(self, *args):
+        self._names = {}
+        self.codes = set(self.names.keys())
+
+
+
+

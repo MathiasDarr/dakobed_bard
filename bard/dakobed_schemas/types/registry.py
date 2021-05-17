@@ -10,13 +10,15 @@ class Registry(object):
     """
     def __init__(self):
         self.named = {}
+        self.types = set()
+        self.groups = {}
 
     def add(self, clazz):
         if not issubclass(clazz, PropertyType):
             return
         type_ = clazz()
         self.named[clazz.name] = type_
-        # self.types.add(type_)
+        self.types.add(type_)
         # if type_.matchable:
         #     self.matchable.add(type_)
         # if type_.pivot:
