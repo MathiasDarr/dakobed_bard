@@ -13,7 +13,12 @@ export {
 } from './collectionActions';
 
 export {
-  queryEntities 
+  queryEntities,
+  fetchEntityTags,
+  createEntity,
+  updateEntity,
+  deleteEntity,
+  fetchEntity
 } from './entityActions';
 
 

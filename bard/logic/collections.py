@@ -5,9 +5,11 @@ from bard.models.collection import Collection
 from bard.core import db, cache
 from bard.authz import Authz
 from bard.index import collections as index
+from bard.models import EntitySet
 from dakobed_schemas.types import registry
 
 log = logging.getLogger(__name__)
+
 
 def create_collection(data):
     now = datetime.utcnow()
@@ -19,6 +21,13 @@ def create_collection(data):
     db.session.commit()
     return collection
     # log.info("dfadfa")
+
+
+def get_deep_collection(collection):
+    entitysets = EntitySet.type_counts(collection_id=collection.id)
+    return {
+        "counts": {"entitysets": entitysets}
+    }
 
 
 def query_collections():

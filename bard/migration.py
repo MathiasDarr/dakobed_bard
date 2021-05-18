@@ -13,9 +13,10 @@ from bard.core import db
 
 def seed_data():
     collection = create_collection({"label": "Third_collection"})
-    upsert_entity(collection)
-
-
+    data = {
+        "a": "sec"
+    }
+    upsert_entity(data, collection)
 
 
 def cleanup_deleted():
@@ -25,15 +26,19 @@ def cleanup_deleted():
     db.session.commit()
 
 
+def create_collection_and_entity():
+    collection = create_collection({"label": "Collection w/ Entities"})
+
+
 def upgrade_system():
     # delete_index()
     # index = 'bard-collection-v1'
     # delete_safe(index)
-    #
-    # flask_migrate.upgrade()
-    # create_system_roles()
-    # #upgrade_search()
-    # create_user("mddarr@gmail.com", "Mathias", "password", True)
+
+    flask_migrate.upgrade()
+    create_system_roles()
+    #upgrade_search()
+    create_user("mddarr@gmail.com", "Mathias", "password", True)
     seed_data()
 
 

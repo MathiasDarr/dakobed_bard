@@ -1,0 +1,21 @@
+Document:
+  extends:
+    - Thing
+  label: File
+  plural: Files
+  generated: true
+  featured:
+    - title
+    - fileName
+  required:
+    - fileName
+    - title
+  properties:
+    title:
+      label: "Title"
+      type: string
+    fileName:
+      label: "File name"
+    author:
+      label: "Author"
+      description: "THe original author"

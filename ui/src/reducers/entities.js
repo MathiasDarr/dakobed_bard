@@ -1,7 +1,12 @@
 import { createReducer } from 'redux-act';
 
  import {
-  queryEntities
+  queryEntities,
+  createEntity,
+  updateEntity,
+  deleteEntity,
+  fetchEntityTags,
+  fetchEntity
 } from 'actions';
 
 import {

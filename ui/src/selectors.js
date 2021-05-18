@@ -33,6 +33,10 @@ export const getTodosByVisibilityFilter = (store, visibilityFilter) => {
 };
 
 
+
+
+
+
 function selectTimestamp(state){
   return state.mutation;
 }
@@ -97,6 +101,26 @@ export function selectPage(state, name) {
 }
 
 
+export function selectModel(state) {
+  const metadata = selectMetadata(state);
+  if (metadata.model && !metadata.dakobed_schema_model) {
+    metadata.dakobed_schema_model = new Model(metadata.model)
+  }
+  return metadata.dakobed_schema_model
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function selectStatistics(state){
   return selectObject(state, state, 'statistics')
 }
@@ -140,3 +164,12 @@ export function selectEntitiesResult(state, query) {
 }
 
 
+export function selectEntity(state, entityId) {
+  const entity = selectObject(state, state.entities, entityId);
+  if (!entity.selectorCache) {
+    if (!entity.schema || !model) {
+      return entity;
+    }
+    entity.selectorCache = model.getEntity(entity1)
+  }
+}
