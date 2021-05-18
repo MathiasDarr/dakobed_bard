@@ -30,7 +30,7 @@ var Model = (function () {
     if (schemaName === null || schemaName === undefined) {
       throw new Error('Invalid schema.')
     }
-    if (schemaName instanceof schema_11.Schema) {
+    if (schemaName instanceof schema_1.Schema) {
       return schemaName;
     }
     var schema = this.schemata[schemaName];

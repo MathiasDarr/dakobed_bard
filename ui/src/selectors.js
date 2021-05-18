@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { VISIBILITY_FILTERS } from "./constants";
-
+import { Model } from 'dakobed_schemas/model';
 import { loadState } from 'reducers/util';
 
 
@@ -165,11 +165,11 @@ export function selectEntitiesResult(state, query) {
 
 
 export function selectEntity(state, entityId) {
-  const entity = selectObject(state, state.entities, entityId);
-  if (!entity.selectorCache) {
-    if (!entity.schema || !model) {
-      return entity;
-    }
-    entity.selectorCache = model.getEntity(entity1)
-  }
+  // const entity = selectObject(state, state.entities, entityId);
+  // if (!entity.selectorCache) {
+  //   if (!entity.schema || !model) {
+  //     return entity;
+  //   }
+  //   entity.selectorCache = model.getEntity(entity1)
+  // }
 }
