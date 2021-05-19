@@ -1,0 +1,7 @@
+@import "app/variables.scss";
+
+.EntityLink {
+  &:visited {
+    color: $bard-visited-link-color;
+  }
+}

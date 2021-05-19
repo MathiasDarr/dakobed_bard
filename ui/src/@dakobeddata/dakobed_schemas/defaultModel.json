@@ -1,0 +1,9 @@
+{
+  "schemata":{
+    "Thing": {
+      "abstract": true,
+      "extends": [],
+      "label": "Thing"
+    }
+  }
+}

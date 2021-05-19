@@ -1,0 +1,82 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+$search-bar-width: 200px;
+$status-width: 120px;
+
+
+.EntityActionBar {
+  margin-bottom: $bard-content-padding/2;
+  width: 100%;
+
+  .preview & {
+    display: none;
+  }
+
+  .bp3-control-group {
+    justify-content: space-between;
+    padding-bottom: $bard-content-padding/2;
+
+    .bp3-input-group {
+      .bp3-input:not(:first-child) {
+        @include rtlSupportInvertedProp(padding, left, $bard-grid-size*3, null);
+      }
+    }
+    .bp3-input-group, .bp3-button-group {
+      border-radius: 3px;
+    }
+  }
+
+  .bp3-divider {
+    border-right: 1px solid $bard-border-color;
+  }
+
+  .bp3-overflow-list {
+    width: calc(100% - #{$search-bar-width});
+  }
+
+  &.show-status {
+    .bp3-overflow-list {
+      width: calc(100% - #{$search-bar-width} - #{$status-width});
+    }
+  }
+
+  &__delete, .bp3-popover-wrapper .bp3-button {
+    border-top-right-radius: $bard-border-radius !important;
+    border-bottom-right-radius: $bard-border-radius !important;
+  }
+
+
+  &__overflow-list {
+    .bp3-popover-content {
+      padding: $bard-grid-size/2;
+      .Count {
+        @include rtlSupportInvertedProp(margin, left, $bard-grid-size/2, null);
+      }
+    }
+  }
+
+
+  &__right {
+    display: flex;
+    margin: 0 !important;
+  }
+
+  .prevent-flex-grow.bp3-popover-wrapper {
+    flex: 0 0 auto !important;
+  }
+
+  .align-middle {
+    vertical-align: middle
+  }
+
+  .Count {
+    @include rtlSupportInvertedProp(margin, left, $bard-grid-size/2, null);
+  }
+
+  .bp3-button {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+}

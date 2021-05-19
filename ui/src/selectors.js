@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { VISIBILITY_FILTERS } from "./constants";
-import { Model } from 'dakobed_schemas/model';
+import { Model } from '@dakobeddata/dakobed_schemas/model';
 import { loadState } from 'reducers/util';
 
 
@@ -102,7 +102,7 @@ export function selectPage(state, name) {
 
 
 export function selectModel(state) {
-  const metadata = selectMetadata(state);
+ const metadata = selectMetadata(state);
   if (metadata.model && !metadata.dakobed_schema_model) {
     metadata.dakobed_schema_model = new Model(metadata.model)
   }
@@ -110,14 +110,9 @@ export function selectModel(state) {
 }
 
 
-
-
-
-
-
-
-
-
+// export function selectModel(state) {
+//   const metadata = selectMetadata(state);
+// }
 
 
 
