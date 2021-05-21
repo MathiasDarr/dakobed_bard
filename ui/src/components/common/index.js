@@ -10,7 +10,10 @@ import Statistics from './Statistics'
 import Collection from './Collection'
 import QueryInfiniteLoad from './QueryInfiniteLoad';
 import UpdateStatus from './UpdateStatus';
-
+import Entity from './Entity';
+import Flag from './Flag';
+import TextLoading from './TextLoading'
+import csvContextLoader from './csvContextLoader';
 
 
 export { 
@@ -25,6 +28,10 @@ export {
   Statistics,
   Collection,
   QueryInfiniteLoad,
-  UpdateStatus
+  UpdateStatus,
+  Entity,
+  Flag,
+  TextLoading,
+  csvContextLoader
 };
 

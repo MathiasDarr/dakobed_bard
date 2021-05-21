@@ -1,0 +1,31 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.FolderViewer {
+  .folder-filter {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-end;
+    margin-bottom: $bard-grid-size;
+  }
+
+  .bp3-input-group {
+    max-width: 15em;
+  }
+
+  .folder-empty {
+    padding: $bard-grid-size*2 $bard-grid-size;
+    text-align: center;
+  }
+
+  .warning-folder {
+    width: 100%;
+    height: 2.5em;
+    border-color: $warning-border-color;
+    background-color: $warning-background-color;
+    color: $warning-text-color;
+    display: inline-flex;
+    @include rtlSupportInvertedProp(padding, left, 35%, null);
+    padding-top: 6px;
+  }
+}

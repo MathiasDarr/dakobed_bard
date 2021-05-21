@@ -33,3 +33,5 @@ export class DocumentUploadForm extends PureComponent {
     )
   }
 }
+
+export default DocumentUploadForm;

@@ -23,8 +23,17 @@ export function collectionSearchQuery(location, collectionId){
   return collectionContextQuery(context, location, collectionId, 'cs')
 }
 
-
 export function tripReportsQuery(location) {
   const context= {'exclude:category': 'casefile'}
   return Query.fromLocation('collections', location, context, 'collections')
+}
+
+
+export function collectionDocumentsQuery(location, collectionId) {
+  const context = {
+    'filter:collection_id': collectionId,
+    'filter:schemata': 'Document',
+    'empty:properties.parent': true
+  }
+  return collectionContextQuery(context, location, collectionId, 'documents')
 }

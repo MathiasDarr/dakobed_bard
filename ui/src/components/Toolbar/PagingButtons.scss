@@ -1,0 +1,34 @@
+@import "app/variables.scss";
+
+.PagingButtons {
+  width: 100%;
+  background-color: $bard-breadcrumbs-background;
+  padding: 3px;
+
+  &__middle {
+    background: none;
+    flex: 100 1 auto !important;
+    cursor: auto;
+    text-align: center;
+  }
+
+  &__input {
+    display: inline-block;
+    width: 40px;
+    input {
+      padding: 5px !important;
+      text-align: center;
+      /*Chrome, ..*/
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type=number] {
+        -moz-appearance: textfield;
+      }
+
+    }
+  }
+}

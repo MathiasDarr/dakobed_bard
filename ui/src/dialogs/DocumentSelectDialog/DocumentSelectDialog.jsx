@@ -56,3 +56,10 @@ class DocumentSelectDialog extends Component {
     )
   }
 }
+
+const mapStateToProps = () => ({});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, )
+)

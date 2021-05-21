@@ -1,0 +1,14 @@
+@import "app/variables.scss";
+
+.ImageViewer {
+  margin-bottom: 2 * $bard-grid-size;
+
+  pre {
+
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}

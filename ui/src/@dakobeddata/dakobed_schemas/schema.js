@@ -8,15 +8,15 @@ var Schema = /**class  */ (function () {
   function Schema(model, schemaName, config) {
     var _this = this;
     this.properties = new Map();
-    this.model = model;
-    this.name = schemaName;
-    this.label = config.label || this.name;
-    this.schemata = config.schemata;
-    this.extends = config.extends;
-    Object.entries(config.properties).forEach(function (_a) {
-      var propertyName = _a[0], property = _a[1];
-      _this.properties.set(propertyName, new property_1.Property(_this, property));
-    });
+    // this.model = model;
+    // this.name = schemaName;
+    // this.label = config.label || this.name;
+    // this.schemata = config.schemata;
+    // this.extends = config.extends;
+    // Object.entries(config.properties).forEach(function (_a) {
+    //   var propertyName = _a[0], property = _a[1];
+    //   _this.properties.set(propertyName, new property_1.Property(_this, property));
+    // });
   }
   Schema.prototype.isThing = function () {
     return this.A(Schema.THING)

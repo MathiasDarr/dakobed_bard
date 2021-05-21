@@ -27,6 +27,9 @@ import ProfileScreen from 'screens/ProfileScreen/ProfileScreen';
 
 import DiagramScreen from 'screens/DiagramScreen/DiagramScreen';
 
+import DocumentScreen from 'screens/DocumentScreen/DocumentScreen';
+
+
 
 import './Router.scss';
 import { selectMetadata, selectSession } from 'selectors';
@@ -95,6 +98,9 @@ class Router extends Component {
 
 
             <Route path="/search" exact component={SearchScreen} />
+
+            <Route path="/documents" exact component={DocumentScreen} />
+
             <Route path="/" exact component={HomeScreen} />
             <Route component={NotFoundScreen} />
           </Switch>

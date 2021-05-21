@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { Tabs, Tab } from '@blueprintjs/core';
 import queryString from 'query-string';
 
+import CollectionDocumentsMode from 'components/Collections/CollectionDocumentsMode';
 import CollectionView from './CollectionView';
 import { selectCollection } from 'selectors';
 import collectionViewIds from 'components/Collections/collectionViewIds';
@@ -21,9 +22,8 @@ import './CollectionViews.scss';
 class CollectionViews extends React.Component {
   constructor(props){
     super(props);
-    console.log("PRIVATE CARE IS A MESS")
-
-  }
+    this.handleTabChange = this.handleTabChange.bind(this);
+  };
 
   // componentDidUpdate() {
   //   const { activeMode } = this.props;
@@ -51,74 +51,36 @@ class CollectionViews extends React.Component {
     const {
       collection, collectionId, activeMode, searchQuery
     } = this.props;
-
     return(
-      <div>
-        HEllo
-      </div>
 
+      <Tabs 
+        id="CollectionInfoTabs"
+        className="@CollectionViews__tabs info-tabs-padding"
+        onChange={this.handleTabChange}
+        selectedTabId={activeMode}
+        renderActiveTabPanelOnly
+      >
+        <Tab
+          id={collectionViewIds.OVERVIEW}
+          className="CollectionViews__tab"
+          title={(
+            <CollectionView.Label id={collectionViewIds.OVERVIEW} icon />
+          )}
+          panel={"I'm the overview panel"}
+        >
+        </Tab>
 
-      // <Tabs 
-      //   id="CollectionInfoTabs"
-      //   className="@CollectionViews__tabs info-tabs-padding"
-      //   onChange={this.handleTabChange}
-      //   selectedTabId={activeMode}
-      //   renderActiveTabPanelOnly
-      // >
-      //   <Tab
-      //     id={collectionViewIds.OVERVIEW}
-      //     className="CollectionViews__tab"
-      //     title={(
-      //       <CollectionView.Label id={collectionViewIds.OVERVIEW} icon />
-      //     )}
-      //     panel={"I'm a panel"}
-      //   >
-      //   </Tab>
+        <Tab
+          id={collectionViewIds.DOCUMENTS}
+          className="CollectionViews__tab"
+          title={(
+            <CollectionView.Label id={collectionViewIds.DOCUMENTS} icon />
+          )}
+          panel={"I'm the docuemnts panel"}
+        >
+        </Tab>
 
-      //   <Tab
-      //     id={collectionViewIds.OVERVIEW}
-      //     className="CollectionViews__tab"
-      //     title={(
-      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-      //     )}
-      //     panel={"I AM A SECOND PANEL"}
-      //   >
-
-
-      //     </Tab>
-        
-      //     <Tab
-      //     id={collectionViewIds.SEARCH}
-      //     className="CollectionViews__tab"
-      //     title={(
-      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-      //     )}
-      //     panel={"Disconnec"}
-      //     >
-
-      //     </Tab>
-        
-      //   <Tab
-      //     id={collectionViewIds.DOCUMENTS}
-      //     className="CollectionViews__tab"
-      //     title={collectionViewIds.SEARCH === activeMode && (
-      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-      //     )}
-      //     // panel={<FacetedEntitySearch query={searchQuery} />}
-      //     panel={"I AM THE DOCUMENTS PANEL"}
-      //   />
-
-      //   <Tab
-      //     id={collectionViewIds.SEARCH}
-      //     className="CollectionViews__tab"
-      //     title={collectionViewIds.SEARCH === activeMode && (
-      //       <CollectionView.Label id={collectionViewIds.SEARCH} icon />
-      //     )}
-      //     // panel={<FacetedEntitySearch query={searchQuery} />}
-      //     panel={"I AM A SECOND PANEL"}
-      //   />
-
-      // </Tabs>
+      </Tabs>
 
     )
   }
@@ -139,3 +101,7 @@ CollectionViews = withRouter(CollectionViews);
 export default CollectionViews;
 
 // export default CollectionViews;
+
+
+
+

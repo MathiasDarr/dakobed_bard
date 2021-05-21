@@ -27,10 +27,6 @@ class CollectionContextLoader extends PureComponent {
     this.fetchIfNeeded();
   }
 
-  componentWillUnmount(){
-    clearTimeout(this.state.timeout);
-  }
-
   fetchIfNeeded(){
     const { collectionId, collection } = this.props;
     const refresh = false;

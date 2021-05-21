@@ -43,9 +43,7 @@ const mapStateToProps = (state, ownProps) => {
   const { collectionId } = ownProps.match.params;
   const activeMode = true;
   const { location } = ownProps;
-  console.log("THE location LOOKS LIKE ", location );
   const hashQuery = queryString.parse(location.hash);
-  console.log("THE HASH QUERY LOOKS LIKE ", hashQuery );
   return {
     collectionId,
     collection: selectCollection(state, collectionId),

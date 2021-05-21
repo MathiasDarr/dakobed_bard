@@ -12,11 +12,13 @@ import getCollectionLink from 'util/getCollectionLink';
 const messages = {
   diagrams: 'Diagrams',
   lists: 'Lists',
-  documents: 'Documents'
+  documents: 'Documents',
+  overview: 'Overview'
 }
 
 const icons = {
-  documents: 'document'
+  documents: 'document',
+  overview: 'grouped-bar-chart'
 }
 
 
@@ -30,8 +32,15 @@ const CollectionViewIcon = ({ id, className }) => {
 
 class CollectionViewLabel extends PureComponent {
   render(){
+    const { icon, id } = this.props;
+    if (!id) { return null; }
+    const messageKey = messages[id];
+    if (!messageKey) {return null};
     return(
-      <div>COLLEVIION VIEW LABEL</div>
+      <div>
+        { icon && <CollectionViewIcon id={id} className="left-icon" />}
+        <span> {messageKey} </span>
+      </div>
     )
   }
 }

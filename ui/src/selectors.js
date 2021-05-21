@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { VISIBILITY_FILTERS } from "./constants";
 import { Model } from '@dakobeddata/dakobed_schemas/model';
 import { loadState } from 'reducers/util';
+import EntitySearchResultsRow from 'components/EntitySearch/EntitySearchResultsRow';
 
 
 export const getTodosState = store => store.todos;
@@ -136,6 +137,13 @@ export function selectCurrentRoleId(state) {
   }
 }
 
+export function selectAdmin(state){
+  const role = selectCurrentRole(state);
+  return role.is_admin || false;
+}
+
+
+
 export function selectCollection(state, collectionId) {
   const collection = selectObject(state, state.collections, collectionId);
   // status.pending = status.pending || 0;
@@ -150,21 +158,67 @@ export function selectCurrentRole(state) {
   return !!roleId ? selectRole(state, roleId) : {};
 }
 
+export function selectDocumentContent(state, documentId) {
+  return selectObject(state, state.documentContent, documentId);
+}
+
 export function selectCollectionsResult(state, query) {
   return selectResult(state, query, selectCollection);
 }
 
 export function selectEntitiesResult(state, query) {
-
+  return selectResult(state, query, selectEntity)
 }
 
 
 export function selectEntity(state, entityId) {
-  // const entity = selectObject(state, state.entities, entityId);
-  // if (!entity.selectorCache) {
-  //   if (!entity.schema || !model) {
-  //     return entity;
-  //   }
-  //   entity.selectorCache = model.getEntity(entity1)
-  // }
+  const entity = selectObject(state, state.entities, entityId);
+  if (!entity.selectorCache) {
+    const model = selectModel(state);
+    if (!entity.schema || !model) {
+      return entity;
+    }
+    entity.selectorCache = model.getEntity(entity)
+  }
+
+  const result = entity.selectorCache;
+  result.isPending = !!entity.isPending
+  return result;
 }
+
+export function selectEntitySet(state, entitySetId) {
+  return selectObject(state, state.entitySets, entitySetId);
+}
+
+export function selectEntitySetItem(state, itemId) {
+  const item = selectObject(state, state.entitySetITems, itemId);
+  item.entity = selectEntity(state, item.entityId || item.entity?.id);
+  return item;
+}
+
+export function selectEntityView(state, entityId, mode, isPreview) {
+  if(mode) {
+    return mode;
+  }
+
+  const { schema } = selectEntity(state, entityId);
+  if (schema && schema.isAny(['Image', 'Table'])){
+    return 'view';
+  }
+  if(schema && schema.isA('Folder')) {
+    return 'browse';
+  }
+  if (schema && schema.isDocument()) {
+    return 'view';
+  }
+  if (isPreview) {
+    return 'info';
+  }
+  return 'similar';
+}
+
+
+export function selectEntityMapping(state, entityId) {
+  return selectObject(state, state.entityMappings, entityId);
+}
+

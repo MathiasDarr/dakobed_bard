@@ -1,0 +1,29 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.DocumentManager {
+  &__content {
+    &__empty {
+      border: 1px dashed rgba(92, 112, 128, 0.6);
+      cursor: pointer;
+      max-width: $bard-content-width-limit;
+
+      .bp3-heading, .bp3-button .bp3-icon {
+        color: rgba(92, 112, 128, 0.6);
+        line-height: 1.5;
+      }
+
+      .bp3-button {
+        padding: $bard-content-padding;
+      }
+    }
+  }
+
+  .Count {
+    @include rtlSupportInvertedProp(margin, left, $bard-grid-size/2 !important, null);
+  }
+
+  .align-middle {
+    vertical-align: middle;
+  }
+}

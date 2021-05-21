@@ -24,3 +24,5 @@ export {
 
 export { loginWithToken, loginWithPassword, logout } from './sessionActions';
 
+
+export { ingestDocument } from './documentActions';
