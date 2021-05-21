@@ -21,19 +21,20 @@ def _load_metadata():
     """
     Unpack the common, pre-defined metadata for all the uploaded files
     """
-    # try:
-    #     meta = json.loads(request.form.get("meta", {}))
-    # except Exception as ex:
-    #     raise BadRequest(str(ex))
-    # foreign_id = stringify(meta.get("foreign_id"))
-    # if not len(request.files) and foreign_id is None:
-    #     raise BadRequest(
-    #         response=jsonify(
-    #             {"status": "error", "message": "Directories need to have a foreign_id"},
-    #             status=400
-    #         )
-    #     )
-    # return meta, foreign_id
+    log.warning("the request looks like {}".format(request))
+    log.warning("BODY: %s", request.get_data())
+    meta = {}
+    foreign_id = stringify(meta.get("foreign_id"))
+    log.warning("THE LENGTH OF REQUESTS.FILES {}".format(len(request.files)))
+    if not len(request.files) and foreign_id is None:
+        raise BadRequest(
+            response=jsonify(
+                {"status": "error", "message": "Directories need to have a foreign_id"},
+                status=400
+            )
+        )
+    return meta, foreign_id
+
 
 
 
@@ -46,10 +47,9 @@ def ingest_upload(collection_id):
     """
     collection = get_db_collection(collection_id)
 
-
     # meta, foreign_id = _load_metadata()
     upload_dir = ensure_path(mkdtemp(prefix="bard.upload"))
-
+    meta, foreign_id =_load_metadata()
     try:
         document = Document.save(
             collection=collection,

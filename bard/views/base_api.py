@@ -90,6 +90,7 @@ def statistics():
     return jsonify(data)
 
 
+
 @blueprint.app_errorhandler(400)
 def handle_bad_request(err):
     if err.response is not None and err.response.is_json:
