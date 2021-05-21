@@ -26,8 +26,30 @@ class EntityActionBar extends Component {
  
  
   render(){
+    const { children, query, result, onSearchSubmit, searchDisabled, searchPlaceholder, updateStatus, writeable } = this.props;
+    const showActions = writeable && children;
+    const resultText = query.hasQuery() && <ResultText result={result} /> ;
     return(
       <div className="EntityActionBar">
+        <ControlGroup fill className={c({"show-status":!!updateStatus})}>
+          <OverflowList
+            items={showActions ? children : [resultText]}
+            collapseFrom={Boundary.END}
+            observeParents
+          />
+          <div className="EntityActionBar__right">
+            {updateStatus && (
+              <>
+              <UpdateStatus status={updateStatus} />
+              <Divider/>
+              </>
+            )}
+            <SearchBox
+              onSearch={onSearchSubmit}
+            />
+          </div>
+        </ControlGroup>
+        
         Entity Action Bar
       </div> 
     )

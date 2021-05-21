@@ -1,0 +1,40 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.EntityDeleteDialog {
+  &.blocking {
+    .bp3-button.bp3-intent-danger{
+      display: none;
+    }
+  }
+  &__file-list {
+    list-style-type: none;
+    padding: 0;
+
+    &__item {
+      margin: $bard-grid-size/2 0;
+      display: flex;
+
+      &.deleted {
+        color: $red1;
+      }
+
+      &__icon {
+        width: $bard-grid-size *2;
+        margin: 0 $bard-grid-size/2;
+      }
+
+      .bp3-spinner {
+        display: inline-flex;
+      }
+
+      .bp3-icon {
+        vertical-align: middle;
+      }
+
+      .EntityLabel {
+        white-space: nowrap;
+      }
+    }
+  }
+}

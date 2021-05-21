@@ -76,7 +76,7 @@ class CollectionViews extends React.Component {
           title={(
             <CollectionView.Label id={collectionViewIds.DOCUMENTS} icon />
           )}
-          panel={"I'm the docuemnts panel"}
+          panel={<CollectionDocumentsMode collectionId={collectionId} />}
         >
         </Tab>
 

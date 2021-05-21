@@ -30,8 +30,6 @@ class CollectionScreen extends Component{
             <CollectionViews
               collectionId={collectionId}
             />
-
-            Single Pane  
           </SinglePane>
         </CollectionWrapper>
 
