@@ -1,13 +1,13 @@
 """empty message
 
-Revision ID: 797a37ed0277
+Revision ID: bafb6c637f1b
 Revises: None
-Create Date: 2021-05-18 03:54:07.306342
+Create Date: 2021-05-21 21:18:03.472025
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '797a37ed0277'
+revision = 'bafb6c637f1b'
 down_revision = None
 
 from alembic import op
@@ -22,7 +22,9 @@ def upgrade():
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.Column('deleted_at', sa.DateTime(), nullable=True),
     sa.Column('label', sa.Unicode(), nullable=True),
-    sa.PrimaryKeyConstraint('id')
+    sa.Column('foreign_id', sa.Unicode(), nullable=False),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('foreign_id')
     )
     op.create_table('entity_set',
     sa.Column('created_at', sa.DateTime(), nullable=True),
@@ -34,12 +36,6 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_entity_set_type'), 'entity_set', ['type'], unique=False)
-    op.create_table('my_model',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('username', sa.String(length=80), nullable=False),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('username')
-    )
     op.create_table('role',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
@@ -110,7 +106,6 @@ def downgrade():
     op.drop_index(op.f('ix_document_collection_id'), table_name='document')
     op.drop_table('document')
     op.drop_table('role')
-    op.drop_table('my_model')
     op.drop_index(op.f('ix_entity_set_type'), table_name='entity_set')
     op.drop_table('entity_set')
     op.drop_table('collection')

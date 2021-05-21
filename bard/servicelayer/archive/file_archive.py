@@ -2,7 +2,7 @@ import os
 import shutil
 import glob
 import logging
-
+from pathlib import Path
 from dakobed_schemas.normality import safe_filename
 from bard.servicelayer.archive.archive import Archive
 from bard.servicelayer.archive.util import BUF_SIZE, ensure_path, checksum
@@ -13,7 +13,12 @@ log = logging.getLogger(__name__)
 
 class FileArchive(Archive):
     def __init__(self, path=None):
+        log.warning("THE PATH LOOKS LIKE {}".format(path))
         self.path = ensure_path(path)
+        log.warning("AFTER ENSURING PATH {}".format(self.path))
+
+        if self.path is None:
+            self.path = Path("/data")
         if self.path is None:
             raise ValueError("No archive path is set")
         log.info("Archive: %s", self.path)
@@ -43,9 +48,12 @@ class FileArchive(Archive):
         archive_path = self.path.joinpath(archive_prefix)
         archive_path.mkdir(parents=True, exist_ok=True)
         file_name = safe_filename(file_path, default="data")
-        archive_path = archive_path.join(file_name)
+        archive_path = archive_path.joinpath(file_name)
         with open(file_path, "rb") as fin:
             with open(archive_path, "wb") as fout:
+
+
+                log.warning("THE FILE PATH IS {} AND THE ARCHIVE PATH IS {}".format(file_path, archive_path))
                 shutil.copyfileobj(fin, fout, BUF_SIZE)
         return content_hash
 

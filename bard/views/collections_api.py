@@ -1,7 +1,7 @@
 from flask import Blueprint, request, jsonify
 import logging
 from bard.logic.collections import create_collection, delete_collection
-from bard.models.collection import MyModel, Collection
+from bard.models.collection import Collection
 from bard.search import CollectionsQuery
 from bard.views.serializers import CollectionSerializer
 from bard.views.util import get_db_collection

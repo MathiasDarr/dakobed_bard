@@ -110,7 +110,7 @@ def get_cache():
 es = LocalProxy(get_es)
 kv = LocalProxy(get_redis)
 cache = LocalProxy(get_cache)
-# archive = LocalProxy(get_archive())
+archive = LocalProxy(get_archive)
 
 def url_for(*a, **kw):
     """Overwrite Flask url_for to force external paths"""

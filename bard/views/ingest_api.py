@@ -38,9 +38,6 @@ def _load_metadata():
     return meta, foreign_id
 
 
-
-
-
 @blueprint.route("/api/2/collections/<int:collection_id>/ingest", methods=["POST", "PUT"])
 def ingest_upload(collection_id):
     """
@@ -61,7 +58,7 @@ def ingest_upload(collection_id):
             path = safe_filename(storage.filename, default="upload")
             path = upload_dir.joinpath(path)
             storage.save(str(path))
-            # content_hash = archive.archive_file(path)
+            content_hash = archive.archive_file(path)
         document = Document.save(
             collection=collection,
         )

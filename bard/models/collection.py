@@ -1,5 +1,6 @@
 from bard.core import db
 from bard.models.common import IdModel, DatedModel, make_textid, SoftDeleteModel
+from dakobed_schemas.normality import stringify
 from datetime import datetime
 from sqlalchemy.dialects.postgresql import JSONB
 import logging
@@ -7,16 +8,9 @@ import logging
 log = logging.getLogger(__name__)
 
 
-class MyModel(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(80), unique=True, nullable=False)
-
-    def __repr__(self):
-        return '<User %r>' % self.username
-
-
 class Collection(db.Model, IdModel, SoftDeleteModel):
     label = db.Column(db.Unicode)
+    foreign_id = db.Column(db.Unicode, unique=True, nullable=False)
 
     def touch(self):
         self.updated_at = datetime.utcnow()
@@ -30,16 +24,39 @@ class Collection(db.Model, IdModel, SoftDeleteModel):
 
     @classmethod
     def create(cls, data, created_at=None):
-        collection = cls()
-        collection.created_at = created_at
+        foreign_id = data.get("foreign_id") or make_textid()
+        collection = cls.by_foreign_id(foreign_id, deleted=True)
+        if collection is None:
+            collection = cls()
+            collection.created_at = created_at
+            collection.foreign_id = foreign_id
         collection.update(data)
+        collection.deleted_at = None
         return collection
+
+    def to_dict(self):
+        data = self.to_dict_dates()
+        data.update(
+            {
+                "id": stringify(self.id),
+                "collection_id": stringify(self.id),
+                "foreign_id": self.foreign_id
+            }
+        )
+        return data
+
+    @classmethod
+    def by_foreign_id(cls, foreign_id, deleted=False):
+        if foreign_id is None:
+            return
+        q = cls.all(deleted=deleted)
+        return q.filter(cls.foreign_id == foreign_id).first()
 
     def __repr__(self):
         return '<Collection %r>' % self.label
 
-
-
+    def __str__(self):
+        return self.foreign_id
 
 
 # class Collection(db.Model, DatedModel, IdModel):
