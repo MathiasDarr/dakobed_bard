@@ -19,3 +19,8 @@ WORKER_REPORTING = bool(os.getenv("WORKER_REPORTING", True))
 # Logging
 LOG_FORMAT = os.getenv("LOG_FORMAT", "text") # options are: TEXT or JSON
 
+
+
+ARCHIVE_TYPE = os.getenv("ARCHIVE_TYPE", "file")
+ARCHIVE_BUCKET = os.getenv("ARCHIVE_BUCKET")
+ARCHIVE_PATH = os.getenv("ARCHIVE_PATH")

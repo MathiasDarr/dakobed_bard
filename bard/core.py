@@ -14,6 +14,7 @@ from bard.cache import Cache
 from bard.get_redis import get_redis
 from bard.util import service_retries, backoff, LoggingTransport
 from bard import service_settings
+from bard.servicelayer.archive import init_archive
 
 
 NONE = "'none'"
@@ -94,6 +95,12 @@ def get_es():
     # return es
 
 
+def get_archive():
+    if not hasattr(settings, "_archive"):
+        settings._archive = init_archive()
+    return settings._archive
+
+
 def get_cache():
     if not hasattr(settings, "_cache") or settings._cache is None:
         settings._cache = Cache(get_redis(), prefix=settings.APP_NAME)
@@ -103,7 +110,7 @@ def get_cache():
 es = LocalProxy(get_es)
 kv = LocalProxy(get_redis)
 cache = LocalProxy(get_cache)
-
+# archive = LocalProxy(get_archive())
 
 def url_for(*a, **kw):
     """Overwrite Flask url_for to force external paths"""
