@@ -9,7 +9,7 @@ from dakobed_schemas.normality.utils import Encoding
 from dakobed_schemas.normality.stringify import stringify
 from dakobed_schemas.normality.encoding import DEFAULT_ENCODING
 from dakobed_schemas.normality.constants import WS
-
+from dakobed_schemas.normality.paths import safe_filename
 
 def normalize(text, encoding_default: Encoding = DEFAULT_ENCODING, encoding: Optional[str] = None):
     """

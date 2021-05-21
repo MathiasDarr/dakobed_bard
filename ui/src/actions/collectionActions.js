@@ -17,7 +17,6 @@ export const queryCollections = asyncActionCreator(({ id, refresh }) => async ()
 
 export const fetchCollection = asyncActionCreator(({ id, refresh }) => async () => {
   const config = { params: { refresh } };
-  console.log("THE ID IS ", id)
   let post_url = "collections/"+id
 
   if(!!!id){

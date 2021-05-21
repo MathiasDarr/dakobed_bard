@@ -5,7 +5,7 @@ from bard.views.upload_api import blueprint as upload_api
 from bard.views.sessions_api import blueprint as sessions_api
 from bard.views.roles_api import blueprint as roles_api
 from bard.views.entitysets_api import blueprint as entitysets_api
-
+from bard.views.ingest_api import blueprint as ingest_api
 
 def mount_app_blueprints(app):
     app.register_blueprint(collections_api)
@@ -15,3 +15,4 @@ def mount_app_blueprints(app):
     app.register_blueprint(sessions_api)
     app.register_blueprint(roles_api)
     app.register_blueprint(entitysets_api)
+    app.register_blueprint(ingest_api)

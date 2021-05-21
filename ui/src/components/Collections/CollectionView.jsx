@@ -13,12 +13,14 @@ const messages = {
   diagrams: 'Diagrams',
   lists: 'Lists',
   documents: 'Documents',
-  overview: 'Overview'
+  overview: 'Overview',
+  search: 'Search'
 }
 
 const icons = {
   documents: 'document',
-  overview: 'grouped-bar-chart'
+  overview: 'grouped-bar-chart',
+  search: 'search'
 }
 
 

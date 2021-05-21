@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import Query from 'app/Query';
 import { ErrorSection, QueryInfiniteLoad } from 'components/common';
+
+import EntitySearchResults from 'components/EntitySearch/EntitySearchResults';
 import c from 'classnames';
 
 
@@ -40,11 +42,12 @@ export class EntitySearch extends  Component {
       history, hideCollection, className, selection, result, collection, updateSelection, query
     } = this.props;
   
-    const isEmpty = !query.hasQuery();
+    //const isEmpty = !query.hasQuery();
     
+    const isEmpty = true;
+
     return(
       <div className={c('EntitySearch', className)}>
-        {result.total === 0 && (
           <section className="PartialError">
             { !isEmpty && (
             <ErrorSection 
@@ -55,7 +58,22 @@ export class EntitySearch extends  Component {
             
             )}
           </section>
-        )}
+          
+        {/* {result.total === 0 && (
+          <section className="PartialError">
+            { !isEmpty && (
+            <ErrorSection 
+            icon="search"
+            title={messages.no_results_title}
+            description={messages.no_results_description}
+            />
+            
+            )}
+          </section> */}
+        <EntitySearchResults
+          query={query}
+          result={result}
+        />
       </div>
     )
   }

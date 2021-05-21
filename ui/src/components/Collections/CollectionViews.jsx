@@ -6,14 +6,16 @@ import queryString from 'query-string';
 
 import CollectionDocumentsMode from 'components/Collections/CollectionDocumentsMode';
 import CollectionView from './CollectionView';
-import { selectCollection } from 'selectors';
+
 import collectionViewIds from 'components/Collections/collectionViewIds';
 // import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch';
 
+import { selectCollection, selectEntitiesResult } from 'selectors';
+
 
 import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch'
+import { collectionSearchQuery } from 'queries';
 
-import Collection from './Collection';
 
 import './CollectionViews.scss';
 
@@ -79,7 +81,13 @@ class CollectionViews extends React.Component {
           panel={<CollectionDocumentsMode collectionId={collectionId} />}
         >
         </Tab>
-
+        <Tab
+          id={collectionViewIds.SEARCH}
+          className="CollectionViews__tab"
+          title={collectionViewIds.SEARCH === activeMode && (
+            <CollectionView.Label id={collectionViewIds.SEARCH} icon />
+          )}
+        />
       </Tabs>
 
     )
@@ -89,9 +97,13 @@ class CollectionViews extends React.Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  const { collectionId } = ownProps;
+  const { collectionId, location } = ownProps;
+  const searchQuery = collectionSearchQuery(location, collectionId);
+
   return {
-    collection: selectCollection(state, collectionId)
+    collection: selectCollection(state, collectionId),
+    searchQuery,
+    searchResult: selectEntitiesResult(state, searchQuery)
   }
 }
 

@@ -32,7 +32,7 @@ class CollectionManageMenu extends React.Component {
           <Menu>
             <Menu.Item
               key={"edit"}
-              onCLick={() => this.toggleDiaglog('isEditOpen')}
+              onClick={() => this.toggleDiaglog('isEditOpen')}
               text={messages.edit}
               icon="cog"
             />

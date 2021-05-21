@@ -20,24 +20,42 @@ export class DocumentFolderDialog extends Component {
       title: '',
       blocking: false
     }
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
   }
-  onChangeTitle(event){
 
+  onChangeTitle(event){
+    this.setState({ title: event.target.value })
   }
 
   async onSubmit(){
-
+    const {
+      collection, parent, history 
+    } = this.props;
+    const { title } = this.state;
+    this.setState({ blocking: true });
+    try {
+      const metadata = {
+        file_name: title,
+        foreign_id: title
+      }
+    } catch (e) {
+      showErrorToast(messages.error);
+      this.setState({ blocking: false });
+    }
   }
 
   render() {
     const { toggleDialog, isOpen } = this.props;
+    // const isOpen = false;
     const { title, blocking } = this.state;
+    
     return (
       <FormDialog
         processing={blocking}
         icon="folder-new"
         className="DocumentFolderDialog"
-        isOpen={this.onSubmit}
+        isOpen={isOpen}
         title={messages.title}
         onClose={toggleDialog}
       >

@@ -50,15 +50,17 @@ export class DocumentManager extends Component {
 
 
   render(){
-    console.log("DRILL IS NOT REQUIRED")
-
     const { 
       collection, document, query, result, hasPending
     } = this.props;
     const { selection } = this.state;
     // const canUpload = this.canUpload();
+    const showActions = true;
     const canUpload = true;
+
+    const searchPlaceholder = "Search Placeholder from Document Manager"
     const emptyComponent = (
+      
       <div className="DocumentManager__content__empty">
         <DialogToggleButton
           buttonProps={{
@@ -75,10 +77,39 @@ export class DocumentManager extends Component {
       <div className="DocumentManager">
         <EntityActionBar 
           query={query}
+          writeable={showActions}
           selection={selection}
-        ></EntityActionBar>
+          resetSelection={() => this.setState({ selection: [] })}
+          onSearchSubmit={this.onSearchSubmit}
+          searchPlaceholder={searchPlaceholder}
+          searchDisabled={false}
+        >
+
+        <DialogToggleButton
+          buttonProps={{
+            text:messages.new,
+            icon: "folder-new"
+          }}
+          Dialog={DocumentFolderDialog}
+          dialogProps = {{collection, parent: document }}
+        />
+
+        <EntityDeleteButton
+          entities={selection}
+          onSuccess={() => this.setState({ selection: [] })}
+          actionType="delete"
+          deleteEntity={this.props.deleteEntity}
+          showCount
+        />
+        </EntityActionBar>
+        
         <div className="DocumentManager__content">
-        </div>
+          <EntitySearch
+            query={query}
+          />
+
+        </div> 
+       
       </div>
     )
   }
@@ -86,8 +117,9 @@ export class DocumentManager extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   const { collection } = ownProps;
-
-  return {}
+  let { query } = ownProps;
+  const result = "SELECT ENTITIES RESULT.."
+  return { query, result }
 }
 
 export default compose(

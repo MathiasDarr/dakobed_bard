@@ -18,7 +18,7 @@ class DialogToggleButton extends React.Component {
     
     return(
       <>
-        <ButtonComponent onCLick={this.toggleDialog} {...buttonProps}> 
+        <ButtonComponent onClick={this.toggleDialog} {...buttonProps}> 
           {children}
         </ButtonComponent>
         <Dialog
