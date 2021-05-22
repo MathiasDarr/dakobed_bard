@@ -9,6 +9,7 @@ from bard.core import db, kv, create_app
 from bard.oauth import oauth
 from bard.migration import upgrade_system
 from bard import settings
+from bard.models import Collection, Entity, Role
 
 
 
@@ -58,6 +59,19 @@ class TestCase(unittest.TestCase):
 
     def _post_teardown(self):
         pass
+
+    def create_collection(self, **kwargs):
+        collection = Collection.create(kwargs)
+        db.session.add(Collection)
+        db.session.commit()
+        # update_collection(collection, sync=True)
+        return collection
+
+    def load_fixtures(self):
+        self.public_coll = self.create_collection(
+            foreign_id="test_public",
+            label="Public Collection"
+        )
 
 
     def __call__(self, result=None):

@@ -25,13 +25,20 @@ class FileArchive(Archive):
 
     def _locate_key(self, content_hash):
         prefix = path_prefix(content_hash)
+
+        log.warning("LOCATE KEY LOOKS LIKE WHAT {}".format(content_hash) )
         if prefix is None:
             return
         path = self.path.joinpath(prefix)
+
+        log.warning("LOCATE KEY PREFIX LOOKS LIKE {}".format(prefix))
+        log.warning("LOCATE KEY PATH LOOKS LIKE {}".format(path))
+
         try:
             for file_name in path.iterdir():
                 return file_name.resolve()
         except FileNotFoundError:
+            log.warning("THE FILE IS NOT FOUND ")
             return
 
     def archive_file(self, file_path, content_hash=None, mime_type=None):
@@ -51,8 +58,6 @@ class FileArchive(Archive):
         archive_path = archive_path.joinpath(file_name)
         with open(file_path, "rb") as fin:
             with open(archive_path, "wb") as fout:
-
-
                 log.warning("THE FILE PATH IS {} AND THE ARCHIVE PATH IS {}".format(file_path, archive_path))
                 shutil.copyfileobj(fin, fout, BUF_SIZE)
         return content_hash

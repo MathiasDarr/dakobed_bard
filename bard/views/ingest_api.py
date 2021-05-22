@@ -59,8 +59,12 @@ def ingest_upload(collection_id):
             path = upload_dir.joinpath(path)
             storage.save(str(path))
             content_hash = archive.archive_file(path)
+            log.warning("IS THE CONTENT HASH EMPTY FROM THE INGEST API {}".format(content_hash))
+        log.warning("IS THE CONTENT HASH EMPTY FROM THE INGEST API {}".format(content_hash))
         document = Document.save(
             collection=collection,
+            content_hash=content_hash,
+            foreign_id=foreign_id
         )
         collection.touch()
         db.session.commit()
