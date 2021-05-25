@@ -8,6 +8,7 @@ import CollectionDocumentsMode from 'components/Collections/CollectionDocumentsM
 import CollectionView from './CollectionView';
 
 import collectionViewIds from 'components/Collections/collectionViewIds';
+import CollectionOverviewMode from 'components/Collections/CollectionOverviewMode';
 // import FacetedEntitySearch from 'components/EntitySearch/FacetedEntitySearch';
 
 import { selectCollection, selectEntitiesResult } from 'selectors';
@@ -68,7 +69,7 @@ class CollectionViews extends React.Component {
           title={(
             <CollectionView.Label id={collectionViewIds.OVERVIEW} icon />
           )}
-          panel={"I'm the overview panel"}
+          panel={<CollectionOverviewMode collectionId={collectionId} />}
         >
         </Tab>
 

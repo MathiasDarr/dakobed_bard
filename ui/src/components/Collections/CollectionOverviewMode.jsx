@@ -7,6 +7,8 @@ import TripReportOverview from 'components/TripReports/TripReportOverview';
 import { ErrorSection } from 'components/common';
 import { selectCollection } from 'selectors';
 
+
+
 import './CollectionOverviewMode.scss';
 
 
@@ -20,8 +22,8 @@ class CollectionOverviewMode extends Component{
     super(props)
   }
   render(){
-    const { collection, collectionId, isTripReport } = this.props;
-    
+    const { collection, collectionId } = this.props;
+    const isTripReport = true;
     const emptyComponent = (
       <ErrorSection 
         icon="database"

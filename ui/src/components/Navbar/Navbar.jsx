@@ -91,7 +91,7 @@ export class Navbar extends React.Component {
                   </Button>
                 </Link>
 
-                <Link to="/trip_reports">
+                {/* <Link to="/trip_reports">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
                     {messages.trip_reports}
                   </Button>
@@ -101,7 +101,7 @@ export class Navbar extends React.Component {
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
                     {"FIRST TRIP REPORT"}
                   </Button>
-                </Link>
+                </Link> */}
 
 
                 {/* <Link to="/outdoors">
@@ -111,14 +111,14 @@ export class Navbar extends React.Component {
                 </Link> */}
 
 
-
+{/* 
                 <Link to="/collections/2" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     {messages.collections}
                   </Button>
-                </Link>
+                </Link> */}
 
-                <Link to="/collection_index" >
+                {/* <Link to="/collection_index" >
                   <Button icon="music" className="Navbar_collections-button bp3-minimal">
                     {messages.index}
                   </Button>
@@ -139,15 +139,15 @@ export class Navbar extends React.Component {
                 
 
 
-                {/* <Link to="/logout" >
+                <Link to="/logout" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     Logout
                   </Button>
-                </Link> */}
+                </Link>
 
 
 
-                {/* <Button icon="comment" className="Navbar__collections-button bp3-minimal">
+                <Button icon="comment" className="Navbar__collections-button bp3-minimal">
                   {messages.feedback}
                 </Button> */}
 

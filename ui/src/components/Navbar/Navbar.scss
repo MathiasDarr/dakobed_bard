@@ -5,41 +5,46 @@ $navbar-horizontal-padding: $bard-grid-size*.8;
 
 .Navbar {
   .bp3-navbar {
-    display:flex;
+    display: flex;
     padding: 0 $bard-content-padding;
     justify-content: space-between;
     background-color: $dark-gray1 !important;
-  }
 
+    @media screen and (max-width: $bard-navbar-mobile-max-width) {
+      padding: 0 $bard-mobile-content-padding;
+    }
 
-  .back-button {
-    display: none;
-  }
+    .back-button {
+      display: none;
+    }
 
-  a {
-    color: inherit;
-    &:hover {
+    a {
       color: inherit;
-      text-decoration: none;
-    }
-  }
 
-  form {
-    .bp3-control-group {
-      width: 100%;
-      align-items: center;
+      &:hover {
+        color: inherit;
+        text-decoration: none;
+      }
     }
-    input {
-      background: #fff;
-      color: $pt-text-color;
-    }
-  }
 
-  .icon {
-    display: none;
-    @media screen and (max-width: $bard-navbar-mobile-max-width){
-      @include rtl(float, right, left);
-      margin-top: 1em;
+    form {
+      .bp3-control-group {
+        width: 100%;
+        align-items: center;
+      }
+
+      input {
+        background: #fff;
+        color: $pt-text-color;
+      }
+    }
+
+    .icon {
+      display: none;
+      @media screen and (max-width: $bard-navbar-mobile-max-width) {
+        @include rtl(float, right, left);
+        margin-top: 1em;
+      }
     }
   }
 
@@ -49,87 +54,103 @@ $navbar-horizontal-padding: $bard-grid-size*.8;
     margin: 0 $bard-grid-size;
   }
 
-  &__left-group{
+  &__left-group {
     @include rtlSupportInvertedProp(padding, right, $navbar-horizontal-padding, null);
 
-    @media screen and (max-width: $bard-navbar-mobile-max-width){
+    @media screen and (max-width: $bard-navbar-mobile-max-width) {
       &.hide {
         display: none;
       }
     }
   }
 
-  &__middle-group{
+  &__middle-group {
     flex: 4 1 auto;
-    @media screen and (max-width: $bard-navbar-mobile-max-width){
+    @media screen and (max-width: $bard-navbar-mobile-max-width) {
       display: none !important;
     }
-    &.mobile-force-open{
+    &.mobile-force-open {
       display: block !important;
     }
   }
 
-  &__home_link {
+  &__home-link {
     height: 32px;
     display: table;
+
     &__text {
       font-size: 16px;
       font-weight: 600;
       vertical-align: middle;
       display: table-cell;
       white-space: nowrap;
-      @include rtlSupportInvertedProp(padding, left, $navbar-horizontal-padding, null)
+      @include rtlSupportInvertedProp(padding, left, $navbar-horizontal-padding, null);
     }
 
-    img{
+    img {
       height: 32px;
       display: table-cell;
     }
-
   }
 
-&__search-container {
-  flex: 4 1 auto;
-  padding: $bard-grid-size $bard-grid-size/2;
-  max-width: $bard-grid-size*50;
-  @include rtlSupportInvertedProp(margin, right, $navbar-horizontal-padding*2, null);
 
-  &__content {
-    display: flex;
-  }
+  &__search-container {
+    flex: 4 1 auto;
+    padding: $bard-grid-size $bard-grid-size/2;
+    max-width: $bard-grid-size*50;
+    @include rtlSupportInvertedProp(margin, right, $navbar-horizontal-padding*2, null);
 
-  &__searchbar {
-    flex-grow: 4;
-  
-    input.bp3-input {
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      border-radius: 0 !important;
-      box-shadow: none !important;
-      padding: 0 30px!important;
-
+    &__content {
+      display: flex;
     }
-  
+
+    &__searchbar {
+      flex-grow: 4;
+
+      input.bp3-input {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 0!important;
+        box-shadow: none!important;
+        padding: 0 30px!important;
+      }
+    }
+
+    &__search-tips {
+      @media screen and (max-width: $bard-screen-md-max-width) {
+        display: none !important;
+      }
+    }
+
+    .bp3-button {
+      margin: 0;
+    }
   }
 
-
-}
-
-  .bp3-button, .bp3-menu{
-    border-radius: 0;
+  &__collections-button.mobile-hide {
+    @media screen and (max-width: $bard-navbar-mobile-max-width) {
+      display: none !important;
+    }
   }
 
-  .bp3-divider {
-    margin: 0 5px !important
-  }
-
-  .mobile-hidden {
-    @media screen and(max-width: $bard-navbar-mobile-max-width) {
+  &__mobile-back-button, &__mobile-search-toggle, &__mobile-search-divider {
+    @media screen and (min-width: $bard-navbar-mobile-max-width) {
       display: none;
     }
   }
 
+  .bp3-button, .bp3-menu {
+    border-radius: 0;
+  }
 
+  .bp3-divider {
+    margin: 0 5px !important;
+  }
 
+  .mobile-hidden {
+    @media screen and (max-width: $bard-navbar-mobile-max-width) {
+      display: none;
+    }
+  }
 }

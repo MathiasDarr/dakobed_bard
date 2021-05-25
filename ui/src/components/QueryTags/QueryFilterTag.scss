@@ -1,0 +1,30 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.QueryFilterTag {
+  max-width: 15em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @include rtlSupportInvertedProp(margin, right, $bard-grid-size, null);
+  margin-bottom: $bard-grid-size;
+  font-weight: bold;
+  height: $bard-query-tag-height;
+
+  &.bp3-tag {
+    background-color: $bard-theme-intent;
+  }
+
+  &.filter-clear-tag {
+    vertical-align: initial;
+    font-weight: normal !important;
+    border-color: $bard-link-color !important;
+    color: $bard-link-color !important;
+    height: $bard-query-tag-height;
+  }
+
+  a, a:hover {
+    color: white;
+    text-decoration: none;
+  }
+}

@@ -56,15 +56,19 @@ class TripReportViews extends React.Component {
     
     let title, subheading;
 
-
+    console.log("TYHE ACTIVE MODE IS ", activeMode)
     
     
     if (activeMode === CollectionViewIds.SEARCH) {
       title = null;
-    } else {
-      title = <CollectionView.Label id ={activeMode} icon />
-      subheading = "This is the subheading"
+    } else if (!!activeType) {
+      
     }
+
+      // } else {
+    //   title = <CollectionView.Label id ={activeMode} icon />
+    //   subheading = "This is the subheading"
+    // }
   
     return(
       <div className="TripReportViews">
@@ -72,6 +76,7 @@ class TripReportViews extends React.Component {
           <div className="TripReportViews__title-container">
             <h5 className="TripReportViews__title">
               <span>
+                {title}\
                 {title}
               </span>
             </h5>

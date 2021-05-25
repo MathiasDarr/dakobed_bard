@@ -25,6 +25,7 @@ class DialogToggleButton extends React.Component {
           isOpen={this.state.isOpen}
           toggleDialog={this.toggleDialog}
           {...dialogprops}
+          
         />
       </>
     ) 
