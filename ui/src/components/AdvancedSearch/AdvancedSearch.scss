@@ -1,0 +1,58 @@
+@import "app/variables.scss";
+
+.AdvancedSearch {
+  .hide {
+    display: none;
+  }
+
+  .bp3-overlay.bp3-overlay-container {
+    position: static;
+  }
+  .bp3-drawer {
+    position: static;
+    overflow-x: scroll;
+    margin-bottom: $bard-grid-size*3;
+    margin-left: $bard-grid-size;
+    box-shadow: 0 0 0 1px rgba(16, 22, 26, 0.1),
+      0 2px 4px rgba(16, 22, 26, 0.2),
+      0 8px 24px rgba(16, 22, 26, 0.2);
+    max-width: 660px;
+  }
+
+  .bp3-portal {
+    z-index: 101;
+    top: 50px !important;
+  }
+
+  .bp3-label {
+    min-width: 200px;
+  }
+
+  .padded {
+    padding: 0 $bard-grid-size*2;
+  }
+
+  .bp3-form-content {
+    width: 100%;
+  }
+
+  .bp3-drawer-header .bp3-heading {
+    margin-right: $bard-grid-size/2 !important;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__close {
+      margin-left: $bard-grid-size/2;
+    }
+  }
+
+  &__searchtips__button {
+    color: $bard-link-color;
+    text-decoration: underline;
+  }
+}
+

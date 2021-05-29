@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import queryString from 'query-string' 
 import { Alignment, Button, Navbar as Bp3Navbar } from '@blueprintjs/core'
 import c from 'classnames'
-
 import {compose} from 'redux'
 import {connect} from 'react-redux'
 
@@ -11,10 +10,11 @@ import { withRouter } from 'react-router';
 
 import AuthButtons from 'components/AuthButtons/AuthButtons';
 import { SearchBox } from 'components/common/SearchBox'
-
-import './Navbar.scss'
 import { entitiesQuery } from 'queries';
 import { selectMetadata, selectSession } from 'selectors';
+import  AdvancedSearch from 'components/AdvancedSearch/AdvancedSearch';
+
+import './Navbar.scss'
 
 
 const messages = {
@@ -38,6 +38,10 @@ export class Navbar extends React.Component {
       mobileSearchOpen: false,
       advancedSearchOpen: false,
     }
+
+    this.onToggleAdvancedSearch = this.onToggleAdvancedSearch.bind(this);
+    this.onSearchSubmit = this.onSearchSubmit.bind(this);
+    this.navbarRef = React.createRef();
   }
 
   onSearchSubmit(queryText) {
@@ -55,6 +59,10 @@ export class Navbar extends React.Component {
 
   }
 
+  onToggleAdvancedSearch(){
+    this.setState(({ advancedSearchOpen }) => ({ advancedSearchOpen: !advancedSearchOpen }));
+  }
+
   render(){
     const {metadata, session, query, result, isHomepage } = this.props
     const { advancedSearchOpen, mobileSearchOpen } = this.state;
@@ -67,6 +75,9 @@ export class Navbar extends React.Component {
           <Bp3Navbar id="Navbar" className="bp3-dark" >
             
             <Bp3Navbar.Group align={Alignment.LEFT}  className={c('Navbar__left-group')}>
+              <Link to="/" className="Navrbar__home-link">
+                <span className="Navbar__home-link__text"> {"Dakobed Bard   "}</span>
+              </Link>
             </Bp3Navbar.Group>
             
             <Bp3Navbar.Group align={Alignment.CENTER} className={c('Navbar__middle-group')}>
@@ -79,25 +90,26 @@ export class Navbar extends React.Component {
                       placeholder={messages.placeholder}
                     />
                   </div>
+                  <Button 
+                    className="Navbar__search-container__search-tips bp3-fixed"
+                    icon="settings"
+                    minimal
+                    onClick={this.onToggleAdvancedSearch}
+                  />
                 </div>
               </div>
             </Bp3Navbar.Group>
 
             <Bp3Navbar.Group align={Alignment.RIGHT} className={c('Navbar__right-group')}>
               <>
-                <Link to="/">
-                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    {messages.home_page}
-                  </Button>
-                </Link>
-
-                {/* <Link to="/trip_reports">
+                <Link to="/trip_reports">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
                     {messages.trip_reports}
                   </Button>
                 </Link>
 
-                <Link to="/trip_reports/2">
+
+                {/* <Link to="/trip_reports/2">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
                     {"FIRST TRIP REPORT"}
                   </Button>
@@ -160,7 +172,12 @@ export class Navbar extends React.Component {
             </Bp3Navbar.Group>
           </Bp3Navbar>
         </div>
-        
+
+        <AdvancedSearch
+          isOpen={advancedSearchOpen}
+          onToggle={this.onToggleAdvancedSearch}
+          navbarRer={this.navbarRef}
+        />
       </>
     )
   }
