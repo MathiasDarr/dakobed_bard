@@ -37,3 +37,11 @@ export function collectionDocumentsQuery(location, collectionId) {
   }
   return collectionContextQuery(context, location, collectionId, 'documents')
 }
+
+export function datasetsQuery(location) {
+  const context = { 'exclude:category': 'casefile' }
+  return Query.fromLocation('collections', location, context, 'collections')
+    .defaultFacet('countries')
+    .defaultFacet('category')
+    .defaultFacet('created_at', 'desc')
+}

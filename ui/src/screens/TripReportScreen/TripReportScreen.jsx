@@ -34,14 +34,16 @@ export class TripReportScreen extends Component {
         description={"Trip reports"}
     >
       <CollectionWrapper collectionId = {collectionId} collection={collection} >
-        <DualPane>
+        <DualPane className="TripreportScreen">
           <DualPane.SidePane>
             <>
-              
+              <TripReportSidebar
+                collection={collection}
+              />
               <h2>
-              { messages.side_pane_message }
+              {/* { messages.side_pane_message } */}
               </h2>
-              sdfa
+
             </>
           </DualPane.SidePane>
           <DualPane.ContentPane>

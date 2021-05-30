@@ -1,0 +1,55 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.CheckboxList {
+  list-style: none;
+  @include rtlSupportInvertedProp(padding, left, 0, null);
+  padding-bottom: $bard-grid-size;
+  margin: 0;
+
+  & > li {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    @include rtlSupportInvertedProp(padding, left, ($pt-icon-size-standard + $bard-grid-size * 1.5), ($bard-grid-size / 2));
+
+    &.faint {
+      color: $bard-greyed-text;
+    }
+
+    .tick {
+      position: absolute;
+      @include rtl(left, ($bard-grid-size / 2), null);
+      @include rtl(right, null, ($bard-grid-size / 2));
+      top: 3px;
+      opacity: 0.1;
+      transition: opacity 0.2s ease-out, color .2s ease-out;
+    }
+
+    &.active {
+      .tick {
+        opacity: 1;
+        color: $pt-intent-primary;
+      }
+
+      .label {
+        font-weight: bold;
+      }
+    }
+
+    .label {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    & > span {
+      margin: ($bard-grid-size / 2);
+    }
+
+    .count {
+      color: $gray1;
+      font-variant-numeric: tabular-nums;
+    }
+  }
+}

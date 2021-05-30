@@ -5,6 +5,7 @@ import { withRouter } from 'react-router';
 
 import { selectModel } from 'selectors';
 import CollectionView from 'components/Collections/CollectionView';
+import collectionViewIds from 'components/Collections/collectionViewIds'
 
 
 function SchemaLink({ collection, location, schema, ...rest }) {
@@ -14,3 +15,25 @@ function SchemaLink({ collection, location, schema, ...rest }) {
     
   }
 }
+
+class Label extends Component {
+  render(){
+    return(
+      <div>
+        SCHEMA LABEL
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state, ownProps) => {
+  const { schema } = ownProps;
+  return { schema: selectModel(state).getSchema(schema) };
+}
+
+
+class Schema extends Component {
+  static Label = connect(mapStateToProps)(Label);
+}
+
+export default Schema;

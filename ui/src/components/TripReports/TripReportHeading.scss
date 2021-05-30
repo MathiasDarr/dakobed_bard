@@ -1,10 +1,11 @@
+
 @import "app/variables.scss";
 
 $transition-duration: .3s;
 $inner-padding: 15px;
 
 .TripReportHeading {
-  background:rgba($bard-investigation-theme, .7);
+  background: rgba($bard-investigation-theme, .7);
   transition: all $transition-duration ease-in-out;
   overflow: hidden;
   max-height: none;
@@ -15,7 +16,7 @@ $inner-padding: 15px;
     padding: $bard-grid-size*2 $inner-padding 0;
     transition: padding $transition-duration ease-in-out;
 
-    .bp3-text-muted, .CollectionHeading__title, .CollectionInfo__item .value{
+    .bp3-text-muted, .CollectionHeading__title, .CollectionInfo__item .value {
       color: white;
     }
   }
@@ -33,11 +34,11 @@ $inner-padding: 15px;
   }
 
   &__divider {
-    margin-top: 1px solid rgba(white, .7);
+    border-top: 1px solid rgba(white, .7);
     margin: auto;
     width: 0;
     transition: width $transition-duration ease-in-out, margin 1s ease-in-out;
-  
+
     .metadata-shown & {
       width: 100%;
       margin-top: 20px;
@@ -62,7 +63,7 @@ $inner-padding: 15px;
       margin: $inner-padding 0;
       padding: $bard-grid-size;
       border-radius: 5px;
-      background: rgba(#fff, .15)
+      background: rgba(#fff, .15);
     }
   }
 
@@ -81,7 +82,6 @@ $inner-padding: 15px;
     }
   }
 
-
   .CollectionHeading {
     margin: 0;
 
@@ -99,29 +99,138 @@ $inner-padding: 15px;
     }
   }
 
-
-
   .CollectionStatus {
     padding: $bard-grid-size;
     border-radius: 5px;
     font-size: $pt-font-size-small;
-    margin: $bard-grid-size*2.0 0 $bard-grid-size;
+    margin: $bard-grid-size*2 0 $bard-grid-size;
+
     .bp3-heading {
       font-size: 14px !important;
       margin-bottom: 0 !important;
     }
   }
-  
+
   .CollectionLink, .CategoryLink {
     color: white !important;
   }
-
-
-
 }
 
 
+// @import "app/variables.scss";
+
+// $transition-duration: .3s;
+// $inner-padding: 15px;
+
+// .TripReportHeading {
+//   background:rgba($bard-investigation-theme, .7);
+//   transition: all $transition-duration ease-in-out;
+//   overflow: hidden;
+//   max-height: none;
+//   border-radius: 5px;
+//   margin-bottom: $bard-content-padding;
+
+//   &__inner-container {
+//     padding: $bard-grid-size*2 $inner-padding 0;
+//     transition: padding $transition-duration ease-in-out;
+
+//     .bp3-text-muted, .CollectionHeading__title, .CollectionInfo__item .value{
+//       color: white;
+//     }
+//   }
+
+//   .CollectionHeading__title {
+//     margin-bottom: $bard-grid-size*2;
+//   }
+
+//   .text-markdown {
+//     margin: 0 0 $bard-grid-size 0 !important;
+//   }
+
+//   .text-markdown p {
+//     margin-bottom: 5px !important;
+//   }
+
+//   &__divider {
+//     margin-top: 1px solid rgba(white, .7);
+//     margin: auto;
+//     width: 0;
+//     transition: width $transition-duration ease-in-out, margin 1s ease-in-out;
+  
+//     .metadata-shown & {
+//       width: 100%;
+//       margin-top: 20px;
+//       margin-bottom: $bard-grid-size;
+//     }
+//   }
+
+//   &__metadata {
+//     max-height: 0;
+//     overflow: hidden;
+//     transition: max-height 1s ease-in-out;
+
+//     .metadata-shown & {
+//       max-height: 10000px;
+//     }
+
+//     .CollectionInfo__item .key {
+//       color: white !important;
+//     }
+
+//     &__inner-container {
+//       margin: $inner-padding 0;
+//       padding: $bard-grid-size;
+//       border-radius: 5px;
+//       background: rgba(#fff, .15)
+//     }
+//   }
+
+//   &__metadata-toggle.bp3-button {
+//     width: 100%;
+//     transition: height $transition-duration ease-in-out;
+//     overflow: hidden;
+//     background: rgba($white, .1) !important;
+
+//     &:hover {
+//       background: rgba($white, .2) !important;
+//     }
+
+//     .bp3-icon {
+//       color: white !important;
+//     }
+//   }
 
 
+//   .CollectionHeading {
+//     margin: 0;
 
+//     &__subheading {
+//       transition: max-height $transition-duration ease-in-out;
+//       overflow: hidden;
+//     }
 
+//     &__title {
+//       transition: font-size $transition-duration ease-in-out, font-weight $transition-duration ease-in-out;
+
+//       .bp3-icon {
+//         padding-right: 3px;
+//       }
+//     }
+//   }
+
+//   .CollectionStatus {
+//     padding: $bard-grid-size;
+//     border-radius: 5px;
+//     font-size: $pt-font-size-small;
+//     margin: $bard-grid-size*2.0 0 $bard-grid-size;
+    
+//     .bp3-heading {
+//       font-size: 14px !important;
+//       margin-bottom: 0 !important;
+//     }
+//   }
+  
+//   .CollectionLink, .CategoryLink {
+//     color: white !important;
+//   }
+// }

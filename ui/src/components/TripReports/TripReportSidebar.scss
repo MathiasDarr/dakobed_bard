@@ -4,11 +4,31 @@
 $transition-duration: .3s;
 $sidebar-padding: $bard-grid-size*2;
 
-.TripReportSideBar{
+
+.InvestigationSidebar {
   width: $bard-investigation-sidebar-width;
+  @include rtlSupportInvertedProp(border, right, 1px solid $bard-border-color, none);
+  @include rtlSupportInvertedProp(margin, right, $bard-content-padding, 0);
+  @include rtlSupportInvertedProp(padding, right, $bard-content-padding, 0);
+
+  @media screen and (max-width: $bard-screen-sm-max-width) {
+    width: 100%;
+    border: none !important;
+    border-bottom: 1px solid $bard-border-color !important;
+    margin: 0 0 $bard-content-padding !important;
+    padding: 0 0 $bard-content-padding !important;
+  }
+
+  .SchemaCounts {
+    margin-bottom: $bard-grid-size;
+  }
 
   &__content {
-
+    @media screen and (min-width: 450px) and (max-width: $bard-screen-sm-max-width) {
+      display: flex;
+      align-items: flex-start;
+      margin: -$bard-content-padding/2;
+    }
   }
 
   &__section {
@@ -22,14 +42,14 @@ $sidebar-padding: $bard-grid-size*2;
       margin-bottom: 0;
     }
 
-    @media screen and (min-width: 450px) and (max-width: $bard-screen-sm-max-width){
+    @media screen and (min-width: 450px) and (max-width: $bard-screen-sm-max-width) {
       width: 50%;
       margin: $bard-content-padding/2;
     }
 
     &__title.bp3-heading {
       color: $bard-investigation-theme;
-      padding-bottom: px;
+      padding-bottom: 5px;
     }
   }
 }

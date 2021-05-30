@@ -21,6 +21,8 @@ import CollectionScreen from 'screens/CollectionScreen/CollectionScreen'
 import TripReportIndexScreen from 'screens/TripReportIndexScreen/TripReportIndexScreen';
 import OutdoorsScreen from 'screens/OutdoorsScreen/OutdoorsScreen';
 
+import DatasetIndexScreen from 'screens/DatasetIndexScreen/DatasetIndexScreen';
+
 import ListScreen from 'screens/ListScreen/ListScreen';
 
 import ProfileScreen from 'screens/ProfileScreen/ProfileScreen';
@@ -83,8 +85,8 @@ class Router extends Component {
 
             <Route path="/collections/:collectionId" exact component={CollectionScreen} />
 
- 
 
+            <Route path="/datasets" exact component={DatasetIndexScreen} />
             <Route path="/collection_index" exact component={CollectionIndexScreen} />
             <Route path="/collection_views" exact component={CollectionViews} />
             <Route path="/trip_reports/:collectionId" exact component={TripReportScreen} />

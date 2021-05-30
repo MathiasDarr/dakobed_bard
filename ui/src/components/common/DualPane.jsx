@@ -9,7 +9,6 @@ class SidePane extends PureComponent {
     return (
         <aside className={c('SidePane', className)} style={this.props.style} >
           {children}
-          dfafa 
         </aside>
     )
   }

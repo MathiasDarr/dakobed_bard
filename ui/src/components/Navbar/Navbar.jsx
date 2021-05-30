@@ -18,11 +18,7 @@ import './Navbar.scss'
 
 
 const messages = {
-  datasets: 'Datasets',
-  home_page:'Home',
   collections: 'Collections',
-  music: 'Music',
-  writing: 'Writing',
   feedback: 'Send Feedback',
   placeholder: 'Search Placeholder',
   index: 'Indices',
@@ -104,16 +100,16 @@ export class Navbar extends React.Component {
               <>
                 <Link to="/trip_reports">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
-                    {messages.trip_reports}
+                    {"TripReportIndexScreen"}
                   </Button>
                 </Link>
 
 
-                {/* <Link to="/trip_reports/2">
+                <Link to="/trip_reports/2">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
-                    {"FIRST TRIP REPORT"}
+                    {"TripReportScreen"}
                   </Button>
-                </Link> */}
+                </Link>
 
 
                 {/* <Link to="/outdoors">
@@ -123,46 +119,18 @@ export class Navbar extends React.Component {
                 </Link> */}
 
 
-{/* 
+
                 <Link to="/collections/2" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    {messages.collections}
+                    {"CollectionScreen"}
                   </Button>
-                </Link> */}
+                </Link>
 
-                {/* <Link to="/collection_index" >
+                <Link to="/collection_index" >
                   <Button icon="music" className="Navbar_collections-button bp3-minimal">
-                    {messages.index}
+                    {"CollectionIndex"}
                   </Button>
-                </Link>
-
-                <Link to="/collection_views" >
-                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    Views
-                  </Button>
-                </Link>
-                
-                
-                <Link to="/entities" >
-                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    Entities
-                  </Button>
-                </Link>
-                
-
-
-                <Link to="/logout" >
-                  <Button icon="database" className="Navbar_collections-button bp3-minimal">
-                    Logout
-                  </Button>
-                </Link>
-
-
-
-                <Button icon="comment" className="Navbar__collections-button bp3-minimal">
-                  {messages.feedback}
-                </Button> */}
-
+                </Link>            
               </>
 
               <Bp3Navbar.Divider className={c({'mobile-hidden': mobileSearchOpen })} />

@@ -15,12 +15,15 @@ class CollectionStatus extends Component {
 
   render(){
     return(
-      <div className={c('CollectionStatus', className)}>
-        <div className="progress-area">
-          <ProgressBar animate intent={Intent.PRIMARY} value={status.progress} />
-          Progress Bar
-        </div>
+      <div>
+        
       </div>
+      // <div className={c('CollectionStatus', className)}>
+      //   <div className="progress-area">
+      //     <ProgressBar animate intent={Intent.PRIMARY} value={status.progress} />
+      //     Progress Bar
+      //   </div>
+      // </div>
     )
   }
 }

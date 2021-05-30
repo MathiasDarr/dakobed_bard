@@ -61,12 +61,12 @@ export class DatasetIndexScreen extends Component {
       >
         <DualPane>
           <DualPane.SidePane>
-            {/* <SearchFacets
+            <SearchFacets
               facets={this.state.facets}
               query={query}
               result={result}
               updateQuery={this.updateQuery}
-            /> */}
+            />
           </DualPane.SidePane>
           <DualPane.ContentPane>
             <CollectionIndex

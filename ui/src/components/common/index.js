@@ -14,6 +14,9 @@ import Entity from './Entity';
 import Flag from './Flag';
 import TextLoading from './TextLoading'
 import csvContextLoader from './csvContextLoader';
+import CheckboxList from './CheckboxList';
+import Facet from './Facet';
+import Schema from 'components/common/Schema';
 
 
 export { 
@@ -32,6 +35,9 @@ export {
   Entity,
   Flag,
   TextLoading,
-  csvContextLoader
+  csvContextLoader,
+  CheckboxList,
+  Facet,
+  Schema
 };
 

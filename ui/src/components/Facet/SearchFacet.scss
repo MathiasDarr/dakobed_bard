@@ -1,0 +1,91 @@
+@import "app/variables.scss";
+@import "app/mixins.scss";
+
+.SearchFacet {
+  margin-bottom: $bard-grid-size;
+
+  & > .opener {
+    display: flex;
+    padding: 0 $bard-grid-size;
+    align-items: center;
+    cursor: pointer;
+    background: $bard-facet-background !important;
+
+    &.active {
+      font-weight: bold;
+    }
+
+    &:not(.clickable) {
+      pointer-events: none;
+    }
+
+    & > .caret {
+      @include rtlSupportInvertedProp(margin, right, $bard-grid-size * 0.5, null);
+      @include rtl(transform, rotate(0deg), rotate(180deg));
+      transition: transform 100ms;
+
+      &.rotate {
+        transform: rotate(90deg);
+      }
+    }
+
+    .FacetName {
+      padding: $bard-grid-size 0;
+      font-size: 1.1em;
+      font-weight: bold;
+
+      .bp3-icon {
+        @include rtlSupportInvertedProp(margin, right, 10px !important, null);
+      }
+    }
+
+    .FilterCount {
+      @include rtlSupportInvertedProp(padding, left, $bard-grid-size, null);
+      font-weight: normal;
+    }
+
+    & > .ClearButton {
+      position: absolute;
+      top: $bard-grid-size/2;
+      @include rtl(right, $bard-grid-size/2, null);
+      @include rtl(left, null, $bard-grid-size/2);
+
+      &a:hover {
+        // Element is on a background (set by .clickable), so invert its own background.
+        background: $bard-content-background;
+      }
+    }
+
+    .bp3-tag {
+      position: absolute;
+      @include rtl(right, $bard-grid-size, null);
+      @include rtl(left, null, $bard-grid-size);
+      padding-top: 0;
+      padding-bottom: 0;
+      font-weight: bold;
+      background-color: $bard-theme-intent;
+      color: white;
+    }
+  }
+
+  .CheckboxList {
+    padding-top: $bard-grid-size;
+  }
+
+  p {
+    text-align: center;
+  }
+
+  .spinner {
+    margin: $bard-grid-size auto $bard-grid-size auto !important;
+  }
+
+  .ShowMore {
+    margin-top: $bard-grid-size;
+    font-weight: bold;
+  }
+
+  .updating {
+    opacity: 0.5;
+  }
+}

@@ -24,6 +24,10 @@ class TripReportSidebar extends React.Component {
   navigate(mode, type){
     const { history, location } = this.props;
     const parsedHash = queryString.parse(location.hash)
+    history.push({
+      pathname: location.pathname,
+      hash: queryString.stringify(parsedHash)
+    })
   }
 
 
@@ -35,7 +39,7 @@ class TripReportSidebar extends React.Component {
         key={id}
         icon={<CollectionView.Icon id={id}/>}
         text={<CollectionView.Label id={id}/>}
-
+        onClick={() => this.navigate(id)}
         rightIcon={() => this.navigate(id)}
         active={activeMode === id}
         alignText={Alignment.LEFT}
@@ -72,3 +76,19 @@ class TripReportSidebar extends React.Component {
   }
 
 }
+
+
+const mapStateToProps = (state, ownProps) => {
+  const { collection } = ownProps;
+  return {
+    schemaCounts: collection?.statistics?.schema?.values || {}
+  };
+};
+
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps),
+)(TripReportSidebar)
+
+
