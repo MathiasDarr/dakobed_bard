@@ -76,6 +76,7 @@ export class Navbar extends React.Component {
             
             <Bp3Navbar.Group align={Alignment.LEFT}  className={c('Navbar__left-group')}>
               <Link to="/" className="Navrbar__home-link">
+                {!!metadata.app.logo && <img src={"static/logo.png"} alt={metadata.app.title} /> }
                 <span className="Navbar__home-link__text"> {"Dakobed Bard   "}</span>
               </Link>
             </Bp3Navbar.Group>
@@ -109,28 +110,28 @@ export class Navbar extends React.Component {
                 </Link>
 
 
-                {/* <Link to="/trip_reports/2">
+                <Link to="/trip_reports/2">
                   <Button icon="camera" className="Navbar_collections-button bp3-minimal">
                     {"FIRST TRIP REPORT"}
                   </Button>
-                </Link> */}
+                </Link>
 
 
-                {/* <Link to="/outdoors">
+                <Link to="/outdoors">
                   <Button icon="mountain" className="Navbar_collections-button bp3-minimal">
                     {messages.outdoors}
                   </Button>
-                </Link> */}
+                </Link>
 
 
-{/* 
+
                 <Link to="/collections/2" >
                   <Button icon="database" className="Navbar_collections-button bp3-minimal">
                     {messages.collections}
                   </Button>
-                </Link> */}
+                </Link>
 
-                {/* <Link to="/collection_index" >
+                <Link to="/collection_index" >
                   <Button icon="music" className="Navbar_collections-button bp3-minimal">
                     {messages.index}
                   </Button>
@@ -161,7 +162,7 @@ export class Navbar extends React.Component {
 
                 <Button icon="comment" className="Navbar__collections-button bp3-minimal">
                   {messages.feedback}
-                </Button> */}
+                </Button>
 
               </>
 

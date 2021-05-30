@@ -25,6 +25,7 @@ const messages = {
 
 export class FacetedEntitySearch extends React.Component {
   constructor(props){
+    console.log("TRASH CAN BANGERS")
     super(props);
     this.state = {
       hideFacets: false,
@@ -43,8 +44,6 @@ export class FacetedEntitySearch extends React.Component {
       hash: queryString.stringify(parsedHash)
     })
   }
-
-
 
 
   showNextPreview(event){

@@ -41,6 +41,7 @@ class AdvancedSearch extends React.Component {
     };
 
     this.ref = React.createRef();
+    this.updateQuery = this.updateQuery.bind(this)
     this.renderField = this.renderField.bind(this);
   }
 
@@ -71,6 +72,12 @@ class AdvancedSearch extends React.Component {
     });
   }
 
+  onChange = (field, values) => {
+    this.setState({
+      [field]: values
+    });
+  }
+
 
 
   onClear = (e) => {
@@ -89,7 +96,6 @@ class AdvancedSearch extends React.Component {
   renderField({ key }) {
     const values = this.state[key];
     if (key == 'proximity' || key == 'variants') {
-      console.log("RENDER FIELD GETS CALLED WITH KEY ", key)
       return(
         <AdvancedSearchMultiField
           values = {values}

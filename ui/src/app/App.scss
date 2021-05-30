@@ -1,11 +1,26 @@
+$svg-icon-map: (
+        '16px/small-minus.svg': "path fill-rule='evenodd' clip-rule='evenodd' d='M11 7H5c-.55 0-1 .45-1 1s.45 1 1 1h6c.55 0 1-.45 1-1s-.45-1-1-1z' fill='%23fff'/",
+        '16px/small-tick.svg': "path fill-rule='evenodd' clip-rule='evenodd' d='M12 5c-.28 0-.53.11-.71.29L7 9.59l-2.29-2.3a1.003 1.003 0 0 0-1.42 1.42l3 3c.18.18.43.29.71.29s.53-.11.71-.29l5-5A1.003 1.003 0 0 0 12 5z' fill='%23fff'/",
+        // '16px/chevron-right.svg': "path fill-rule='evenodd' clip-rule='evenodd' d='M10.71 7.29l-4-4a1.003 1.003 0 0 0-1.42 1.42L8.59 8 5.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71l4-4c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71z' fill='%235C7080'/",
+        '16px/chevron-right.svg': "path fill-rule='evenodd' clip-rule='evenodd' d='M10.71 7.29l-4-4a1.003 1.003 0 0 0-1.42 1.42L8.59 8 5.3 11.29c-.19.18-.3.43-.3.71a1.003 1.003 0 0 0 1.71.71l4-4c.18-.18.29-.43.29-.71 0-.28-.11-.53-.29-.71z' fill='%23ccc'/",
+        '16px/more.svg': "g fill='%235C7080'%3E%3Ccircle cx='2' cy='8.03' r='2'/%3E%3Ccircle cx='14' cy='8.03' r='2'/%3E%3Ccircle cx='8' cy='8.03' r='2'/%3E%3C/g",
+);
+
+@function svg-icon($inline-svg, $fill-color) {
+  @return url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3C" + map-get($svg-icon-map, $inline-svg) + "%3E%3C/svg%3E")
+}
+
+$icon-font-path: "~@blueprintjs/icons/resources/icons";
+
 @import "~@blueprintjs/core/src/blueprint.scss";
+@import "~@blueprintjs/table/lib/css/table.css";
+@import "~@blueprintjs/icons/src/blueprint-icons.scss";
 @import "~@blueprintjs/select/src/blueprint-select.scss";
-
 @import "./variables.scss";
+@import "./tables.scss";
 @import "./layouts.scss";
-
+@import "./blueprint-overrides.scss";
 @import "app/mixins.scss";
-
 
 html {
   height: 100%;
@@ -53,12 +68,13 @@ a {
 .small-screen {
   max-width: 400px;
   margin: 0 auto;
-  padding: ($bard-grid-size * 2)
+  padding: ($bard-grid-size * 2);
 
   h1 {
-    line-weight: inherit;
+    line-height: inherit;
   }
 }
+
 .small-screen-outer {
   display: table;
   position: absolute;
@@ -66,14 +82,14 @@ a {
   width: 100%;
 }
 
-
-.small-screen-inner{
+.small-screen-inner {
   display: table-cell;
   vertical-align: middle;
 }
 
-.PartialError{
-  .bp3-non-ideal-state{
+// Used to render failed imports, missing connections.
+.PartialError {
+  .bp3-non-ideal-state {
     min-height: 30vh;
   }
 }
@@ -82,12 +98,34 @@ a {
   color: $bard-greyed-text;
 }
 
-
 .text-page-title {
   font-size: 22px;
+  color: $dark-gray1;
   margin: 0 0 $bard-grid-size;
 }
 
+.text-page-subtitle {
+  color: $dark-gray5;
+  line-height: 1.5;
+  clear: both;
+  max-width: 700px;
+}
+
+.text-markdown {
+  * {
+    font-size: inherit !important;
+    line-height: inherit !important;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: $bard-grid-size 0 !important;
+    padding: $bard-grid-size 0 !important;
+  }
+
+  p {
+    margin-bottom: $bard-grid-size*1.5 !important;
+  }
+}
 
 .error-text {
   font-style: italic;
@@ -106,40 +144,97 @@ a {
   @include rtlSupportInvertedProp(margin, right, $bard-icon-padding !important, 0);
 }
 
+/* This causes toasts to appear *below* the navbar instead of on top of it */
+.bard-toaster {
+  margin-top: $bard-grid-size * 5;
+}
 
+.index {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
 
+.index-item {
+  padding: $bard-grid-size*2.5 0;
+  border-bottom: 1px solid $bard-border-color;
 
-// &__count {
-//   @include rtl(float, right, left);
-//   display: block;
-//   margin-top: 2px;
-// }
-
-// &__summary {
-//   font-size: $bard-font-size;
-//   margin-bottom: $bard-grid-size;
-// }
-
-@media screen and (max-width: $bard-screen-sm-max-width){
-  .visible-sm-block{
-    display: block !important;
+  &:last-child {
+    border: none;
   }
-  .visible-sm-flex {
-    display: flex !important;
+
+  &__title {
+    font-weight: bold;
+    margin-right: $bard-grid-size*3;
+    max-width: $bard-content-width-limit;
+
+    &__text {
+      display: inline-flex;
+
+      .bp3-icon {
+        margin-top: 2px;
+      }
+    }
   }
-  .visible-sm-none {
-    display: none !important
+
+  &__summary {
+    font-size: $pt-font-size;
+    margin-bottom: $bard-grid-size;
+    max-width: $bard-content-width-limit;
+  }
+
+  &__count {
+    @include rtl(float, right, left);
+    display: block;
+    margin-top: 2px;
+  }
+
+  &__details {
+    margin-bottom: 0;
+    color: $bard-greyed-text;
+
+    .bp3-tag {
+      @include rtlSupportInvertedProp(margin, left, $bard-grid-size, null);
+    }
+
+    &__item {
+      display: inline-block;
+      min-width: 8em;
+      margin: $bard-grid-size/2 0;
+      @include rtlSupportInvertedProp(margin, right, 2em, null);
+
+      .bp3-icon {
+        @include rtlSupportInvertedProp(margin, right, $bard-icon-padding, null);
+      }
+
+      .bp3-tag {
+        vertical-align: middle;
+      }
+    }
   }
 }
 
-
-
-@media screen and (max-width: $bard-screen-md-max-width){
-  .visible-md-flex {
-    display: flex !important
+//small screen
+@media screen and (max-width: $bard-screen-sm-max-width) {
+  .visible-sm-block {
+    display: block !important;
   }
-  .visible-md-none {
+
+  .visible-sm-flex {
+    display: flex !important;
+  }
+
+  .visible-sm-none {
     display: none !important;
   }
 }
 
+@media screen and (max-width: $bard-screen-md-max-width) {
+  .visible-md-flex {
+    display: flex !important;
+  }
+
+  .visible-md-none {
+    display: none !important;
+  }
+}

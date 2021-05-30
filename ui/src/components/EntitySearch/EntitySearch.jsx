@@ -11,6 +11,7 @@ import c from 'classnames';
 
 
 import './EntitySearch.scss'
+import { selectEntitiesResult } from 'selectors';
 
 
 const messages = {
@@ -81,10 +82,22 @@ export class EntitySearch extends  Component {
 
 
 const mapStateToProps = (state, ownProps) => {
-  const { location, query, result, className } = ownProps;
+  const { location, query } = ownProps;
+  const result = selectEntitiesResult(state, query);
+  const context = {
+    'filter:type': 'diagram'
+  };
+  let networksQuery = Query.fromLocation('entitysets', location, context, 'entitysets');
+
+  // if(!networksQuery.Query.hasSort()) {
+  //   networksQuery = networksQuery.sortBy('created_at', 'asc');
+  // }
+
   return {
     query,
-    result
+    result,
+    networksQuery,
+    type: 'diagram'
   }
 }
 
